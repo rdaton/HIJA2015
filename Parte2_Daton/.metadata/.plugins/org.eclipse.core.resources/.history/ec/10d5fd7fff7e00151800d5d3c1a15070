@@ -55,9 +55,7 @@ class unEvaluador
 	public ArrayList<tMano> dameManos(ArrayList<tCartaPalo> unaListaCartas)
 	{
 		ArrayList<tMano> unaListaManos=new ArrayList<tMano>();
-		Set<tCartaPalo> unSet=new HashSet<tCartaPalo>(unaListaCartas);
 		int res =-1;
-		
 		
 		
 		
