@@ -1,9 +1,5 @@
 package part1;
 import java.util.*;
-import java.math.*;
-
-import part1.tCartaPalo.tPalo;
-
 
 enum tMano{ROYAL_FLUSH,STRAIGHT_FLUSH,FOUR_KIND,FULL_HOUSE,FLUSH,STRAIGHT,THREE_KIND,TWO_PAIR,PAIR}
 
@@ -21,8 +17,6 @@ class unEvaluador
 		listaRoyalFlush.add(new tCartaPalo('Q','n'));
 		listaRoyalFlush.add(new tCartaPalo('J','n'));
 		listaRoyalFlush.add(new tCartaPalo('T','n'));
-		
-		int[listaStraight=new ArrayList<Integer>();
 		
 	}
 	int esRoyalFlush(Set<tCartaPalo>  conjuntoCartas)
@@ -51,34 +45,13 @@ class unEvaluador
 	{
 		return 1;
 	}
-	*/
-	int esFlush(Set<tCartaPalo>  conjuntoCartas)
-	{
-		int acum=5;
-		int count_h=0;
-		int count_d=0;
-		int count_s=0;
-		int count_c=0;
-		
-		Iterator <tCartaPalo> unIterador= conjuntoCartas.iterator();
-		
-		while (unIterador.hasNext())
-		{
-			switch (unIterador.next()._palo)
-			{
-			case CLUB:   count_c++; break;
-			case SPADE:  count_s++; break;
-			case HEART:  count_h++; break;
-			case DIAMOND:  count_d++; break;
-			}
-		}
-		
-		acum=5-(Math.max(count_h,Math.max(count_d,Math.max(count_s,count_c))));
-		
-		return acum;
-	}
 	
-	/*
+	Set<tCartaPalo> esFlush(Set<tCartaPalo>  conjuntoCartas)
+	{
+		return 1;
+	}
+	*/
+	
 	int sumatorioN(int a)
 	{
 		return (a*(a+1))/2;
@@ -86,10 +59,9 @@ class unEvaluador
 	
 	int sumatorioAb(int a, int b)
 	{
-		int sum=sumatorioN(b)-sumatorioN(a-1);
+		int sum=sumatorioN(b)-sumatorioN(a);
 		return sum;
 	}
-	*/
 	
 	int esStraight(Set<tCartaPalo>  conjuntoCartas)
 	{

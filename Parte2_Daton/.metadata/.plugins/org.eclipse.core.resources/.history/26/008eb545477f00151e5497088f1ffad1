@@ -22,8 +22,6 @@ class unEvaluador
 		listaRoyalFlush.add(new tCartaPalo('J','n'));
 		listaRoyalFlush.add(new tCartaPalo('T','n'));
 		
-		int[listaStraight=new ArrayList<Integer>();
-		
 	}
 	int esRoyalFlush(Set<tCartaPalo>  conjuntoCartas)
 	{
@@ -73,7 +71,7 @@ class unEvaluador
 			}
 		}
 		
-		acum=5-(Math.max(count_h,Math.max(count_d,Math.max(count_s,count_c))));
+		acum=5-(max(count_h,max(count_d,max(count_s,count_c))));
 		
 		return acum;
 	}
@@ -90,7 +88,7 @@ class unEvaluador
 		return sum;
 	}
 	*/
-	
+	/*
 	int esStraight(Set<tCartaPalo>  conjuntoCartas)
 	{
 		int acum=5;
@@ -98,7 +96,7 @@ class unEvaluador
 		
 		return acum;
 	}
-	
+	*/
 	/*
 	Set<tCartaPalo> esThreeKind(Set<tCartaPalo>  conjuntoCartas)
 	{

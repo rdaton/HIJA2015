@@ -22,8 +22,6 @@ class unEvaluador
 		listaRoyalFlush.add(new tCartaPalo('J','n'));
 		listaRoyalFlush.add(new tCartaPalo('T','n'));
 		
-		int[listaStraight=new ArrayList<Integer>();
-		
 	}
 	int esRoyalFlush(Set<tCartaPalo>  conjuntoCartas)
 	{
@@ -90,7 +88,7 @@ class unEvaluador
 		return sum;
 	}
 	*/
-	
+	/*
 	int esStraight(Set<tCartaPalo>  conjuntoCartas)
 	{
 		int acum=5;
@@ -98,7 +96,7 @@ class unEvaluador
 		
 		return acum;
 	}
-	
+	*/
 	/*
 	Set<tCartaPalo> esThreeKind(Set<tCartaPalo>  conjuntoCartas)
 	{

@@ -22,7 +22,7 @@ class unEvaluador
 		listaRoyalFlush.add(new tCartaPalo('J','n'));
 		listaRoyalFlush.add(new tCartaPalo('T','n'));
 		
-		int[listaStraight=new ArrayList<Integer>();
+		listaStraight=new Arraylist<int>();
 		
 	}
 	int esRoyalFlush(Set<tCartaPalo>  conjuntoCartas)
