@@ -35,7 +35,7 @@ package part1;
 			case '4': _carta=tCarta.FOUR;break;
 			case '3': _carta=tCarta.THREE;break;
 			case '2': _carta=tCarta.TWO;break;
-			default: _carta=tCarta.NONE;break;
+			case 'n': _carta=tCarta.NONE;break;
 			}
 			
 			 
@@ -71,8 +71,8 @@ package part1;
 				 case CLUB: return "CLUB";
 				 case SPADE: return "SPADE";
 				 case HEART: return "HEART";
-				 case DIAMOND: return "DIAMOND";
-				 default: return "NONE";
+				 case DIAMOND: return "DIAOND";
+				 default: return "";
 				}
 			}
 		 
@@ -82,22 +82,12 @@ package part1;
 					return false;	
 				if (obj == this)
 					return true;
-				//comparo por valor
 				if (this._carta==((tCartaPalo)obj)._carta) 
 					//palo 'NONE', que es palo genérico
 				{
 					if  (((tCartaPalo)obj)._palo==tPalo.NONE) return true;
 					else 
 					if (this._palo ==((tCartaPalo)obj)._palo) return true;
-				}
-				
-				//comparo por palo
-				else if (this._palo==((tCartaPalo)obj)._palo)
-					//carta 'NONE',que es una carta de valor generico
-				{
-					if  (((tCartaPalo)obj)._carta==tCarta.NONE) return true;
-					else 
-					if (this._carta ==((tCartaPalo)obj)._carta) return true;
 				}
 				
 				return false;

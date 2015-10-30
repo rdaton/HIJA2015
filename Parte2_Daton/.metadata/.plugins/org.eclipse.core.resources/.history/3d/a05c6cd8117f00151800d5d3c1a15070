@@ -82,7 +82,7 @@ package part1;
 					return false;	
 				if (obj == this)
 					return true;
-				//comparo por valor
+				//comparo valor
 				if (this._carta==((tCartaPalo)obj)._carta) 
 					//palo 'NONE', que es palo genérico
 				{
@@ -90,10 +90,9 @@ package part1;
 					else 
 					if (this._palo ==((tCartaPalo)obj)._palo) return true;
 				}
-				
 				//comparo por palo
-				else if (this._palo==((tCartaPalo)obj)._palo)
-					//carta 'NONE',que es una carta de valor generico
+				else if (((tCartaPalo)obj)._palo==tPalo.NONE)
+					//carta 'NONE',que es una carta generica de un palo
 				{
 					if  (((tCartaPalo)obj)._carta==tCarta.NONE) return true;
 					else 
