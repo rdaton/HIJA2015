@@ -1,0 +1,15 @@
+package part1;
+
+
+import java.util.ArrayList;
+
+
+class clasePrinc
+{
+	
+public void main (String[] args)
+{
+	
+}
+
+}

@@ -1,0 +1,61 @@
+package part1;
+
+
+import java.util.ArrayList;
+
+//main
+public class parte1
+{
+	
+	public class tCartaPalo{
+		 enum tPalo{ CLUB, DIAMOND, SPADE, HEART};
+	     enum tCarta{ A,K,Q,J,T,NINE,EIGHT,SIETE,SEIS,CINCO,CUATRO,TRES,DOS}
+		
+		
+		 public tCarta _carta;
+		 public tPalo _palo;
+		
+		 
+		 public tCartaPalo(char unaCarta, char unPalo)
+		 {
+			 switch (unPalo)
+			 {
+			 case 'c': _palo=; break;
+			 
+			 
+			 }
+			 
+		 }
+		 
+		 public int dameValor() 
+		{
+			switch(_carta)
+			{
+			case A: return 14; 
+			case K: return 13; 
+			case Q: return 12; 
+			case J: return 11; 
+			case T: return 10; 
+			case NINE: return 9; 
+			case EIGHT: return 8; 
+			case SIETE: return 7; 
+			case SEIS: return 6; 
+			case CINCO: return 5; 
+			case CUATRO: return 4; 
+			case TRES: return 3; 
+			case DOS: return 2; 
+			default: return -1;
+			}
+		
+		}
+	}
+	public class tListaCartaPalo{
+		public ArrayList<tCartaPalo> _unaLista;
+		
+	}
+public static void main(String [] args)
+	{
+	
+	
+	}
+}

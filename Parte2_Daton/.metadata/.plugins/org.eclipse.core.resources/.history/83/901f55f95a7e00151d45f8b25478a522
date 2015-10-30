@@ -1,0 +1,24 @@
+package part1;
+
+
+import java.util.ArrayList;
+
+//main
+public class parte1
+{
+	public enum tPalo{ CLUB, DIAMOND, SPADE, HEART};
+	public enum tCarta{ A,K,Q,J,T,NINE,EIGHT,SIETE,SEIS,CINCO,CUATRO,TRES,DOS}
+	public class tCartaPalo{
+		public tCarta _carta;
+		public tPalo _palo;		
+	}
+	public class tListaCartaPalo{
+		public ArrayList<tCartaPalo> _unaLista;
+		
+	}
+public static void main(String [] args)
+	{
+	
+	
+	}
+}
