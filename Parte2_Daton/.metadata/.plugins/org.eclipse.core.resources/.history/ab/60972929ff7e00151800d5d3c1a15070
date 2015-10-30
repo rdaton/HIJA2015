@@ -54,18 +54,6 @@ class unEvaluador
 	
 	public ArrayList<tMano> dameManos(ArrayList<tCartaPalo> unaListaCartas)
 	{
-		ArrayList<tMano> unaListaManos=new ArrayList<tMano>();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		return unaListaManos;
-		
 		
 	}
 	

@@ -95,14 +95,7 @@ package part1;
 			}
 		 
 			public int hashCode(){
-				//hasheo el palo (previamente convertido a String)
-				String unaCadena=dameValor()+damePalo();
-				//visto en http://stackoverflow.com/questions/2624192/good-hash-function-for-strings
-				int un_hash = 7;
-				for (int i = 0; i < unaCadena.length(); i++) {
-				    un_hash = un_hash*31 + unaCadena.charAt(i);
-				}
-				return un_hash;//for simplicity reason
+				return color.length();//for simplicity reason
 			}
 		
 	}

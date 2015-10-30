@@ -52,20 +52,8 @@ class unEvaluador
 		return 1;
 	}
 	
-	public ArrayList<tMano> dameManos(ArrayList<tCartaPalo> unaListaCartas)
+	public ArrayList<tMano> dameManos(ArrayList<tCartaPalo>)
 	{
-		ArrayList<tMano> unaListaManos=new ArrayList<tMano>();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		return unaListaManos;
-		
 		
 	}
 	
