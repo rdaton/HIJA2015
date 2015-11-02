@@ -104,7 +104,66 @@ finally
          return  tercerString;
          
      }
-
+   private static List<String> conversLinea2(String line) {
+    List<String> unosString = new ArrayList <> ();
+    unosString.toArray()[0]="";
+    unosString.toArray()[1]="";
+        int i=0;
+        while(i<line.length()-1)
+        {
+            if (line.charAt(i)==';') {i+=3;break;}; //me salto el punto y coma
+            unosString.toArray()[0]+=line.substring(i, i+2);
+            i+=2;
+        };
+        
+       while (i<line.length()-1)
+       {
+           unosString.toArray()[1]+=line.substring(i, i+2);
+            i+=2;
+       }
+        
+ return unosString;
+    }
+    static private  List <List<String>> abrirFichero2(String nombreFichero)
+    {
+        List<List<String>> unosString;
+        unosString= new ArrayList<>();
+        unosString.add( new ArrayList<>());
+        unosString.add( new ArrayList<>());
+        
+        try{
+          BufferedReader reader = new BufferedReader(new FileReader(nombreFichero));
+          String line;
+        while ((line = reader.readLine()) != null)
+        {
+        String unString=line;
+        
+        unosString.add(conversLinea2(line));
+        }
+        reader.close();
+        return unosString;   
+            
+        }
+        
+        catch(Exception e) {
+        //System.err.format("Ha ocurrido una excepción", nombreFichero);
+        //e.printStackTrace();
+            e.printStackTrace();
+        return null;
+        }
+    }
+   private static void parte2 (String unFichero)
+   {
+       //dos listas de listas de cartas ..
+       //primera lista de cartas en mano
+       //segunda lista de cartas comunes
+       List <List<String>> otrosString;
+       
+       otrosString=abrirFichero2()
+       
+       
+       
+   }
     public static void main(String[] args) {
         List<String> unosString= new ArrayList<String>();
         unosString=abrirFichero("prueba1"); //(args[0]);
@@ -258,6 +317,8 @@ finally
         }
         return dck;
     }
+
+    
  
     private static class Score {
         final int weight;
