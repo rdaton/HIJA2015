@@ -15,7 +15,7 @@ public class Daton2_netbeans {
     final static String suits = "HDSC";
     final static String[] deck = buildDeck();
     
-    private  List<String> abrirFichero(String nombreFichero)
+    static private  List <String> abrirFichero(String nombreFichero)
     {
         List<String> unosString;
         unosString= new ArrayList<>();
@@ -24,7 +24,9 @@ public class Daton2_netbeans {
           String line;
         while ((line = reader.readLine()) != null)
         {
-        unosString.add(line);
+        String unString=line;
+        
+        unosString.add(conversLinea(line));
         }
         reader.close();
         return unosString;   
@@ -34,11 +36,11 @@ public class Daton2_netbeans {
         catch(Exception e) {
         //System.err.format("Ha ocurrido una excepción", nombreFichero);
         //e.printStackTrace();
-            System.out.println("no he podido abrir"+nombreFichero);
+            e.printStackTrace();
         return null;
         }
     }
-private void escribirFichero (List<String> unaLista,String otroFichero) throws IOException
+ static private void escribirFichero (List<String> unaLista,String otroFichero) throws IOException
     {
     
         BufferedWriter out = null;
@@ -62,7 +64,7 @@ finally
 }
     }
     
-    String convers (String unString)
+    static private String convers (String unString)
     {
         String tercerString="";
         tercerString+=unString.charAt(0);
@@ -77,20 +79,44 @@ finally
         
         return tercerString;
     }
-    private String[] listaToString(List<String> unaLista)
+    static private String conversLinea(String unString)
     {
         List<String> otrasCadenas=new ArrayList<>();
-        Iterator <String> unIterador= unaLista.iterator();
-        int i=0;
-        while (unIterador.hasNext())
-            otrasCadenas.add(convers(unIterador.next()));
-            
+        String unaLinea="";
+       
+        for (int i=0; i<unString.length()-1;i+=2)
+        {
+            unaLinea+=convers(unString.substring(i, i+2));                    
+           // if (i<unString.length()-2) unaLinea+=" ";
+        }        
         
-        
-        return (String[])otrasCadenas.toArray();
-        
+        return unaLinea;        
     }
+   private static  String[] convers_legacy(String unString)
+     {
+         List<String> unaLista=new ArrayList<String>();
+         
+         for (int i=0; i<unString.length()-1;i+=2)
+         {
+             unaLista.add(unString.substring(i, i+2));         
+         }
+         String[] tercerString = unaLista.toArray(new String[unaLista.size()]);
+         return  tercerString;
+         
+     }
+
     public static void main(String[] args) {
+        List<String> unosString= new ArrayList<String>();
+        unosString=abrirFichero("prueba1"); //(args[0]);
+        
+        Iterator <String> unIterador=unosString.iterator();
+        while (unIterador.hasNext())
+        {
+        String unString=unIterador.next();
+        System.out.print(unString+"\n");
+        System.out.println(analyzeHand(convers_legacy(unString)));
+        }
+        
         
         /*
         System.out.println("Regular hands:\n");
@@ -107,6 +133,8 @@ finally
             System.out.println(analyzeHand(input.split(" ")));
         }
         */
+       // for (int i=0; i<unString.length;i++)
+       // System.out.print(unString[i]+"\n");
  /*
         System.out.println("\nHands with wildcards:\n");
         for (String input : new String[]{"2H 2D 2S KS WW",
