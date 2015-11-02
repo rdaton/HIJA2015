@@ -1,6 +1,11 @@
 //fuente: http://rosettacode.org/wiki/Poker_hand_analyser
 package daton2_netbeans;
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 import java.util.Collections;
 import java.util.HashSet;
  
@@ -9,8 +14,85 @@ public class Daton2_netbeans {
     final static String faces = "AKQJT98765432";
     final static String suits = "HDSC";
     final static String[] deck = buildDeck();
- 
+    
+    private  List<String> abrirFichero(String nombreFichero)
+    {
+        List<String> unosString;
+        unosString= new ArrayList<>();
+        try{
+          BufferedReader reader = new BufferedReader(new FileReader(nombreFichero));
+          String line;
+        while ((line = reader.readLine()) != null)
+        {
+        unosString.add(line);
+        }
+        reader.close();
+        return unosString;   
+            
+        }
+        
+        catch(Exception e) {
+        //System.err.format("Ha ocurrido una excepción", nombreFichero);
+        //e.printStackTrace();
+            System.out.println("no he podido abrir"+nombreFichero);
+        return null;
+        }
+    }
+private void escribirFichero (List<String> unaLista,String otroFichero) throws IOException
+    {
+    
+        BufferedWriter out = null;
+try  
+{
+    FileWriter fstream = new FileWriter(otroFichero, false); //true tells to append data.
+    out = new BufferedWriter(fstream);
+    Iterator<String> unIterador=unaLista.iterator();
+    while (unIterador.hasNext())
+        out.write(unIterador.next()+"\n");
+    }
+catch (IOException e)
+{
+    System.err.println("Error: " + e.getMessage());
+}
+finally
+{
+    if(out != null) {
+        out.close();
+    }
+}
+    }
+    
+    String convers (String unString)
+    {
+        String tercerString="";
+        tercerString+=unString.charAt(0);
+        switch (unString.charAt(1))
+			{
+			 case 'c': tercerString+="C"; break;
+			 case 'd': tercerString+="D"; break;
+			 case 's': tercerString+="S"; break;
+			 case 'h': tercerString+="H";break;
+			 		 
+			}
+        
+        return tercerString;
+    }
+    private String[] listaToString(List<String> unaLista)
+    {
+        List<String> otrasCadenas=new ArrayList<>();
+        Iterator <String> unIterador= unaLista.iterator();
+        int i=0;
+        while (unIterador.hasNext())
+            otrasCadenas.add(convers(unIterador.next()));
+            
+        
+        
+        return (String[])otrasCadenas.toArray();
+        
+    }
     public static void main(String[] args) {
+        
+        /*
         System.out.println("Regular hands:\n");
         for (String input : new String[]{"2H 2D 2S KS QD",
             "2H 5H 7D 8S 9D",
@@ -24,7 +106,8 @@ public class Daton2_netbeans {
             "QC TC 7C 7C TD"}) {
             System.out.println(analyzeHand(input.split(" ")));
         }
- 
+        */
+ /*
         System.out.println("\nHands with wildcards:\n");
         for (String input : new String[]{"2H 2D 2S KS WW",
             "2H 5H 7D 8S WW",
@@ -38,6 +121,7 @@ public class Daton2_netbeans {
             "QC TC 7H WW WW"}) {
             System.out.println(analyzeHandWithWildcards(input.split(" ")));
         }
+       */
     }
  
     private static Score analyzeHand(final String[] hand) {
