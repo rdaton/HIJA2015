@@ -106,8 +106,8 @@ finally
      }
    private static List<String> conversLinea2(String line) {
     List<String> unosString = new ArrayList <> ();
-    unosString.toArray()[0]="";
-    unosString.toArray()[1]="";
+    unosString.add("");
+    unosString.add("");
         int i=0;
         while(i<line.length()-1)
         {
@@ -152,20 +152,42 @@ finally
         return null;
         }
     }
-   private static void parte2 (String unFichero)
+   
+    //j sirve para saber qué cartas añadir de la mesa
+    private  static String combinar (String mano, String mesa, int j)
+    {
+        int long_max=mesa.length()%3;
+        String unString="";
+        
+        unString=mano + mesa.substring(long_max);
+        
+        return unString;
+        
+    }
+    
+    private static void parte2 (String unFichero)
    {
        //dos listas de listas de cartas ..
        //primera lista de cartas en mano
        //segunda lista de cartas comunes
        List <List<String>> otrosString;
        
-       otrosString=abrirFichero2()
+       otrosString=abrirFichero2(unFichero);
        
+       Iterator<String> iteradorJugador=((List<String>)otrosString.toArray()[0]).iterator();
+       Iterator<String> iteradorMesa=((List<String>)otrosString.toArray()[1]).iterator();
+       
+        while (iteradorJugador.hasNext() && iteradorMesa.hasNext())
+        {
+        String unString=combinar (iteradorJugador.next(), iteradorMesa.next(),0);
+        System.out.print(unString+"\n");
+        System.out.println(analyzeHand(convers_legacy(unString)));
+        }
        
        
    }
     public static void main(String[] args) {
-        List<String> unosString= new ArrayList<String>();
+    /*    List<String> unosString= new ArrayList<String>();
         unosString=abrirFichero("prueba1"); //(args[0]);
         
         Iterator <String> unIterador=unosString.iterator();
@@ -174,8 +196,9 @@ finally
         String unString=unIterador.next();
         System.out.print(unString+"\n");
         System.out.println(analyzeHand(convers_legacy(unString)));
-        }
+        } */
         
+        parte2("entrada2");
         
         /*
         System.out.println("Regular hands:\n");
