@@ -103,13 +103,13 @@ public class Daton2_netbeans {
         while(i<line.length()-1)
         {
             if (line.charAt(i)==';') {i+=3;break;}; //me salto el punto y coma
-            unosString.toArray()[0]+=line.substring(i, i+2);
+            unosString.set(0,unosString.get(0)+line.substring(i, i+2));
             i+=2;
         };
         
        while (i<line.length()-1)
        {
-           unosString.toArray()[1]+=line.substring(i, i+2);
+           unosString.set(1,unosString.get(1)+line.substring(i, i+2));
             i+=2;
        }
         
@@ -119,9 +119,6 @@ public class Daton2_netbeans {
     {
         List<List<String>> unosString;
         unosString= new ArrayList<>();
-        unosString.add( new ArrayList<>());
-        unosString.add( new ArrayList<>());
-        
         try{
           BufferedReader reader = new BufferedReader(new FileReader(nombreFichero));
           String line;
@@ -165,8 +162,8 @@ public class Daton2_netbeans {
        
        otrosString=abrirFichero2(unFichero);
        
-       Iterator<String> iteradorJugador=((List<String>)otrosString.toArray()[0]).iterator();
-       Iterator<String> iteradorMesa=((List<String>)otrosString.toArray()[1]).iterator();
+       Iterator<String> iteradorJugador=otrosString.get(0).iterator();
+       Iterator<String> iteradorMesa=otrosString.get(1).iterator();
        
         while (iteradorJugador.hasNext() && iteradorMesa.hasNext())
         {
