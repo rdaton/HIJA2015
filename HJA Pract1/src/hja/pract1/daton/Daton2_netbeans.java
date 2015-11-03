@@ -189,15 +189,19 @@ try
     
     for (int i=0; i<unAlmacen.dameLong();i++)
     {
-        Score[] listaScores=null;
-       int[] listaDraws=null;
+        Score[] listaScores=new Score[10];
+        int[] listaDraws=new int[10];
          unAlmacen.dameListas(i, listaScores, listaDraws);
-    out.write(listaScores[0].toString());
+         out.write("Mano " +i+"\n");
+    out.write(listaScores[0].toString()+"\n");
+    out.write("Draws de Mano "+i+"\n");
      for (int s=1;s<10;s++)
         {
+            
            if ((listaDraws[s]>0)&&(s!=listaDraws[0]))
            out.write(listaScores[s].toString()+"\n");
         }
+     out.write("\n"+"\n");
     }   
     }
 catch (IOException e)
@@ -541,8 +545,13 @@ static class AlmacenRes
     }
     public void dameListas(int i,Score[] listaScores,int[] listaDraws)
     {
-        listaScores=_listaScores.get(i);
-        listaDraws=_listaDraws.get(i);
+        Score[] unaListaScores=_listaScores.get(i);
+        int[] unaListaDraws=_listaDraws.get(i);
+        for (int j=0;j<10;j++)
+        {
+            listaScores[j]=unaListaScores[j];
+            listaDraws[j]=unaListaDraws[j];
+        }
     }
     
     public int dameLong()
@@ -553,6 +562,7 @@ static class AlmacenRes
     {
         _listaScores.add(listaScores);
         _listaDraws.add(listaDraws);
+        _longitud++;
     }
 }
 
