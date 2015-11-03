@@ -6,6 +6,7 @@ import Cards.Card.*;
 import Cards.Hands;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,9 +14,12 @@ import java.util.*;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+ 
  
 public class Daton2_netbeans {
-    
+    static AlmacenRes  unAlmacenRes=new AlmacenRes();;
     final static Cards.ArrayCards miJugada=new Cards.ArrayCards();
     final static String faces = "AKQJT98765432";
     final static String suits = "HDSC";
@@ -46,29 +50,10 @@ public class Daton2_netbeans {
         return null;
         }
     }
- static private void escribirFichero (List<String> unaLista,String otroFichero) throws IOException
-    {
     
-        BufferedWriter out = null;
-try  
-{
-    FileWriter fstream = new FileWriter(otroFichero, false); //true tells to append data.
-    out = new BufferedWriter(fstream);
-    Iterator<String> unIterador=unaLista.iterator();
-    while (unIterador.hasNext())
-        out.write(unIterador.next()+"\n");
-    }
-catch (IOException e)
-{
-    System.err.println("Error: " + e.getMessage());
-}
-finally
-{
-    if(out != null) {
-        out.close();
-    }
-}
-    }
+    
+    
+ 
     
     static private String convers (String unString)
     {
@@ -193,11 +178,47 @@ finally
        
    }
     
+ static private void escribirFichero (AlmacenRes unAlmacen,String otroFichero) throws IOException
+    {
+       
+        BufferedWriter out = null;
+try  
+{
+    FileWriter fstream = new FileWriter(otroFichero, false); //true tells to append data.
+    out = new BufferedWriter(fstream);
+    
+    for (int i=0; i<unAlmacen.dameLong();i++)
+    {
+        Score[] listaScores=null;
+       int[] listaDraws=null;
+         unAlmacen.dameListas(i, listaScores, listaDraws);
+    out.write(listaScores[0].toString());
+     for (int s=1;s<10;s++)
+        {
+           if ((listaDraws[s]>0)&&(s!=listaDraws[0]))
+           out.write(listaScores[s].toString()+"\n");
+        }
+    }   
+    }
+catch (IOException e)
+{
+    System.err.println("Error: " + e.getMessage());
+}
+finally
+{
+    if(out != null) {
+        out.close();
+    }
+}
+    }
+    
     private static void parte1(String nombreFichero,String salida)
     {
+       
         List<String> unosString= new ArrayList<String>();
         unosString=abrirFichero(nombreFichero); //(args[0]);
         String cadenaWild="";
+        Score otroScore;
         //array de draws .. para evitar que me salgan duduplicados
         
         int[] listaDraws= new int[10];
@@ -206,10 +227,10 @@ finally
         
         
         Iterator <String> unIterador=unosString.iterator();
-        int r=0;
+        
         while (unIterador.hasNext())
         {
-        System.out.println("MANO "+r+"\n");
+        System.out.println("Jugada principal"+"\n");
         
         String unString=unIterador.next();
         System.out.print(unString+"\n");
@@ -232,7 +253,7 @@ finally
         {
             
         cadenaWild=unString.substring(0,i)+"WWWW"+unString.substring(i+4,unString.length());
-        Score otroScore=analyzeHandWithWildcards(convers_legacy(cadenaWild)).score;
+        otroScore=analyzeHandWithWildcards(convers_legacy(cadenaWild)).score;
         listaDraws[otroScore.weight]++;
         listaScores[otroScore.weight]=otroScore;
         }
@@ -240,18 +261,33 @@ finally
         //WW________WW
         
         cadenaWild="WW"+unString.substring(2,8)+"WW";
-        Score otroScore = analyzeHandWithWildcards(convers_legacy(cadenaWild)).score;
+        otroScore = analyzeHandWithWildcards(convers_legacy(cadenaWild)).score;
         listaDraws[otroScore.weight]++;
         listaScores[otroScore.weight] = otroScore;
         
-        //WW____WW______ y __WW____WW
-        
-        cadenaWild="WW"+unString.substring(2,8)+"WW";
-        System.out.println(analyzeHandWithWildcards(convers_legacy(cadenaWild)));
+        //WW____WW______ 
         
         
+        cadenaWild="WW"+unString.substring(2,6)+"WW"+unString.substring(8,10);
+        otroScore=analyzeHandWithWildcards(convers_legacy(cadenaWild)).score;
+        listaDraws[otroScore.weight]++;
+        listaScores[otroScore.weight]=otroScore;
         
+        // __WW____WW
+        cadenaWild=unString.substring(0,2)+"WW"+unString.substring(4,8)+"WW";
+        otroScore=analyzeHandWithWildcards(convers_legacy(cadenaWild)).score;
+        listaDraws[otroScore.weight]++;
+        listaScores[otroScore.weight]=otroScore;
         
+        //**WW_WW**
+            for (int i = 0; i < 6; i+=2) {
+
+                cadenaWild = unString.substring(0, i) + "WW" + unString.substring(i + 2, i+4)
+                        +"WW"+unString.substring(i + 6,unString.length());
+                otroScore = analyzeHandWithWildcards(convers_legacy(cadenaWild)).score;
+                listaDraws[otroScore.weight]++;
+                listaScores[otroScore.weight] = otroScore;
+            }
         
         // imprimo los draws, comparando con el Score fijo apuntado
         
@@ -262,17 +298,23 @@ finally
                System.out.println(listaScores[s]+"\n");
         }
         
+       
+        unAlmacenRes.add(listaScores, listaDraws);
         
-        System.out.println(" FIN de MANO "+r+"\n");
+       
         }
-        //prefijo+WW+elem+WW+sufijo
         
         
+        try {  
+            escribirFichero(unAlmacenRes,salida);
+        } catch (IOException ex) {
+            Logger.getLogger(Daton2_netbeans.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     
     public static void main(String[] args) {
-   
+        
        char unaOpcion=new String(args[0]).charAt(1);
         
        switch (unaOpcion)
@@ -465,7 +507,7 @@ finally
         public String toString() {
             Hands cartaAlta=_cartas.getCard(0);
             String unaCadena=cartaAlta.toString();
-            return Arrays.toString(hand) + " " + name + " de " + unaCadena ;
+            return Arrays.toString(hand) + " " + name ; //+ " de " + unaCadena ;
             
         }
     }
@@ -484,5 +526,40 @@ finally
             return String.format("%s%n%s%n", Arrays.toString(wild),
                     score.toString());
         }
+     
     }
+static class AlmacenRes
+{
+    static List<Score[]> _listaScores;
+    static List<int[]> _listaDraws;
+     int _longitud;
+    public AlmacenRes()
+    {
+        _longitud=0;
+        _listaScores=new ArrayList<>();
+        _listaDraws=new ArrayList<>();
+    }
+    public void dameListas(int i,Score[] listaScores,int[] listaDraws)
+    {
+        listaScores=_listaScores.get(i);
+        listaDraws=_listaDraws.get(i);
+    }
+    
+    public int dameLong()
+    {
+        return _longitud;
+    }
+    public void add (Score[] listaScores,int[] listaDraws)
+    {
+        _listaScores.add(listaScores);
+        _listaDraws.add(listaDraws);
+    }
+}
+
+
+
+
+
+
+
 }
