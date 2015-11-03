@@ -103,13 +103,13 @@ public class Daton2_netbeans {
         while(i<line.length()-1)
         {
             if (line.charAt(i)==';') {i+=3;break;}; //me salto el punto y coma
-            unosString.toArray()[0]+=line.substring(i, i+2);
+            unosString.set(0,unosString.get(0)+line.substring(i, i+2));
             i+=2;
         };
         
        while (i<line.length()-1)
        {
-           unosString.toArray()[1]+=line.substring(i, i+2);
+           unosString.set(1,unosString.get(1)+line.substring(i, i+2));
             i+=2;
        }
         
@@ -119,9 +119,6 @@ public class Daton2_netbeans {
     {
         List<List<String>> unosString;
         unosString= new ArrayList<>();
-        unosString.add( new ArrayList<>());
-        unosString.add( new ArrayList<>());
-        
         try{
           BufferedReader reader = new BufferedReader(new FileReader(nombreFichero));
           String line;
@@ -144,17 +141,7 @@ public class Daton2_netbeans {
         }
     }
    
-    //j sirve para saber qué cartas añadir de la mesa
-    private  static String combinar (String mano, String mesa, int j)
-    {
-        int long_max=mesa.length()%3;
-        String unString="";
-        
-        unString=mano + mesa.substring(long_max);
-        
-        return unString;
-        
-    }
+  
     
     private static void parte2 (String unFichero,String Salida)
    {
@@ -162,19 +149,19 @@ public class Daton2_netbeans {
        //primera lista de cartas en mano
        //segunda lista de cartas comunes
        List <List<String>> otrosString;
-       
+       List<String> punteroLinea;
        otrosString=abrirFichero2(unFichero);
        
-       Iterator<String> iteradorJugador=((List<String>)otrosString.toArray()[0]).iterator();
-       Iterator<String> iteradorMesa=((List<String>)otrosString.toArray()[1]).iterator();
+       Iterator<List<String>> iteradorLineas=otrosString.iterator();
        
-        while (iteradorJugador.hasNext() && iteradorMesa.hasNext())
-        {
-        String unString=combinar (iteradorJugador.next(), iteradorMesa.next(),0);
-        System.out.print(unString+"\n");
-        System.out.println(analyzeHand(convers_legacy(unString)));
-        }
-       
+       while (iteradorLineas.hasNext())
+       {
+           punteroLinea=iteradorLineas.next();
+           String jugadorCadena=punteroLinea.get(0);
+           String mesaCadena=punteroLinea.get(1);
+           String Prueba=jugadorCadena.concat(mesaCadena);
+           System.out.println(analyzeHand(convers_legacy(Prueba)));
+       }
        
    }
     
@@ -566,15 +553,6 @@ static class AlmacenRes
     }
 }
 
-
-
-
-
-
-
-}
-
-
 /*
 public static void parte3(String entrada){
         String prueba = "fichero.txt";
@@ -633,4 +611,9 @@ try
         }
   
     }
+
+
 */
+
+
+}
