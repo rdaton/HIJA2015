@@ -18,8 +18,7 @@ public class tRango {
             {
             return new char[]{'A','K','Q','J','T','9','8','7','6','5','4','3','2'};
             }
-    
-    
+        
     };
     private enumRango _rango;
     
@@ -50,6 +49,7 @@ public class tRango {
     public boolean equals(Object unObjeto)
     {
         if (unObjeto==null) return false;
+        if (!(unObjeto instanceof tRango)) return false;
         return ((tRango) unObjeto)._rango==this._rango;
     }
     

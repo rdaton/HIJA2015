@@ -33,9 +33,10 @@ public class tPalo {
     }
         
     
-            public boolean equals(Object unObjeto)
+    public boolean equals(Object unObjeto)
     {
         if (unObjeto==null) return false;
+        if (!(unObjeto instanceof tPalo)) return false;
         return ((tPalo) unObjeto)._palo==this._palo;
     }
     
