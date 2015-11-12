@@ -11,6 +11,7 @@ package prac1_remoz_daton;
  * @author Daton
  */
 public class tCarta {
+    
     private tPalo _palo;
     private tRango _rango;
     
@@ -30,8 +31,24 @@ public class tCarta {
         return _palo;
     }
     
-    bool equals (Object unObjeto)
+    public boolean equals (Object unObjeto)
     {
+     if (unObjeto==null) return false; 
+     return (this._palo.equals(((tCarta) unObjeto)._palo)
+             &&
+             
+             this._rango.equals(((tCarta) unObjeto)._rango)
+             
+             );
+    }
+    
+    public String toString()
+    {
+        return 
+                new StringBuilder().append(_rango.toString()).append(_palo.toString()).toString();
         
     }
+    
+    
+            
 }

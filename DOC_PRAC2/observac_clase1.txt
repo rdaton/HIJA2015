@@ -1,0 +1,17 @@
+calcularemos rangos.
+que usemos el PokerStove ...
+nos centraremos sólo en los rangos y en manos.
+La interfaz gráfica es una pantalla con matriz, y un slide .... y dos botones.
+El rango se respresenta de manera textual ...  AA, JJ ,... (lo que haya aqui , es 
+marcado en amarillo en la matriz).
+Rangos agrupados ...JJ+ (es pareja, que abarca JJ+, y todas las parejas superiores)
+ ..si no es pareja, (t2s+ -> t2s, t3s, t4s, t5s ..)
+
+Rankings, cómo se ordenan las cartas de mayor a menor valor... casi todos los rankings, 
+tienen el mayor como AA ....
+
+¿Open raise está bien?
+
+
+pokerStars -> es más bien de preprocesado 
+apartado 3 .. extraer mano  (línea de poker star)...la traduzco a una línea de mi práctica ..

@@ -12,7 +12,15 @@ package prac1_remoz_daton;
  */
 public class tRango {
     
-    enum enumRango {A,K,Q,J,T,NUEVE,OCHO,SIETE,SEIS,CINCO,CUATRO,TRES,DOS};
+    enum enumRango {A,K,Q,J,T,NUEVE,OCHO,SIETE,SEIS,CINCO,CUATRO,TRES,DOS;
+                      
+     public static char[] toArrayChar()
+            {
+            return new char[]{'A','K','Q','J','T','9','8','7','6','5','4','3','2'};
+            }
+    
+    
+    };
     private enumRango _rango;
     
     public tRango(char c)
@@ -37,6 +45,8 @@ public class tRango {
         }    
     }
     
+    
+   
     public boolean equals(Object unObjeto)
     {
         if (unObjeto==null) return false;

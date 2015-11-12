@@ -12,7 +12,12 @@ package prac1_remoz_daton;
  */
 public class tPalo {
     
-    enum enumPalo {DIAMANTE, PICA, CORAZON,TREBOL};
+    enum enumPalo {DIAMANTE, PICA, CORAZON,TREBOL;
+    public static char[] toArrayChar()
+            {
+            return new char[]{'d','s','h','c'};
+            }
+        };
     private enumPalo _palo;
     
     public tPalo(char c)
@@ -26,8 +31,9 @@ public class tPalo {
             default: _palo=null;
         }    
     }
+        
     
-    public boolean equals(Object unObjeto)
+            public boolean equals(Object unObjeto)
     {
         if (unObjeto==null) return false;
         return ((tPalo) unObjeto)._palo==this._palo;
@@ -44,5 +50,6 @@ public class tPalo {
             default: return null;
         }
     }
+   
 
 }
