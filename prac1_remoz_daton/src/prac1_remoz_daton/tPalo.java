@@ -41,6 +41,8 @@ public class tPalo {
             case PICA: return "s";
             case CORAZON: return "h";
             case TREBOL: return "c";
+            default: return null;
         }
     }
+
 }
