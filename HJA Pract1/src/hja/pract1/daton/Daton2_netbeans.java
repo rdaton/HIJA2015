@@ -103,13 +103,13 @@ public class Daton2_netbeans {
         while(i<line.length()-1)
         {
             if (line.charAt(i)==';') {i+=3;break;}; //me salto el punto y coma
-            unosString.set(0,unosString.get(0)+line.substring(i, i+2));
+            unosString.toArray()[0]+=line.substring(i, i+2);
             i+=2;
         };
         
        while (i<line.length()-1)
        {
-           unosString.set(1,unosString.get(1)+line.substring(i, i+2));
+           unosString.toArray()[1]+=line.substring(i, i+2);
             i+=2;
        }
         
@@ -119,6 +119,9 @@ public class Daton2_netbeans {
     {
         List<List<String>> unosString;
         unosString= new ArrayList<>();
+        unosString.add( new ArrayList<>());
+        unosString.add( new ArrayList<>());
+        
         try{
           BufferedReader reader = new BufferedReader(new FileReader(nombreFichero));
           String line;
@@ -141,7 +144,17 @@ public class Daton2_netbeans {
         }
     }
    
-  
+    //j sirve para saber qué cartas añadir de la mesa
+    private  static String combinar (String mano, String mesa, int j)
+    {
+        int long_max=mesa.length()%3;
+        String unString="";
+        
+        unString=mano + mesa.substring(long_max);
+        
+        return unString;
+        
+    }
     
     private static void parte2 (String unFichero,String Salida)
    {
@@ -149,19 +162,19 @@ public class Daton2_netbeans {
        //primera lista de cartas en mano
        //segunda lista de cartas comunes
        List <List<String>> otrosString;
-       List<String> punteroLinea;
+       
        otrosString=abrirFichero2(unFichero);
        
-       Iterator<List<String>> iteradorLineas=otrosString.iterator();
+       Iterator<String> iteradorJugador=((List<String>)otrosString.toArray()[0]).iterator();
+       Iterator<String> iteradorMesa=((List<String>)otrosString.toArray()[1]).iterator();
        
-       while (iteradorLineas.hasNext())
-       {
-           punteroLinea=iteradorLineas.next();
-           String jugadorCadena=punteroLinea.get(0);
-           String mesaCadena=punteroLinea.get(1);
-           String Prueba=jugadorCadena.concat(mesaCadena);
-           System.out.println(analyzeHand(convers_legacy(Prueba)));
-       }
+        while (iteradorJugador.hasNext() && iteradorMesa.hasNext())
+        {
+        String unString=combinar (iteradorJugador.next(), iteradorMesa.next(),0);
+        System.out.print(unString+"\n");
+        System.out.println(analyzeHand(convers_legacy(unString)));
+        }
+       
        
    }
     
@@ -553,67 +566,10 @@ static class AlmacenRes
     }
 }
 
-/*
-public static void parte3(String entrada){
-        String prueba = "fichero.txt";
-        int NJ = 5, HSize = 7;
-        String manos[][] = new String[NJ][HSize];
-        Score puntuacion[] = new Score[NJ];
-        
-        for (int i = 0 ; i < NJ; i++){
-            puntuacion[i] = analyzeHand(manos[i]);
-            puntuacion[i].nJugador = i;
-            
-        ordenarPuntuaciones(puntuacion);
-        for(i = 0; i < NJ; i++)
-            System.out.println("J"+ puntuacion[i].nJugador + ": " + puntuacion[i].hand[0] + "(" + puntuacion[i].toString() + ")");
-                
-                
-        }
-        
-        BufferedWriter out = null;
-try  
-{
-    FileWriter fstream = new FileWriter(prueba, false); //true tells to append data.
-    out = new BufferedWriter(fstream);
-    
-    for (int i=0; i< NJ;i++){
-        out.write("J"+ puntuacion[i].nJugador + ": " + puntuacion[i].hand[0] + "(" + puntuacion[i].toString() + ")" + "\n");
-    } 
-    }
-    catch (IOException e)
-    {
-        System.err.println("Error: " + e.getMessage());
-    }
-    finally
-    {
-        if(out != null) {
-            out.close();
-        }
-    }
-            
-        
-        
-    }
-    
-    public static void ordenarPuntuaciones(Score[] puntuaciones){
-
-        int i, j;
-        Score auxPunt;
-        for(i=0;i<puntuaciones.length - 1;i++){
-            for(j=0;j<puntuaciones.length-i-1;j++){
-                if(puntuaciones[j+1].weight<puntuaciones[j].weight){
-                    auxPunt = puntuaciones[j+1];
-                    puntuaciones[j+1]=puntuaciones[j];
-                    puntuaciones[j] = auxPunt;
-                    }
-                }
-        }
-  
-    }
 
 
-*/
+
+
 
 
 }

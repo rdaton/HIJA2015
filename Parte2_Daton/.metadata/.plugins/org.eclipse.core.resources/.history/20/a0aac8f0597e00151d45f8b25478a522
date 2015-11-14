@@ -1,8 +1,0 @@
-package part1;
-//main
-class parte1
-{
-public static void main(String [ ] args)
-	{
-	}
-}

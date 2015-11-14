@@ -1,0 +1,2 @@
+streambuilder ..
+cada 1000 entrad .. hacer un flusj
