@@ -84,16 +84,16 @@ public class tMano
         String unString="";
         switch (_tipoMano)
         {
-            case ESCALERA_REAL: unString="Escalera Real";
-            case ESCALERA_COLOR: unString="Escalera de Color";
-            case POKER: unString="Poker";
-            case FULL: unString="Full";
-            case COLOR: unString="Color";
-            case ESCALERA: unString="Escalera";
-            case TRIO: unString="Trio";
-            case DOBLE_PAREJA: unString="Doble Pareja";
-            case PAREJA: unString="Pareja";
-            case CARTA_ALTA: unString="Carta Alta";
+            case ESCALERA_REAL: unString=" Escalera Real"; break;
+            case ESCALERA_COLOR: unString=" Escalera de Color";break;
+            case POKER: unString=" Poker";break;
+            case FULL: unString=" Full";break;
+            case COLOR: unString=" Color";break;
+            case ESCALERA: unString=" Escalera";break;
+            case TRIO: unString=" Trio";break;
+            case DOBLE_PAREJA: unString=" Doble Pareja";break;
+            case PAREJA: unString=" Pareja";break;
+            case CARTA_ALTA: unString=" Carta Alta";break;
             default: unString="";
         }
         unBuffer.append(unString);
@@ -101,18 +101,18 @@ public class tMano
         StringBuffer otroBuffer=new StringBuffer().append(" de ");
         switch (_tipoMano)
         {
-            case ESCALERA_REAL: otroBuffer.append(_cartasRep.get(0).damePalo().toString());
-            case ESCALERA_COLOR: otroBuffer.append(_cartasRep.get(0).damePalo().toString());
-            case POKER: otroBuffer.append(_cartasRep.get(0).dameRango().toString());
+            case ESCALERA_REAL: otroBuffer.append(_cartasRep.get(0).damePalo().toString()); break;
+            case ESCALERA_COLOR: otroBuffer.append(_cartasRep.get(0).damePalo().toString());break;
+            case POKER: otroBuffer.append(_cartasRep.get(0).dameRango().toString());break;
             case FULL: otroBuffer.append(_cartasRep.get(0).dameRango().toString()).append
-                            (" y de ").append(_cartasRep.get(3).dameRango().toString());
-            case COLOR: otroBuffer.append(_cartasRep.get(0).damePalo().toString());
-            case ESCALERA: otroBuffer.append(_cartasRep.get(0).dameRango().toString());
-            case TRIO: otroBuffer.append(_cartasRep.get(0).dameRango().toString());
+                            (" y de ").append(_cartasRep.get(3).dameRango().toString());break;
+            case COLOR: otroBuffer.append(_cartasRep.get(0).damePalo().toString());break;
+            case ESCALERA: otroBuffer.append(_cartasRep.get(0).dameRango().toString());break;
+            case TRIO: otroBuffer.append(_cartasRep.get(0).dameRango().toString());break;
             case DOBLE_PAREJA: otroBuffer.append(_cartasRep.get(0).dameRango().toString()).append
-                            (" y de ").append(_cartasRep.get(3).dameRango().toString());
-            case PAREJA: otroBuffer.append(_cartasRep.get(0).dameRango().toString());
-            case CARTA_ALTA: otroBuffer.append(_cartasRep.get(0).dameRango().toString());
+                            (" y de ").append(_cartasRep.get(3).dameRango().toString());break;
+            case PAREJA: otroBuffer.append(_cartasRep.get(0).dameRango().toString());break;
+            case CARTA_ALTA: otroBuffer.append(_cartasRep.get(0).dameRango().toString());break;
             default: ;
         }
         unBuffer.append(otroBuffer);

@@ -24,8 +24,7 @@ public class tListaManos {
             for (int i=0;i<listaManos.size();i++)
             {
                 tListaCartas unaListaCartas=new tListaCartas(listaManos.get(i));
-                tMano unaMano=new tMano (unaListaCartas.dameCartas());
-                System.out.println(unaMano);
+                tMano unaMano=new tMano (unaListaCartas.dameCartas());               
                 _listaManos.add(unaMano);
             }
         }

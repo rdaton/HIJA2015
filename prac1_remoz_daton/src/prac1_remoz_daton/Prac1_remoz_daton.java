@@ -6,10 +6,12 @@
 
 package prac1_remoz_daton;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 /**
  *
@@ -45,41 +47,32 @@ public class Prac1_remoz_daton {
         }
     }
     
-    static void escribirFichero(String nombreFichero, List<String> listaCadenas)
+    //fuente .¿stackoverflow.com?
+    static void escribirFichero(String nombreFichero, StringBuffer unBuffer)
     {
-        try (FileOutputStream outputStream = new FileOutputStream(nombreFichero))
-        {
-             IOUtils.writeLines(listaCadenas, null,outputStream);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-    static void imprimirEntrada ()
-    {
-        if (listaLineasEn1!=null)
-        {
-            for (int i=0;i<listaLineasEn1.size();i++)
-                System.out.println(listaLineasEn1.get(i));
-        }
+        File unFichero=new File(nombreFichero);
+        
+            try 
+            {
+                FileUtils.writeStringToFile(unFichero,unBuffer.toString());
+            }
+            catch (Exception g) 
+            {
+                g.printStackTrace();
+            }
+       
     }
     
-    static void imprimirEntrada (tListaManos listaManos)
-    {
-        if (listaManos!=null)
-        {
-            System.out.println(listaManos);
-        }
-    }
-    
-    
-    
+        
     private static void parte1(String ficheroEntrada, String ficheroSalida)
     {
         listaLineasEn1=leerFichero(ficheroEntrada);
         tListaManos unaListaManos=new tListaManos(listaLineasEn1);
-        //imprimirEntrada(unaListaManos);
+        
+        //guardo la lista de manos en un String de salida.. que contiene
+        //ya saltos de línea
+        StringBuffer unBuffer=new StringBuffer().append(unaListaManos.toString());
+        escribirFichero(ficheroSalida,unBuffer);
         
     }
     
