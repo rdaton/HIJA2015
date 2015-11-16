@@ -26,7 +26,9 @@ public class tMano
     public tMano(tCarta[] listaCartas)
     {
         _listaCartas=new tCarta[5];
-        //ojo... habría que rellenar la lista de cartas representantes
+        //ojo... hay que calsificar la mano
+        //y habría que rellenar la lista de cartas representantes
+        //PENDIENTE
         _cartasRep=new ArrayList<>();
         for (int i=0;i<5;i++)
             this._listaCartas[i]=listaCartas[i];
