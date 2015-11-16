@@ -78,19 +78,19 @@ public class tRango {
     {
         switch (_rango)
         {
-            case A: return 14;
-            case K: return 13;
-            case Q: return 12;
-            case J: return 11;
-            case T: return 10;
-            case NUEVE: return 9;
-            case OCHO: return 8;
-            case SIETE: return 7;
-            case SEIS: return 6;
-            case CINCO: return 5;
-            case CUATRO: return 4;
-            case TRES: return 3;
-            case DOS: return 2;
+            case A: return 12;
+            case K: return 11;
+            case Q: return 10;
+            case J: return 9;
+            case T: return 8;
+            case NUEVE: return 7;
+            case OCHO: return 6;
+            case SIETE: return 5;
+            case SEIS: return 4;
+            case CINCO: return 3;
+            case CUATRO: return 2;
+            case TRES: return 1;
+            case DOS: return 0;
             default: return -1;
         }
         

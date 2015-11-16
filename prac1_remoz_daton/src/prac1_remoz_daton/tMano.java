@@ -15,27 +15,22 @@ import java.util.List;
 public class tMano 
 {   
     enum enumManos {ESCALERA_REAL,ESCALERA_COLOR,POKER,FULL,COLOR,ESCALERA,
-                    TRIO,DOBLE_PAREJA,PAREJA,CARTA_ALTA;}
-        
-    //cartas representante de la mano
-    List<tCarta> _cartasRep;
+                    TRIO,DOBLE_PAREJA,PAREJA,CARTA_ALTA;}        
+    
     //lista de cartas: 5 como mucho.. tal como dictan las reglas del poker
-    private tCarta[] _listaCartas ;
+    private List<tCarta> _listaCartas ;
+    //cartas representante de la mano
+    private List<tCarta> _cartasRep;
     enumManos _tipoMano;
         
     public tMano(List<tCarta> listaCartas)
     {
-        _listaCartas=new tCarta[5];
-        //ojo... hay que calsificar la mano
-        //y habría que rellenar bien la lista de cartas representantes
-        //PENDIENTE
-        _tipoMano=enumManos.ESCALERA_REAL;
-        _cartasRep=new ArrayList<>();
+        _listaCartas=new ArrayList<>();        
         for (int i=0;i<5;i++)
         {
-            this._listaCartas[i]=listaCartas.get(i);
-            _cartasRep.add(listaCartas.get(i));
+            this._listaCartas.add(listaCartas.get(i));           
         }
+        analizar();
     }
     //   este orden no es suficiente.
     //falta poner un orden inerno entre
@@ -120,4 +115,38 @@ public class tMano
         return unBuffer.toString();
     }
     
+    //inspirado en  http://rosettacode.org/wiki/Poker_hand_analyser
+    private void analizar()
+    {
+        _tipoMano=enumManos.ESCALERA_REAL;
+        _cartasRep=new ArrayList<>();
+        //hack ... hay que cambiar
+         _cartasRep.add(_listaCartas.get(0));
+        
+        int nRangos=tRango.enumRango.toArrayChar().length;
+        int[] contadorRangos=new int[nRangos];
+        int contadorEscalera =0;
+        boolean esEscalera=false;
+        int esColor=0;
+        
+        for (int i=0;i<_listaCartas.size();i++)
+        {
+            tCarta unaCarta=_listaCartas.get(i);
+            
+            tRango unRango=unaCarta.dameRango();            
+            contadorRangos[unRango.toInt()]++;
+            contadorEscalera |= (1<<unRango.toInt());
+            //¿son todas las cartas del mismo color?
+            esColor |= (1 << unaCarta.damePalo().toString().toCharArray()[0]);
+        }
+        
+        //desplazar  los bits lo más a la derecha posible
+        while (contadorEscalera %2 == 0 )
+            contadorEscalera >>=1;
+        
+        //escalera real, o escalera con un As es 00011111 ; 
+        //A-2-3-4-5 es 1111000000001
+         esEscalera=  (contadorEscalera == 0b11111) || 
+                 (contadorEscalera==0b1111000000001);
+    }
 }
