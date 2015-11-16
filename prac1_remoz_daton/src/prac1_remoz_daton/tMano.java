@@ -23,15 +23,19 @@ public class tMano
     private tCarta[] _listaCartas ;
     enumManos _tipoMano;
         
-    public tMano(tCarta[] listaCartas)
+    public tMano(List<tCarta> listaCartas)
     {
         _listaCartas=new tCarta[5];
         //ojo... hay que calsificar la mano
-        //y habría que rellenar la lista de cartas representantes
+        //y habría que rellenar bien la lista de cartas representantes
         //PENDIENTE
+        _tipoMano=enumManos.ESCALERA_REAL;
         _cartasRep=new ArrayList<>();
         for (int i=0;i<5;i++)
-            this._listaCartas[i]=listaCartas[i];
+        {
+            this._listaCartas[i]=listaCartas.get(i);
+            _cartasRep.add(listaCartas.get(i));
+        }
     }
     //   este orden no es suficiente.
     //falta poner un orden inerno entre
