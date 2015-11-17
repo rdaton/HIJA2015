@@ -19,12 +19,13 @@ public class tMano
     
     //lista de cartas: 5 como mucho.. tal como dictan las reglas del poker
     private List<tCarta> _listaCartas ;
-    //cartas representante de la mano
+    //cartas representante de la mano (lo estrictamente minimo)
     private List<tCarta> _cartasRep;
     enumManos _tipoMano;
         
     public tMano(List<tCarta> listaCartas)
     {
+        _cartasRep=new ArrayList<>();
         _listaCartas=new ArrayList<>();        
         for (int i=0;i<5;i++)
         {
@@ -60,12 +61,12 @@ public class tMano
         if (unObjeto==null) return false;
         if (!(unObjeto instanceof tMano)) return false;
         if (((tMano)unObjeto)._tipoMano!=this._tipoMano) return false;
-        boolean enc = (this._listaCartas.length == ((tMano) unObjeto)._listaCartas.length);
+        boolean enc = (this._listaCartas.size() == ((tMano) unObjeto)._listaCartas.size());
         int i=0;
         //¡COMPLETAR! esta parte hay que rehacerla
-        while (enc && i<this._listaCartas.length)
+        while (enc && i<this._listaCartas.size())
         {
-            enc=((tMano) unObjeto)._listaCartas[i].equals(this._listaCartas[i]);
+            enc=((tMano) unObjeto)._listaCartas.get(i).equals(this._listaCartas.get(i));
         }
         return enc;
     }
@@ -74,7 +75,7 @@ public class tMano
     {
         StringBuffer unBuffer=new StringBuffer();
         for (int i=0;i<5;i++)
-            unBuffer.append(this._listaCartas[i].toString());    
+            unBuffer.append(this._listaCartas.get(i).toString());    
         
         String unString="";
         switch (_tipoMano)
@@ -100,12 +101,12 @@ public class tMano
             case ESCALERA_COLOR: otroBuffer.append(_cartasRep.get(0).damePalo().toString());break;
             case POKER: otroBuffer.append(_cartasRep.get(0).dameRango().toString());break;
             case FULL: otroBuffer.append(_cartasRep.get(0).dameRango().toString()).append
-                            (" y de ").append(_cartasRep.get(3).dameRango().toString());break;
+                            (" y de ").append(_cartasRep.get(1).dameRango().toString());break;
             case COLOR: otroBuffer.append(_cartasRep.get(0).damePalo().toString());break;
             case ESCALERA: otroBuffer.append(_cartasRep.get(0).dameRango().toString());break;
             case TRIO: otroBuffer.append(_cartasRep.get(0).dameRango().toString());break;
             case DOBLE_PAREJA: otroBuffer.append(_cartasRep.get(0).dameRango().toString()).append
-                            (" y de ").append(_cartasRep.get(3).dameRango().toString());break;
+                            (" y de ").append(_cartasRep.get(1).dameRango().toString());break;
             case PAREJA: otroBuffer.append(_cartasRep.get(0).dameRango().toString());break;
             case CARTA_ALTA: otroBuffer.append(_cartasRep.get(0).dameRango().toString());break;
             default: ;
@@ -118,26 +119,31 @@ public class tMano
     //inspirado en  http://rosettacode.org/wiki/Poker_hand_analyser
     private void analizar()
     {
-        _tipoMano=enumManos.ESCALERA_REAL;
-        _cartasRep=new ArrayList<>();
-        //hack ... hay que cambiar
-         _cartasRep.add(_listaCartas.get(0));
+        
+        _cartasRep.clear() ;
+        
         
         int nRangos=tRango.enumRango.toArrayChar().length;
         int[] contadorRangos=new int[nRangos];
-        int contadorEscalera =0;
+        for (int i=0; i<nRangos;i++) contadorRangos[i]=0;
+        long contadorEscalera =0;
         boolean esEscalera=false;
-        int esColor=0;
+        long contadorColor=0;
+        boolean esColor=false;
+        int total=0;
         
+        //parseo las cinco cartas y las reflejo en 
+        //contadores y estructuras
         for (int i=0;i<_listaCartas.size();i++)
         {
             tCarta unaCarta=_listaCartas.get(i);
             
             tRango unRango=unaCarta.dameRango();            
             contadorRangos[unRango.toInt()]++;
+            
             contadorEscalera |= (1<<unRango.toInt());
             //¿son todas las cartas del mismo color?
-            esColor |= (1 << unaCarta.damePalo().toString().toCharArray()[0]);
+            contadorColor |= (1 << unaCarta.damePalo().toString().toCharArray()[0]);
         }
         
         //desplazar  los bits lo más a la derecha posible
@@ -148,5 +154,96 @@ public class tMano
         //A-2-3-4-5 es 1111000000001
          esEscalera=  (contadorEscalera == 0b11111) || 
                  (contadorEscalera==0b1111000000001);
+        
+        // unsets right-most 1-bit, which may be the only one set
+        //¿?deshabilita el bit que vale 1,  de más a la derecha, que debe de ser el único activado??
+        esColor= (contadorColor & (contadorColor - 1)) == 0;
+        
+        if (esColor && esEscalera)
+        {
+            this._tipoMano=enumManos.ESCALERA_REAL;
+            _cartasRep.add(_listaCartas.get(0));
+            return;
+        }
+        //evaluo todo lo que sea menor que escalera..
+        //construyendo _cartasRep.
+        //ojo, que en multiples cartas no nos interesan los colores.
+        Integer otroRango=null;
+        tCarta unaCarta=null;
+        for (int i=0;i<nRangos;i++)
+        {            
+            //Daton .. uff... tengo que crear una carta con su rango..
+            //por el momento creo una carta con mismo rango, pero todos con corazón
+            otroRango=i;
+            unaCarta=new tCarta(tRango.enumRango.toArrayChar()[i],'h');
+            if (contadorRangos[i]==4) 
+            {
+                this._tipoMano=enumManos.POKER;                  
+                _cartasRep.add(unaCarta);
+                return;
+            }
+            
+            if (contadorRangos[i]==3)
+            {
+                _cartasRep.add(unaCarta);
+                total+=3;
+            }
+            else if (contadorRangos[i]==2)
+            {
+               _cartasRep.add(unaCarta);
+                total+=2;   
+            }
+        }    
+            
+            
+        if (total==5)
+            {
+                this._tipoMano=enumManos.FULL;
+                //_cartasRep ya rellenada durante el parseo                
+                return;
+            }   
+         if (esColor)
+         {
+             this._tipoMano=enumManos.COLOR;
+             //vacío _cartasRep y lo meto una carta
+             _cartasRep.clear();
+             _cartasRep.add(_listaCartas.get(0));
+             return;
+         }
+         
+         if (esEscalera)
+         {
+            this._tipoMano=enumManos.ESCALERA;
+            //Daton .. rellenar bien la lista de representantes
+            //debería meter un max
+            _cartasRep.add(_listaCartas.get(0));
+            return;
+         }
+         
+         if (total==3)
+         {
+             this._tipoMano=enumManos.TRIO;
+             //_cartasRep ya rellenada durante el parseo
+             return;
+         }
+         
+         if (total==4)
+         {
+             this._tipoMano=enumManos.DOBLE_PAREJA;
+             //_cartasRep ya rellenada durante el parseo
+             return;
+         }
+         
+         if (total==2)
+         {
+             this._tipoMano=enumManos.PAREJA;
+             //_cartasRep ya rellenada durante el parseo
+         }
+         
+        //e.o.c
+        //aqui hay que dar la carta máxima
+        _cartasRep.add(_listaCartas.get(0));
+        _tipoMano=enumManos.CARTA_ALTA;
+    
     }
 }
