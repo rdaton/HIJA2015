@@ -38,10 +38,7 @@ public class tMano
         }
         analizar();
     }
-    //   este orden no es suficiente.
-    //falta poner un orden inerno entre
-    //manos que tinen un toInt igual.
-    //¡ PENDIENTE !!!
+    //peso de la mano
     public int toInt()
     {
         int unLong=enumManos.values().length;
@@ -262,11 +259,19 @@ public class tMano
                 */
     }
     
+    //clonador malo
+    private tMano bitchBrian(List<tCarta> unaLista, tCarta unaCarta, int i)
+    {
+        return new tMano(unaLista);
+    }
+    
+    
     //esta parte tiene complejidad cúbica.
     //es ridiculo.
     // ¡a mejorar!
     private tMano analizarConComodinesR(tMano unaMano, String unaCadenaMano,tMano mejorMano)
     {
+        //caso Recursivo
         tCarta punteroBaraja=null;        
         for (int i=0;i<unaCadenaMano.length()-1;i=i+2)
         {
@@ -274,13 +279,14 @@ public class tMano
                 for (int j=0;j<_Baraja.size();j++)
                 {
                     punteroBaraja=_Baraja.get(0);
-                    if (_listaCartas.contains(punteroBaraja))
-                            
-                            
-                }
-            
+                    if (!_listaCartas.contains(punteroBaraja))
+                       mejorMano=bitchBrian(this._listaCartas,punteroBaraja,i/2);                                            
+                }            
         };
-        
-        return unaMano;
+        //caso base
+        if (mejorMano==null||this.toInt()>mejorMano.toInt()) 
+            return this;
+        else
+            return mejorMano;
     }
 }
