@@ -48,7 +48,15 @@ public class tBaraja
         return enc;
     }
     
+    public int size()
+    {
+        return this._listaCartas.length;
+    }
     
+    public tCarta get(int i)
+    {
+        return _listaCartas[i];
+    }
     public String toString ()
     {
         StringBuffer unString=new StringBuffer();

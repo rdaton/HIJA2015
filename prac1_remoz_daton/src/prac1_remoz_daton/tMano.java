@@ -7,6 +7,7 @@ package prac1_remoz_daton;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -21,10 +22,14 @@ public class tMano
     private List<tCarta> _listaCartas ;
     //cartas representante de la mano (lo estrictamente minimo)
     private List<tCarta> _cartasRep;
+    //la primera mano de mayor Rango (sin contar el palo)
+    tCarta  _cartaMax;
     enumManos _tipoMano;
-        
+    tBaraja _Baraja;     
     public tMano(List<tCarta> listaCartas)
     {
+        _Baraja=new tBaraja();
+        _cartaMax=listaCartas.get(0);
         _cartasRep=new ArrayList<>();
         _listaCartas=new ArrayList<>();        
         for (int i=0;i<5;i++)
@@ -108,7 +113,7 @@ public class tMano
             case DOBLE_PAREJA: otroBuffer.append(_cartasRep.get(0).dameRango().toString()).append
                             (" y de ").append(_cartasRep.get(1).dameRango().toString());break;
             case PAREJA: otroBuffer.append(_cartasRep.get(0).dameRango().toString());break;
-            case CARTA_ALTA: otroBuffer.append(_cartasRep.get(0).dameRango().toString());break;
+            case CARTA_ALTA: otroBuffer.append(_cartaMax.dameRango().toString());break;
             default: ;
         }
         unBuffer.append(otroBuffer);
@@ -130,14 +135,15 @@ public class tMano
         boolean esEscalera=false;
         long contadorColor=0;
         boolean esColor=false;
-        int total=0;
+        int total=0;        
         
         //parseo las cinco cartas y las reflejo en 
         //contadores y estructuras
         for (int i=0;i<_listaCartas.size();i++)
         {
             tCarta unaCarta=_listaCartas.get(i);
-            
+            if (unaCarta.dameRango().toInt() > _cartaMax.dameRango().toInt())
+                _cartaMax=unaCarta;
             tRango unRango=unaCarta.dameRango();            
             contadorRangos[unRango.toInt()]++;
             
@@ -169,7 +175,7 @@ public class tMano
         //construyendo _cartasRep.
         //ojo, que en multiples cartas no nos interesan los colores.
         Integer otroRango=null;
-        tCarta unaCarta=null;
+        tCarta unaCarta=null;        
         for (int i=0;i<nRangos;i++)
         {            
             //Daton .. uff... tengo que crear una carta con su rango..
@@ -192,7 +198,8 @@ public class tMano
             {
                _cartasRep.add(unaCarta);
                 total+=2;   
-            }
+            }           
+            
         }    
             
             
@@ -213,10 +220,8 @@ public class tMano
          
          if (esEscalera)
          {
-            this._tipoMano=enumManos.ESCALERA;
-            //Daton .. rellenar bien la lista de representantes
-            //debería meter un max
-            _cartasRep.add(_listaCartas.get(0));
+            this._tipoMano=enumManos.ESCALERA;            
+            _cartasRep.add(_cartaMax);
             return;
          }
          
@@ -238,12 +243,44 @@ public class tMano
          {
              this._tipoMano=enumManos.PAREJA;
              //_cartasRep ya rellenada durante el parseo
+             return;
          }
          
-        //e.o.c
-        //aqui hay que dar la carta máxima
-        _cartasRep.add(_listaCartas.get(0));
+        //e.o.c.. sólo nos queda carta alta
+        //_cartasRep ya rellenada durante el parseo        
         _tipoMano=enumManos.CARTA_ALTA;
     
+    }
+    
+    private void analizarConComodines(String unaCadenaMano)
+    {
+        /*
+       //http://stackoverflow.com/questions/767759/occurrences-of-substring-in-a-string
+        String unString="WW";
+        int nComodines=StringUtils.countMatches(unaMano, unString);
+        assert(nComodines>2);
+                */
+    }
+    
+    //esta parte tiene complejidad cúbica.
+    //es ridiculo.
+    // ¡a mejorar!
+    private tMano analizarConComodinesR(tMano unaMano, String unaCadenaMano,tMano mejorMano)
+    {
+        tCarta punteroBaraja=null;        
+        for (int i=0;i<unaCadenaMano.length()-1;i=i+2)
+        {
+         if(unaCadenaMano.substring(i, i+2)=="ww")
+                for (int j=0;j<_Baraja.size();j++)
+                {
+                    punteroBaraja=_Baraja.get(0);
+                    if (_listaCartas.contains(punteroBaraja))
+                            
+                            
+                }
+            
+        };
+        
+        return unaMano;
     }
 }
