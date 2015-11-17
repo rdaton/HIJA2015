@@ -37,8 +37,10 @@ public class tListaManos {
         
         for (int i=0;i<_listaManos.size();i++)
         {
-            unBuffer.append(_listaManos.get(i));
+            tMano unaMano=_listaManos.get(i);
+            unBuffer.append(unaMano);
             unBuffer.append("\n");
+            
         }
         
         return unBuffer.toString();

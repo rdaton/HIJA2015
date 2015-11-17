@@ -22,12 +22,18 @@ public class tMano
     private List<tCarta> _listaCartas ;
     //cartas representante de la mano (lo estrictamente minimo)
     private List<tCarta> _cartasRep;
+    //lista de draws (dos cartas)
+    private List<tMano> _listaDraws;
+    //chapuza para no usar herencia... en fin ...
+    boolean _esDraw;
     //la primera mano de mayor Rango (sin contar el palo)
     tCarta  _cartaMax;
     enumManos _tipoMano;
     tBaraja _Baraja;     
     public tMano(List<tCarta> listaCartas)
     {
+        _esDraw=false;
+        _listaDraws=null;
         _Baraja=new tBaraja();
         _cartaMax=listaCartas.get(0);
         _cartasRep=new ArrayList<>();
@@ -249,20 +255,42 @@ public class tMano
     
     }
     
+    private void generarDraws ()
+    {
+        _listaDraws=new ArrayList<> ();
+        analizarConComodines(_listaCartas.toString());
+    }
+    
+    List<tMano> dameDraws()
+    {
+        //si no es una mano, sino un draw
+        if (_esDraw)  return null;
+        
+        //si es una mano normal
+        if (_listaDraws==null)            
+            generarDraws();
+        return _listaDraws;
+    }
+    
     private void analizarConComodines(String unaCadenaMano)
     {
         /*
        //http://stackoverflow.com/questions/767759/occurrences-of-substring-in-a-string
         String unString="WW";
         int nComodines=StringUtils.countMatches(unaMano, unString);
-        assert(nComodines>2);
-                */
+        assert(nComodines>2);        
+        */
+        //INCOMPLETO @Daton
+        tMano unaMano=bitchBrian(_listaCartas,new tCarta('A','h'),0);
+        analizarConComodinesR(unaMano,"AhwwKsTd2c", null);
     }
     
-    //clonador malo
+    //clonador malo.. para clona draws
     private tMano bitchBrian(List<tCarta> unaLista, tCarta unaCarta, int i)
     {
-        return new tMano(unaLista);
+        tMano unaMano= new tMano(unaLista);
+        unaMano._esDraw=true;
+        return unaMano;
     }
     
     
@@ -280,7 +308,7 @@ public class tMano
                 {
                     punteroBaraja=_Baraja.get(0);
                     if (!_listaCartas.contains(punteroBaraja))
-                       mejorMano=bitchBrian(this._listaCartas,punteroBaraja,i/2);                                            
+                       mejorMano=bitchBrian(unaMano._listaCartas,punteroBaraja,i/2);                                            
                 }            
         };
         //caso base
