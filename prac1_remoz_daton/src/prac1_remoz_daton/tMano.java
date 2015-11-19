@@ -262,11 +262,12 @@ public class tMano
     
     private void generarDraws ()
     {
+        if(_esDraw) return;
         _listaDraws=new ArrayList<> ();
         analizarConComodines(_listaCartas.toString());
     }
     
-    List<tMano> dameDraws()
+    tListaManos dameDraws()
     {
         //si no es una mano, sino un draw
         if (_esDraw)  return null;
@@ -274,7 +275,7 @@ public class tMano
         //si es una mano normal
         if (_listaDraws==null)            
             generarDraws();
-        return _listaDraws;
+        return new tListaManos(_listaDraws,0);
     }
     private void insertaDraw(tMano unDraw)
     {
@@ -302,6 +303,24 @@ public class tMano
               
     }
      
+    
+    /*
+    Ah_Ac_2h_As_Ad
+
+ww_ww_2h_As_Ad
+Ah_ww_ww_As_Ad
+Ah_Ac_ww_ww_Ad
+Ah_Ac_2h_ww_ww
+
+ww_Ac_ww_As_Ad
+Ah_ww_2h_ww_Ad
+Ah_Ac_ww_As_ww
+
+ww_Ac_2h_ww_Ad
+Ah_ww_2h_As_ww
+
+ww_Ac_2h_As_ww
+    */
     private String dameUnaCadenaDraw (int n)
     {
         String unString =_listaCartas.toString();
@@ -309,17 +328,89 @@ public class tMano
         switch(n)
         {
             case 0: unString=
-                    new StringBuffer().append("ww").append(unString.substring(2)).toString();
+                    new StringBuffer().append("wwww").append(unString.substring(7)).toString();
                 break;            
             case 1: unString=
-                    new StringBuffer().append(unString.subSequence(0, 1)).
-                            append("ww").append(unString.substring(3)).toString();
+                    new StringBuffer().
+                            append(unString.subSequence(0, 3)).
+                            append("wwww").
+                            append(unString.substring(11)).
+                            toString();
                 break;
             case 2: unString=
-                    new StringBuffer().append(unString.subSequence(0, 2)).
-                            append("ww").append(unString.substring(n+4)).toString();
+                    new StringBuffer().
+                            append(unString.subSequence(0, 7)).
+                            append("wwww").
+                            append(unString.substring(15)).
+                            toString();
                 break;
-        }
+                
+            case 3: unString=
+                    new StringBuffer().
+                            append(unString.subSequence(0,11)).
+                            append("wwww").
+                            toString();
+                break;
+                
+                
+            case 4: unString=
+                    new StringBuffer().
+                            append("ww").
+                            append(unString.subSequence(8,11)).
+                            append("ww").
+                            append(unString.substring(11)).
+                            toString();
+                break;
+            
+            case 5: unString=
+                    new StringBuffer().                            
+                            append(unString.subSequence(0,3)).
+                            append("ww").
+                            append(unString.subSequence(9,11)).
+                            append("ww").
+                            append(unString.substring(15)).
+                            toString();
+                break;   
+                
+            case 6: unString=
+                    new StringBuffer().                            
+                            append(unString.subSequence(0,7)).
+                            append("ww").
+                            append(unString.subSequence(13,15)).
+                            append("ww").
+                            toString();
+                break;
+            
+            case 7:     
+                   unString=
+                    new StringBuffer().                            
+                            append(unString.subSequence(0,3)).
+                            append("ww").
+                            append(unString.subSequence(13,15)).
+                            append("ww").
+                            append(unString.subSequence(17, 19))
+                            .toString();       
+                break;
+                
+            case 8:     
+                   unString=
+                    new StringBuffer().                            
+                            append(unString.subSequence(0,7)).
+                            append("ww").
+                            append(unString.subSequence(13,15)).
+                            append("ww")                            
+                            .toString(); 
+                break;
+                
+            case 9:     
+                   unString=
+                    new StringBuffer().                            
+                            append("ww").
+                            append(unString.subSequence(3,17)).                            
+                            append("ww")                            
+                            .toString();           
+                break;
+        }       
         
         return unString;
     }
@@ -335,11 +426,12 @@ public class tMano
         _listaDraws.clear();
         //me hago un clon malo
         tMano unaMano=bitchBrian(_listaCartas,_listaCartas.get(0),0);
-        
+        unaMano._esDraw=false;
        //INCOMPLETO @Daton ....para optimizar, hago solo dos comparaciones
-        for (int i=0;i<6;i++)
+        for (int i=0;i<10;i++)
         {
         tMano unDraw=analizarConComodinesR(unaMano,dameUnaCadenaDraw(i), null);
+        unDraw._esDraw=true;
         insertaDraw(unDraw); 
         }
         

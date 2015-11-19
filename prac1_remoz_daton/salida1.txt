@@ -1,10 +1,10 @@
-AhQhAcJhTh Pareja de Anull
-AhAc2hAsAd Poker de Anull
-2h5c7s9dTd Carta Alta de Tnull
-2h5h3h7c4h Carta Alta de 7null
-2cAhAd2sAs Full de 2 y de Anull
-8sKh8cTd8h Trio de 8null
-8s5hKhTd8c Pareja de 8null
-QhKcJhThAh Escalera de Anull
-QsKsJsTsAs Escalera Real de snull
-QsKsJs9sAs Color de snull
+AhQhAcJhTh Pareja de A[AhQhAcJhTh Pareja de A, AhQhAcJhTh Pareja de A]
+AhAc2hAsAd Poker de A[AhAc2hAsAd Poker de A, AhAc2hAsAd Poker de A]
+2h5c7s9dTd Carta Alta de T[2h5c7s9dTd Carta Alta de T, 2h5c7s9dTd Carta Alta de T]
+2h5h3h7c4h Carta Alta de 7[2h5h3h7c4h Carta Alta de 7, 2h5h3h7c4h Carta Alta de 7]
+2cAhAd2sAs Full de 2 y de A[2cAhAd2sAs Full de 2 y de A, 2cAhAd2sAs Full de 2 y de A]
+8sKh8cTd8h Trio de 8[8sKh8cTd8h Trio de 8, 8sKh8cTd8h Trio de 8]
+8s5hKhTd8c Pareja de 8[8s5hKhTd8c Pareja de 8, 8s5hKhTd8c Pareja de 8]
+QhKcJhThAh Escalera de A[QhKcJhThAh Escalera de A, QhKcJhThAh Escalera de A]
+QsKsJsTsAs Escalera Real de s[QsKsJsTsAs Escalera Real de s, QsKsJsTsAs Escalera Real de s]
+QsKsJs9sAs Color de s[QsKsJs9sAs Color de s, QsKsJs9sAs Color de s]
