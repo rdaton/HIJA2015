@@ -121,6 +121,11 @@ public class tMano
         }
         unBuffer.append(otroBuffer);
         
+        if(!_esDraw)
+            unBuffer.append(this.dameDraws());
+        
+        
+        
         return unBuffer.toString();
     }
     
@@ -271,20 +276,75 @@ public class tMano
             generarDraws();
         return _listaDraws;
     }
-    
-    private void analizarConComodines(String unaCadenaMano)
+    private void insertaDraw(tMano unDraw)
     {
-        /*
+        //listaDraw sólo tendrá dos elementos como mucho
+        //si vacío
+        if (_listaDraws.isEmpty()) _listaDraws.add(unDraw);
+        //si un elemento
+        else if (_listaDraws.size()==1)
+        {
+         //actualizo si mejor
+            if  (unDraw.toInt()>_listaDraws.get(0).toInt())
+                    _listaDraws.set(0, unDraw);
+            else 
+                    _listaDraws.add(unDraw);   
+        }
+        //si dos eleentos o más
+        else if (_listaDraws.size()>1)
+        {
+            //actualizo si mejor
+            if  (unDraw.toInt()>_listaDraws.get(0).toInt())
+                    _listaDraws.set(0, unDraw);
+            else if (unDraw.toInt()>_listaDraws.get(1).toInt())
+                    _listaDraws.set(1, unDraw);
+        }
+              
+    }
+     
+    private String dameUnaCadenaDraw (int n)
+    {
+        String unString =_listaCartas.toString();
+        
+        switch(n)
+        {
+            case 0: unString=
+                    new StringBuffer().append("ww").append(unString.substring(2)).toString();
+                break;            
+            case 1: unString=
+                    new StringBuffer().append(unString.subSequence(0, 1)).
+                            append("ww").append(unString.substring(3)).toString();
+                break;
+            case 2: unString=
+                    new StringBuffer().append(unString.subSequence(0, 2)).
+                            append("ww").append(unString.substring(n+4)).toString();
+                break;
+        }
+        
+        return unString;
+    }
+    /*
        //http://stackoverflow.com/questions/767759/occurrences-of-substring-in-a-string
         String unString="WW";
         int nComodines=StringUtils.countMatches(unaMano, unString);
         assert(nComodines>2);        
         */
-        //INCOMPLETO @Daton
-        tMano unaMano=bitchBrian(_listaCartas,new tCarta('A','h'),0);
-        analizarConComodinesR(unaMano,"AhwwKsTd2c", null);
+    private void analizarConComodines(String unaCadenaMano)
+    {        
+        //listaDraw sólo tendrá dos elementos
+        _listaDraws.clear();
+        //me hago un clon malo
+        tMano unaMano=bitchBrian(_listaCartas,_listaCartas.get(0),0);
+        
+       //INCOMPLETO @Daton ....para optimizar, hago solo dos comparaciones
+        for (int i=0;i<6;i++)
+        {
+        tMano unDraw=analizarConComodinesR(unaMano,dameUnaCadenaDraw(i), null);
+        insertaDraw(unDraw); 
+        }
+        
     }
-    
+   
     //clonador malo.. para clona draws
     private tMano bitchBrian(List<tCarta> unaLista, tCarta unaCarta, int i)
     {
