@@ -262,8 +262,11 @@ public class tMano
     
     private void generarDraws ()
     {
+        if (!_esDraw)
+        {
         _listaDraws=new ArrayList<> ();
         analizarConComodines(_listaCartas.toString());
+        }
     }
     
     List<tMano> dameDraws()
@@ -272,9 +275,9 @@ public class tMano
         if (_esDraw)  return null;
         
         //si es una mano normal
-        if (_listaDraws==null)            
-            generarDraws();
-        return _listaDraws;
+        generarDraws();
+        
+        return _listaDraws;       
     }
     private void insertaDraw(tMano unDraw)
     {
@@ -335,6 +338,7 @@ public class tMano
         _listaDraws.clear();
         //me hago un clon malo
         tMano unaMano=bitchBrian(_listaCartas,_listaCartas.get(0),0);
+        unaMano._esDraw=true;
         
        //INCOMPLETO @Daton ....para optimizar, hago solo dos comparaciones
         for (int i=0;i<6;i++)
@@ -373,7 +377,7 @@ public class tMano
         };
         //caso base
         if (mejorMano==null||this.toInt()>mejorMano.toInt()) 
-            return this;
+            return unaMano;
         else
             return mejorMano;
     }
