@@ -31,6 +31,22 @@ public class tListaManos {
                 
     }
     
+    public tListaManos(List<tMano> listaManos,int r)
+    {
+        _listaManos=null;
+        if (listaManos!=null) 
+        {
+            _listaManos=new ArrayList<>();
+            for (int i=0;i<listaManos.size();i++)
+            {
+                tListaCartas unaListaCartas=new tListaCartas(listaManos.get(i).toString());
+                tMano unaMano=new tMano (unaListaCartas.dameCartas());               
+                _listaManos.add(unaMano);
+            }
+        }
+                
+    }
+    
     public String toString()
     {
         StringBuffer unBuffer=new StringBuffer();
