@@ -262,14 +262,11 @@ public class tMano
     
     private void generarDraws ()
     {
-<<<<<<< HEAD
+        if(_esDraw) return;
         if (!_esDraw)
         {
-=======
-        if(_esDraw) return;
->>>>>>> 38ab2d0390aae62579cf6ffade1c6383c4f28595
-        _listaDraws=new ArrayList<> ();
-        analizarConComodines(_listaCartas.toString());
+            _listaDraws=new ArrayList<> ();
+            analizarConComodines(_listaCartas.toString());
         }
     }
     
@@ -279,15 +276,10 @@ public class tMano
         if (_esDraw)  return null;
         
         //si es una mano normal
-<<<<<<< HEAD
-        generarDraws();
-        
-        return _listaDraws;       
-=======
         if (_listaDraws==null)            
             generarDraws();
-        return new tListaManos(_listaDraws,0);
->>>>>>> 38ab2d0390aae62579cf6ffade1c6383c4f28595
+        return new tListaManos (_listaDraws,0);
+
     }
     private void insertaDraw(tMano unDraw)
     {
@@ -438,12 +430,11 @@ ww_Ac_2h_As_ww
         _listaDraws.clear();
         //me hago un clon malo
         tMano unaMano=bitchBrian(_listaCartas,_listaCartas.get(0),0);
-<<<<<<< HEAD
         unaMano._esDraw=true;
         
-=======
+
         unaMano._esDraw=false;
->>>>>>> 38ab2d0390aae62579cf6ffade1c6383c4f28595
+
        //INCOMPLETO @Daton ....para optimizar, hago solo dos comparaciones
         for (int i=0;i<10;i++)
         {
@@ -454,10 +445,18 @@ ww_Ac_2h_As_ww
         
     }
    
-    //clonador malo.. para clona draws
-    private tMano bitchBrian(List<tCarta> unaLista, tCarta unaCarta, int i)
+    //clonador malo.. para crear draws
+    private tMano bitchBrian(List<tCarta> unaLista, tCarta unaCarta, int r)
     {
-        tMano unaMano= new tMano(unaLista);
+        List<tCarta> otraLista=new ArrayList<>();     
+        for (int i=0;i<unaLista.size();i++)
+        {
+            if (i!=r) 
+                otraLista.add(unaLista.get(i));
+            else 
+                otraLista.add(unaCarta);
+        }
+        tMano unaMano= new tMano(otraLista);
         unaMano._esDraw=true;
         return unaMano;
     }
@@ -473,15 +472,15 @@ ww_Ac_2h_As_ww
         for (int i=0;i<unaCadenaMano.length()-1;i=i+2)
         {
          if(unaCadenaMano.substring(i, i+2)=="ww")
-                for (int j=0;j<_Baraja.size();j++)
+                for (int j=0;j<unaMano._Baraja.size();j++)
                 {
-                    punteroBaraja=_Baraja.get(0);
-                    if (!_listaCartas.contains(punteroBaraja))
+                    punteroBaraja=unaMano._Baraja.get(j);
+                    if (!unaMano._listaCartas.contains(punteroBaraja))
                        mejorMano=bitchBrian(unaMano._listaCartas,punteroBaraja,i/2);                                            
                 }            
         };
         //caso base
-        if (mejorMano==null||this.toInt()>mejorMano.toInt()) 
+        if (mejorMano==null||unaMano.toInt()>mejorMano.toInt()) 
             return unaMano;
         else
             return mejorMano;
