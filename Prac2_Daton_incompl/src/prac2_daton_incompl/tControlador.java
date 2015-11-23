@@ -124,7 +124,7 @@ public boolean asignaClase(String entrada)
         if (entrada.charAt(2)=='o')
             this.claseSolosOffSuited.add(entrada);
         else
-        if (entrada.charAt(3)=='+')
+        if (entrada.charAt(2)=='+')
             this.claseDiagonalAbierto.add(entrada);            
     }
     
@@ -153,7 +153,11 @@ return true;
 void actualizaMatrices()
 {
     actualizaDiagonal();
+    actualizaDiagonalAbierto();
     actualizaSolosSuited();
+    actualizaSolosOffSuited();
+    actualizaInterAbiertoSuited();
+    actualizaInterAbiertoOffSuited();
 }
 
 void actualizaDiagonal()
@@ -164,10 +168,35 @@ void actualizaDiagonal()
     while (unIterador.hasNext())
     {
         unaLetra=unIterador.next().charAt(0);
-        i=new tRango(unaLetra).toInt();
+        i=new tRango(unaLetra).toInt(); 
+        i=unaLong-1-i;
         this.matrizBool[i][i]=true;
     }
 }
+void actualizaDiagonalAbierto()
+{
+    char unaLetra=' ';
+    int i=0;        
+    Iterator<String> unIterador= this.claseDiagonalAbierto.iterator();
+    while (unIterador.hasNext())
+    {
+        unaLetra=unIterador.next().charAt(0);
+        i=new tRango(unaLetra).toInt();        
+        while (i<unaLong)
+        {
+            unaLetra=tRango.enumRango.toArrayChar()[i];
+            claseDiagonal.add
+                    (new StringBuffer().append(unaLetra).append(unaLetra).toString());            
+            i++;
+            
+        }
+        
+    }
+    
+    claseDiagonalAbierto.clear();
+    actualizaDiagonal();
+}        
+
 
 
 void actualizaSolosSuited()
@@ -178,10 +207,12 @@ void actualizaSolosSuited()
     Iterator<String> unIterador= this.claseSolosSuited.iterator();
     while (unIterador.hasNext())
     {
-        //aqui hay que invertir j e i ...quizás..
+        
         dosLetras=unIterador.next().substring(0,2);
         i=new tRango(dosLetras.substring(0, 1).charAt(0)).toInt();
+        i=unaLong-1-i;
         j=new tRango(dosLetras.substring(1, 2).charAt(0)).toInt();        
+        j=unaLong-1-j;
         this.matrizBool[i][j]=true;
     }
 }
@@ -190,17 +221,89 @@ void actualizaSolosOffSuited()
     String dosLetras="";
     int i=0;
     int j=0;
-    Iterator<String> unIterador= this.claseSolosSuited.iterator();
+    Iterator<String> unIterador= this.claseSolosOffSuited.iterator();
     while (unIterador.hasNext())
     {
-        //aqui hay que invertir j e i ...quizás..
+        
         dosLetras=unIterador.next().substring(0,2);
-        j=new tRango(dosLetras.substring(0, 1).charAt(0)).toInt();
-        i=new tRango(dosLetras.substring(1, 2).charAt(0)).toInt();        
-        this.matrizBool[i][j]=true;
+        i=new tRango(dosLetras.substring(0, 1).charAt(0)).toInt();
+        i=unaLong-1-i;
+        j=new tRango(dosLetras.substring(1, 2).charAt(0)).toInt();                
+        j=unaLong-1-j;
+        // como es Offsuited, hago su simetrico        
+        this.matrizBool[j][i]=true;
     }
 }
 
+void actualizaInterAbiertoSuited()
+{
+   String dosLetras="";
+    char unaLetra=' ';
+    char otraLetra=' ';
+    int i=0;
+    int j=0;
+    int r=0;
+    Iterator<String> unIterador= this.claseInterAbiertoSuited.iterator();
+    while (unIterador.hasNext())
+    {
+        dosLetras=unIterador.next();
+        unaLetra=dosLetras.charAt(0);
+        otraLetra=dosLetras.charAt(1);
+        i=new tRango(unaLetra).toInt();
+        i=unaLong-1-i;
+        j=new tRango(otraLetra).toInt();        
+        r=j;
+        j=unaLong-1-j;
+        while (j!=i)
+        {
+            otraLetra=tRango.enumRango.toArrayChar()[r];
+            claseSolosSuited.add
+                    (new StringBuffer().append(unaLetra).append(otraLetra).toString());            
+            r++;
+            j--;            
+        }
+        
+    
+    claseInterAbiertoSuited.clear();
+    actualizaSolosSuited();
+    }
+    
+}
+
+void actualizaInterAbiertoOffSuited()
+{
+    String dosLetras="";
+    char unaLetra=' ';
+    char otraLetra=' ';
+    int i=0;
+    int j=0;
+    int r=0;
+    Iterator<String> unIterador= this.claseInterAbiertoOffSuited.iterator();
+    while (unIterador.hasNext())
+    {
+        dosLetras=unIterador.next();
+        unaLetra=dosLetras.charAt(0);
+        otraLetra=dosLetras.charAt(1);
+        i=new tRango(unaLetra).toInt();
+        i=unaLong-1-i;
+        j=new tRango(otraLetra).toInt();        
+        r=j;
+        j=unaLong-1-j;
+        while (j!=i)
+        {
+            otraLetra=tRango.enumRango.toArrayChar()[r];
+            claseSolosOffSuited.add
+                    (new StringBuffer().append(unaLetra).append(otraLetra).toString());            
+            r++;
+            j--;            
+        }
+        
+    }
+    
+    claseInterAbiertoOffSuited.clear();
+    actualizaSolosOffSuited();
+    
+}
 
 //presupongo cadenas bien formadas        
 boolean parseaEntrada(String entrada)
