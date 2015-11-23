@@ -5,6 +5,9 @@
  */
 package prac2_daton_incompl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author barfelix
@@ -15,13 +18,20 @@ int unaLong;
 boolean[][] matrizBool; 
 String[][] matrizRangos;
 int[][] matrizColor;
+List<String> claseParejasAbierto;
+List<String> claseSolosSuited;
+List<String> claseSolosOffSuited;
+List<String> claseDiagonal;
+List<String> claseInterCerradoSuited;
+List<String> claseInterCerradoOffSuited;
+List<String> claseInterAbiertoSuited;
+List<String> claseInterAbiertoOffSuited;
+
 public tControlador()
 {
-    unaLong= tRango.enumRango.toArrayChar().length;
-    matrizBool= new boolean[unaLong][unaLong];
-    matrizRangos=new String[unaLong][unaLong];
-    matrizColor=new int[unaLong][unaLong];
+    
     inicializaMatrices();
+    
 }
 
 boolean esDiagonal (int a, int b)
@@ -36,6 +46,22 @@ boolean esIzquierda (int a, int b)
 
 private void inicializaMatrices() 
 {
+    unaLong= tRango.enumRango.toArrayChar().length;
+    matrizBool= new boolean[unaLong][unaLong];
+    matrizRangos=new String[unaLong][unaLong];
+    matrizColor=new int[unaLong][unaLong];
+    claseParejasAbierto=new ArrayList<>();
+    claseSolosSuited=new ArrayList<>();
+    claseSolosOffSuited=new ArrayList<>();
+    claseDiagonal=new ArrayList<>();
+    claseInterCerradoSuited=new ArrayList<>();
+    claseInterCerradoOffSuited=new ArrayList<>();
+    claseInterAbiertoSuited=new ArrayList<>();
+    claseInterAbiertoOffSuited=new ArrayList<>();
+    
+    
+    
+    
     StringBuffer unBuffer=null;
     for (int i=0;i<unaLong;i++)
         for (int j=0;j<unaLong;j++)
@@ -82,5 +108,32 @@ private void inicializaMatrices()
     
 }
 
+//presupongo cadenas bien formadas        
+public void asignaClase(String entrada)
+{
+    if (entrada.length()==2)
+        this.claseDiagonal.add(entrada);    
+    else 
+    if (entrada.length()==3)
+    {
+        if (entrada.charAt(2)=='s')
+            this.claseSolosSuited.add(entrada);
+        else 
+        if (entrada.charAt(2)=='o')
+            this.claseSolosOffSuited.add(entrada);            
+    }
+}
+
+//presupongo cadenas bien formadas        
+boolean parseaEntrada(String entrada)
+{
+    inicializaMatrices();
+    boolean todoBien=true;    
+    String[] partes = entrada.split(",");
+    for (int i=0;i<partes.length;i++)
+        asignaClase (partes[i]);
+    
+    return todoBien;
+}
 
 }

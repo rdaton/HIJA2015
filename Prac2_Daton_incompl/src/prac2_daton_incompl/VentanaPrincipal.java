@@ -86,8 +86,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       tVentanaMatriz unaVentana=new tVentanaMatriz();
-       unaVentana.setVisible(true);
+       if (_unControlador.parseaEntrada(this.jTextPane1.getText()))
+       {
+            tVentanaMatriz unaVentana=new tVentanaMatriz();       
+            unaVentana.setVisible(true);
+       }
+       else 
+           System.out.println("Me has dado una cadena que no comprendo");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
