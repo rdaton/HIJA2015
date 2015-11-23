@@ -6,6 +6,7 @@
 package prac2_daton_incompl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ int unaLong;
 boolean[][] matrizBool; 
 String[][] matrizRangos;
 int[][] matrizColor;
-List<String> claseParejasAbierto;
+
 List<String> claseSolosSuited;
 List<String> claseSolosOffSuited;
 List<String> claseDiagonal;
@@ -26,6 +27,7 @@ List<String> claseInterCerradoSuited;
 List<String> claseInterCerradoOffSuited;
 List<String> claseInterAbiertoSuited;
 List<String> claseInterAbiertoOffSuited;
+List<String> claseDiagonalAbierto;
 
 public tControlador()
 {
@@ -50,7 +52,7 @@ private void inicializaMatrices()
     matrizBool= new boolean[unaLong][unaLong];
     matrizRangos=new String[unaLong][unaLong];
     matrizColor=new int[unaLong][unaLong];
-    claseParejasAbierto=new ArrayList<>();
+    claseDiagonalAbierto=new ArrayList<>();
     claseSolosSuited=new ArrayList<>();
     claseSolosOffSuited=new ArrayList<>();
     claseDiagonal=new ArrayList<>();
@@ -109,7 +111,7 @@ private void inicializaMatrices()
 }
 
 //presupongo cadenas bien formadas        
-public void asignaClase(String entrada)
+public boolean asignaClase(String entrada)
 {
     if (entrada.length()==2)
         this.claseDiagonal.add(entrada);    
@@ -120,9 +122,85 @@ public void asignaClase(String entrada)
             this.claseSolosSuited.add(entrada);
         else 
         if (entrada.charAt(2)=='o')
-            this.claseSolosOffSuited.add(entrada);            
+            this.claseSolosOffSuited.add(entrada);
+        else
+        if (entrada.charAt(3)=='+')
+            this.claseDiagonalAbierto.add(entrada);            
+    }
+    
+    else
+    if (entrada.length()==4)
+    {
+        if (entrada.charAt(2)=='s')
+            this.claseInterAbiertoSuited.add(entrada);
+        else 
+        if (entrada.charAt(2)=='o')
+            this.claseInterAbiertoOffSuited.add(entrada);
+    }
+    else
+    if (entrada.length()==7)
+    {
+        if (entrada.charAt(2)=='s')
+            this.claseInterCerradoSuited.add(entrada);
+        else 
+        if (entrada.charAt(2)=='o')
+            this.claseInterCerradoOffSuited.add(entrada);
+    }
+    else return false;
+
+return true;
+}
+void actualizaMatrices()
+{
+    actualizaDiagonal();
+    actualizaSolosSuited();
+}
+
+void actualizaDiagonal()
+{
+    char unaLetra=' ';
+    int i=0;
+    Iterator<String> unIterador= this.claseDiagonal.iterator();
+    while (unIterador.hasNext())
+    {
+        unaLetra=unIterador.next().charAt(0);
+        i=new tRango(unaLetra).toInt();
+        this.matrizBool[i][i]=true;
     }
 }
+
+
+void actualizaSolosSuited()
+{
+    String dosLetras="";
+    int i=0;
+    int j=0;
+    Iterator<String> unIterador= this.claseSolosSuited.iterator();
+    while (unIterador.hasNext())
+    {
+        //aqui hay que invertir j e i ...quizás..
+        dosLetras=unIterador.next().substring(0,2);
+        i=new tRango(dosLetras.substring(0, 1).charAt(0)).toInt();
+        j=new tRango(dosLetras.substring(1, 2).charAt(0)).toInt();        
+        this.matrizBool[i][j]=true;
+    }
+}
+void actualizaSolosOffSuited()
+{
+    String dosLetras="";
+    int i=0;
+    int j=0;
+    Iterator<String> unIterador= this.claseSolosSuited.iterator();
+    while (unIterador.hasNext())
+    {
+        //aqui hay que invertir j e i ...quizás..
+        dosLetras=unIterador.next().substring(0,2);
+        j=new tRango(dosLetras.substring(0, 1).charAt(0)).toInt();
+        i=new tRango(dosLetras.substring(1, 2).charAt(0)).toInt();        
+        this.matrizBool[i][j]=true;
+    }
+}
+
 
 //presupongo cadenas bien formadas        
 boolean parseaEntrada(String entrada)
@@ -131,8 +209,15 @@ boolean parseaEntrada(String entrada)
     boolean todoBien=true;    
     String[] partes = entrada.split(",");
     for (int i=0;i<partes.length;i++)
-        asignaClase (partes[i]);
+    {
+        if (!asignaClase (partes[i])) 
+        {            
+            this.inicializaMatrices();
+            return false;        
+        }
+    }
     
+    actualizaMatrices();
     return todoBien;
 }
 
