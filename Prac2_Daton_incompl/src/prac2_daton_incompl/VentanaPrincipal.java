@@ -9,8 +9,9 @@ package prac2_daton_incompl;
  *
  * @author barfelix
  */
-public class VentanaPrincipal extends javax.swing.JFrame {
 
+public class VentanaPrincipal extends javax.swing.JFrame {
+ static tControlador _unControlador=new tControlador();
     /**
      * Creates new form VentanaPrincipal
      */
@@ -85,7 +86,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       VentanaMatriz unaVentana=new VentanaMatriz();
+       tVentanaMatriz unaVentana=new tVentanaMatriz();
        unaVentana.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -115,10 +116,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new VentanaPrincipal().setVisible(true);
             }
         });
