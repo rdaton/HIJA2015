@@ -12,6 +12,7 @@ package prac2_daton_incompl;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
  static tControlador _unControlador=new tControlador();
+ tVentanaMatriz unaVentana;
     /**
      * Creates new form VentanaPrincipal
      */
@@ -88,7 +89,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        if (_unControlador.parseaEntrada(this.jTextPane1.getText()))
        {
-            tVentanaMatriz unaVentana=new tVentanaMatriz();       
+            unaVentana=new tVentanaMatriz();       
             unaVentana.setVisible(true);
        }
        else 
@@ -99,6 +100,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -131,10 +133,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    public javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }

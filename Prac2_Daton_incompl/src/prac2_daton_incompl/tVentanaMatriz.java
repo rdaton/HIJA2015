@@ -142,7 +142,8 @@ public class tVentanaMatriz extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        VentanaPrincipal._unControlador.dameCsvMatrizRangos();
+        VentanaPrincipal
         this.dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -183,6 +184,7 @@ class MyRenderer extends DefaultTableCellRenderer {
         }
 
     }
+   
     /**
      * @param args the command line arguments
      */

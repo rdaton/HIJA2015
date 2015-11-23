@@ -15,6 +15,7 @@ import java.util.List;
  */
 
 public class  tControlador {
+double porcentaje;
 int unaLong; 
 boolean[][] matrizBool; 
 String[][] matrizRangos;
@@ -48,6 +49,7 @@ boolean esIzquierda (int a, int b)
 
 private void inicializaMatrices() 
 {
+    porcentaje=0;
     unaLong= tRango.enumRango.toArrayChar().length;
     matrizBool= new boolean[unaLong][unaLong];
     matrizRangos=new String[unaLong][unaLong];
@@ -264,9 +266,11 @@ void actualizaInterAbiertoSuited()
         }
         
     
+    }
+    
     claseInterAbiertoSuited.clear();
     actualizaSolosSuited();
-    }
+    
     
 }
 
@@ -323,5 +327,21 @@ boolean parseaEntrada(String entrada)
     actualizaMatrices();
     return todoBien;
 }
-
+String dameCsvMatrizRangos ()
+{
+    StringBuffer unBuffer=new StringBuffer();
+    for (int i=0;i<unaLong;i++)
+    {
+        for (int j=0;j<unaLong;j++)
+        {
+            if (this.matrizBool[i][j])
+            {
+               unBuffer.append(matrizRangos[i][j]);                
+               if (i*j<((unaLong-1)*(unaLong-1)))
+                   unBuffer.append(',');
+            }
+        }
+    }
+    return unBuffer.toString();
+}
 }
