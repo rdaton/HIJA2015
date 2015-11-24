@@ -39,6 +39,7 @@ public class tVentanaMatriz extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +90,11 @@ public class tVentanaMatriz extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Porcentaje Manual");
+        jLabel1.setToolTipText("");
+        jLabel1.setText(String.valueOf(VentanaPrincipal._unControlador.porcentajeManual));
+        jLabel1.repaint();
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -99,14 +105,21 @@ public class tVentanaMatriz extends javax.swing.JFrame {
                 .addContainerGap(33, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(48, 48, 48))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(48, 48, 48))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(124, 124, 124))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1)
+                .addGap(8, 8, 8)
                 .addComponent(jButton1)
                 .addGap(0, 91, Short.MAX_VALUE))
         );
@@ -137,15 +150,16 @@ public class tVentanaMatriz extends javax.swing.JFrame {
         int j= jTable1.getSelectedColumn();
         //System.out.println("celda seleccionada" + new Integer(i).toString() + new Integer(j).toString());
         VentanaPrincipal._unControlador.matrizBool[i][j]=!VentanaPrincipal._unControlador.matrizBool[i][j];
+        VentanaPrincipal._unControlador.calculaPorcentaje();
         jTable1.repaint();
+        jLabel1.setText(String.valueOf(VentanaPrincipal._unControlador.porcentajeManual));
+        jLabel1.repaint();
         
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VentanaPrincipal._unControlador.dameCsvMatrizRangos();
-        VentanaPrincipal
-        this.dispose();
-        
+        VentanaPrincipal.jTextPane1.setText(VentanaPrincipal._unControlador.dameCsvMatrizRangos());
+        this.dispose();        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
@@ -182,6 +196,8 @@ class MyRenderer extends DefaultTableCellRenderer {
                 jTable1.getColumnModel().getColumn(i).setCellRenderer(mr);
             }
         }
+        jLabel1.setText(String.valueOf(VentanaPrincipal._unControlador.porcentajeManual));
+        jLabel1.repaint();
 
     }
    
@@ -224,6 +240,7 @@ class MyRenderer extends DefaultTableCellRenderer {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

@@ -15,12 +15,12 @@ import java.util.List;
  */
 
 public class  tControlador {
-double porcentaje;
+double porcentajeManual;
 int unaLong; 
 boolean[][] matrizBool; 
 String[][] matrizRangos;
 int[][] matrizColor;
-
+//Double[][] 
 List<String> claseSolosSuited;
 List<String> claseSolosOffSuited;
 List<String> claseDiagonal;
@@ -49,7 +49,7 @@ boolean esIzquierda (int a, int b)
 
 private void inicializaMatrices() 
 {
-    porcentaje=0;
+    porcentajeManual=0;
     unaLong= tRango.enumRango.toArrayChar().length;
     matrizBool= new boolean[unaLong][unaLong];
     matrizRangos=new String[unaLong][unaLong];
@@ -152,6 +152,36 @@ public boolean asignaClase(String entrada)
 
 return true;
 }
+void calculaPorcentaje()
+{
+    //peso manos iniciales
+    //pares 6,suited 4, off-suited 12
+    int sum=0;
+    int total=0;
+    int ptro=0;
+    for (int i=0;i<unaLong;i++)   
+    {
+        for (int j=0;j<unaLong;j++)
+        {
+            //par
+            if (esDiagonal(i,j))
+                 ptro=6;
+            //offsuited
+            else if (esIzquierda(i,j))
+                 ptro=12;
+            //suited
+            else 
+                ptro=6;
+            
+            total+=ptro;
+            if (matrizBool[i][j])
+                sum+=ptro;
+           
+        }
+    }
+    double unPorcentaje=((double)(sum*100)/(double)(total));
+    porcentajeManual=unPorcentaje;
+}
 void actualizaMatrices()
 {
     actualizaDiagonal();
@@ -160,7 +190,12 @@ void actualizaMatrices()
     actualizaSolosOffSuited();
     actualizaInterAbiertoSuited();
     actualizaInterAbiertoOffSuited();
+    actualizaInterCerradoSuited();
+    actualizaInterCerradoOffSuited();
+    calculaPorcentaje();
+    
 }
+
 
 void actualizaDiagonal()
 {
@@ -239,7 +274,7 @@ void actualizaSolosOffSuited()
 
 void actualizaInterAbiertoSuited()
 {
-   String dosLetras="";
+    String dosLetras="";
     char unaLetra=' ';
     char otraLetra=' ';
     int i=0;
@@ -308,6 +343,85 @@ void actualizaInterAbiertoOffSuited()
     actualizaSolosOffSuited();
     
 }
+
+
+    void actualizaInterCerradoSuited()
+    {
+    String variasLetras="";
+    char unaLetra=' ';
+    char otraLetra=' ';
+    char terceraLetra=' ';
+    int unFinal=0;
+    int i=0;
+    int j=0;
+    int r=0;
+    Iterator<String> unIterador= this.claseInterCerradoSuited.iterator();
+    while (unIterador.hasNext())
+    {
+        variasLetras=unIterador.next();
+        unaLetra=variasLetras.charAt(0);
+        otraLetra=variasLetras.charAt(1);
+        terceraLetra=variasLetras.charAt(5);
+        unFinal=new tRango(otraLetra).toInt();        
+        j=new tRango(terceraLetra).toInt();                
+        
+        while (unFinal>=j)
+        {
+            otraLetra=tRango.enumRango.toArrayChar()[j];
+            claseSolosSuited.add
+                    (new StringBuffer().append(unaLetra).append(otraLetra).toString());            
+            j++;
+                        
+        }
+        
+    
+    }
+    
+    claseInterCerradoSuited.clear();
+    actualizaSolosSuited();
+    
+        
+    }
+    
+    void actualizaInterCerradoOffSuited()
+    {
+        
+    String variasLetras="";
+    char unaLetra=' ';
+    char otraLetra=' ';
+    char terceraLetra=' ';
+    int unFinal=0;
+    int i=0;
+    int j=0;
+    int r=0;
+    Iterator<String> unIterador= this.claseInterCerradoOffSuited.iterator();
+    while (unIterador.hasNext())
+    {
+        variasLetras=unIterador.next();
+        unaLetra=variasLetras.charAt(0);
+        otraLetra=variasLetras.charAt(1);
+        terceraLetra=variasLetras.charAt(5);
+        unFinal=new tRango(otraLetra).toInt();        
+        j=new tRango(terceraLetra).toInt();                
+        
+        while (unFinal>=j)
+        {
+            otraLetra=tRango.enumRango.toArrayChar()[j];
+            claseSolosOffSuited.add
+                    (new StringBuffer().append(unaLetra).append(otraLetra).toString());            
+            j++;
+                        
+        }
+        
+    
+    }
+    
+    claseInterCerradoOffSuited.clear();
+    actualizaSolosOffSuited();
+    
+        
+    }
+
 
 //presupongo cadenas bien formadas        
 boolean parseaEntrada(String entrada)
