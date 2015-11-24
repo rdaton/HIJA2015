@@ -98,8 +98,24 @@ public class tVentanaMatriz extends javax.swing.JFrame {
         jLabel1.repaint();
 
         jButton2.setText("Generar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setText("Porcentaje Deseado");
+        jTextField1.setText("% multiplo de 5");
+        jTextField1.setMinimumSize(new java.awt.Dimension(200, 200));
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -114,7 +130,7 @@ public class tVentanaMatriz extends javax.swing.JFrame {
                         .addGap(55, 55, 55)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(124, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -170,6 +186,7 @@ public class tVentanaMatriz extends javax.swing.JFrame {
         VentanaPrincipal._unControlador.calculaPorcentaje();
         jTable1.repaint();
         jLabel1.setText(String.valueOf(VentanaPrincipal._unControlador.porcentajeManual));
+        
         jLabel1.repaint();
         
     }//GEN-LAST:event_jTable1MouseClicked
@@ -178,6 +195,22 @@ public class tVentanaMatriz extends javax.swing.JFrame {
         VentanaPrincipal.jTextPane1.setText(VentanaPrincipal._unControlador.dameCsvMatrizRangos());
         this.dispose();        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       int n= Integer.parseInt(jTextField1.getText());
+       VentanaPrincipal._unControlador.porcentajeBaker(n);
+       jTable1.repaint();
+        jLabel1.setText(String.valueOf(VentanaPrincipal._unControlador.porcentajeManual));
+       jLabel1.repaint();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+       this.jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1MouseClicked
 
     
     
