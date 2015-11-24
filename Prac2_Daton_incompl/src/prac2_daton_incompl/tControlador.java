@@ -192,12 +192,44 @@ void porcentajeBaker(int n)
   if (n!=100)
       this.parseaEntrada(unBuffer.toString());
 }
-boolean ma (int pos, int act)
+boolean ma (int pos)
 {
- 
-    return false;
+   tControlador otroControlador=new tControlador();     
+    StringBuffer unBuffer=new StringBuffer();
+    
+    switch (pos)
+    {
+        case 0: unBuffer.append("AA,KK,QQ,JJ,AKs,AKo,TT,AQs,AQo,99,AJs,KQs,88");
+        break;
+        case 1: unBuffer.append("88+,AQs+,AQo+,AJs,KQs,77,AJs,AJo,KQs,KQo,ATs");
+        break;
+        case 2: unBuffer.append("77+,AJs+,AJo+,ATs,KQs+,KQo+,66,ATo,A9s,KJs");
+        break;
+            //me falta "any two suited broadways"
+        case 3: unBuffer.append("66+,ATs+,ATo+,A9s+,KQs,KQo,KJs,55,A8s,A9o,KJo,");
+        break;    
+            //me falta "any two suited broadways", any two "unsuited broadways"
+        case 4: unBuffer.append("55+,A8s+,A9o+,KJo+,22+,A2s+");
+                
+        
+            
+    }
+    otroControlador.parseaEntrada(unBuffer.toString());
+   //ya tengo las dos matrices...devuelvo true, si  el rengo
+   //introducido por el usuario se encuentra dentro de la matriz de janda
+    boolean enc=true;
+    
+    for (int i=0;i<unaLong ;i++)
+        for (int j=0;j<unaLong ;j++)
+        {
+           
+            enc=!(matrizBool[i][j] && !otroControlador.matrizBool[i][j]);            
+            if(!enc) return enc ;
+        };
+    
+    return enc ;     
 }
-boolean janda(int pos, int act){
+boolean janda(int pos){
     tControlador otroControlador=new tControlador();     
     StringBuffer unBuffer=new StringBuffer();
     
@@ -219,26 +251,36 @@ boolean janda(int pos, int act){
     }
     otroControlador.parseaEntrada(unBuffer.toString());
    //ya tengo las dos matrices...devuelvo true, si  el rengo
-   //introducido por el usuario se encuentra dentro de la atriz de janda
+   //introducido por el usuario se encuentra dentro de la matriz de janda
     boolean enc=true;
     
     for (int i=0;i<unaLong ;i++)
         for (int j=0;j<unaLong ;j++)
         {
            
-            enc=!(matrizBool[i][j] && !otroControlador.matrizBool[i][j]);
-            System.out.println(enc);
-            if(!enc) return enc;
+            enc=!(matrizBool[i][j] && !otroControlador.matrizBool[i][j]);            
+            if(!enc) return enc ;
         };
     
-    return enc;       
+    return enc ;       
 }
 public boolean evaluar(int pos, int act, int juez)
 {
-    if (juez==1)
-        return janda(pos, act);
-    else
-        return ma ( pos, act);
+    boolean unReturn=false;
+    if (juez==1) 
+    {
+        if (act==0) unReturn=janda(pos);
+        else if (act==1)
+                    unReturn=!janda(pos);
+    }
+    else if (juez==0)
+       {
+        if (act==0) unReturn=ma(pos);
+        else if (act==1)
+                    unReturn=!ma(pos);
+    }
+    
+    return unReturn;
 }
 //presupongo cadenas bien formadas        
 public boolean asignaClase(String entrada)
