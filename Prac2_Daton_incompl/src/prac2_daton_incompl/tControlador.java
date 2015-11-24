@@ -192,6 +192,54 @@ void porcentajeBaker(int n)
   if (n!=100)
       this.parseaEntrada(unBuffer.toString());
 }
+boolean ma (int pos, int act)
+{
+ 
+    return false;
+}
+boolean janda(int pos, int act){
+    tControlador otroControlador=new tControlador();     
+    StringBuffer unBuffer=new StringBuffer();
+    
+    switch (pos)
+    {
+        case 0: unBuffer.append("33+,AKo-AJo,KQo,AKs-ATs,KQs-KTs,JTs-J9s,T9s,98s,87s,76s,65s");
+        break;
+        case 1: unBuffer.append("22+,AKo-ATo,KQo,AKs-A7s,A5s,KQs-KTs,QJs-QTs,JTs-J9s,T9s-T8s,98s-97s,87s-86s,76s-75s,65s,54s");
+        break;
+        case 2: unBuffer.append("22+,AKo-ATo,KQo-KJo,QJo,AKs-A2s,KQs-K6s,QJs-Q7s,JTs-J8s,T9s-T8s,98s-97s,87s-86s,76s-75s,65s-64s,54s");
+        break;
+        case 3: unBuffer.append("22+,AKo-A2o,KQo-K7o,QJo-Q9o, JTo-J9o,T9o-T8o,98o,87o,AKs-A2s,KQs-K2s,QJs-Q2s,JTs-J5s,T9s-T6s,98s-96s,"
+                + "87s-85s,76s-74s,65s-64s,54s-53s,43s");
+        break;    
+        case 4: unBuffer.append("22+,AKo-A7o,KQo-K9o,QJo-Q9o,JTo-J9o,T9o,98o,AKs-A2s,KQs-K2s,QJs-Q4s,JTs-J7s,T9s-T7s,98s-97s,87s-86s,"
+                + "76s-75s,65s-64s,54s");
+        
+            
+    }
+    otroControlador.parseaEntrada(unBuffer.toString());
+   //ya tengo las dos matrices...devuelvo true, si  el rengo
+   //introducido por el usuario se encuentra dentro de la atriz de janda
+    boolean enc=true;
+    
+    for (int i=0;i<unaLong ;i++)
+        for (int j=0;j<unaLong ;j++)
+        {
+           
+            enc=!(matrizBool[i][j] && !otroControlador.matrizBool[i][j]);
+            System.out.println(enc);
+            if(!enc) return enc;
+        };
+    
+    return enc;       
+}
+public boolean evaluar(int pos, int act, int juez)
+{
+    if (juez==1)
+        return janda(pos, act);
+    else
+        return ma ( pos, act);
+}
 //presupongo cadenas bien formadas        
 public boolean asignaClase(String entrada)
 {
