@@ -19,9 +19,9 @@ public class tMano
                     TRIO,DOBLE_PAREJA,PAREJA,CARTA_ALTA;}        
     
     //lista de cartas: 5 como mucho.. tal como dictan las reglas del poker
-    private List<tCarta> _listaCartas ;
+    private tListaCartas _listaCartas ;
     //cartas representante de la mano (lo estrictamente minimo)
-    private List<tCarta> _cartasRep;
+    private tListaCartas _cartasRep;
     //lista de draws (dos cartas)
     private List<tMano> _listaDraws;
     //chapuza para no usar herencia... en fin ...
@@ -36,8 +36,8 @@ public class tMano
         _listaDraws=null;
         _Baraja=new tBaraja();
         _cartaMax=listaCartas.get(0);
-        _cartasRep=new ArrayList<>();
-        _listaCartas=new ArrayList<>();        
+        _cartasRep=new tListaCartas();
+        _listaCartas=new tListaCartas();        
         for (int i=0;i<5;i++)
         {
             this._listaCartas.add(listaCartas.get(i));           
@@ -135,6 +135,7 @@ public class tMano
         
         _cartasRep.clear() ;
         
+        if (this._listaCartas.isEmpty()) return;
         
         int nRangos=tRango.enumRango.toArrayChar().length;
         int[] contadorRangos=new int[nRangos];
@@ -327,12 +328,15 @@ ww_Ac_2h_As_ww
     */
     private String dameUnaCadenaDraw (int n)
     {
+        //debug
+        String otroString=_listaCartas.toString();
         String unString =_listaCartas.toString();
         
         switch(n)
         {
-            case 0: unString=
-                    new StringBuffer().append("wwww").append(unString.substring(7)).toString();
+            case 0: unString=                   
+                    new StringBuffer().append(otroString).append("www").toString();
+                   //new StringBuffer().append("wwww").append(unString.substring(7)).toString();
                 break;            
             case 1: unString=
                     new StringBuffer().
@@ -416,6 +420,8 @@ ww_Ac_2h_As_ww
                 break;
         }       
         
+        System.out.println (unString);
+        System.out.println (otroString);
         return unString;
     }
     /*
@@ -429,11 +435,7 @@ ww_Ac_2h_As_ww
         //listaDraw sólo tendrá dos elementos
         _listaDraws.clear();
         //me hago un clon malo
-        tMano unaMano=bitchBrian(_listaCartas,_listaCartas.get(0),0);
-        unaMano._esDraw=true;
-        
-
-        unaMano._esDraw=false;
+        tMano unaMano=bitchBrian(_listaCartas,_listaCartas.get(0),0);      
 
        //INCOMPLETO @Daton ....para optimizar, hago solo dos comparaciones
         for (int i=0;i<10;i++)
@@ -446,7 +448,7 @@ ww_Ac_2h_As_ww
     }
    
     //clonador malo.. para crear draws
-    private tMano bitchBrian(List<tCarta> unaLista, tCarta unaCarta, int r)
+    private tMano bitchBrian(tListaCartas unaLista, tCarta unaCarta, int r)
     {
         List<tCarta> otraLista=new ArrayList<>();     
         for (int i=0;i<unaLista.size();i++)

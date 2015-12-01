@@ -1,0 +1,17 @@
+X jugadores con unas cartas determinadas, probabilidad de ganar cada uno.
+AA - KK - random (va simulando boards y mira quién gana  ..)
+
+Ases fuertes en preflop ...
+
+La generación de jugadas ... puede ser generando todas las jugadas ...o simular de forma aleatoria..
+Contador de victoria de cada jugador...
+
+Es como si vieramos muchas partidas y apuntaramos quién empieza con qué cartas,
+y quién gana (de los porcentajes de ganancias, saco el equity)
+
+EL truco es en elegir una estructura que nos dé cartas ...: 
+array de 52 posiciones de cartas, con booleans que marquen las cogidas..
+Tenemos que pensar en una estructura que me permita reinicializar muy rápido..
+Sobre el parseo,
+¡ojo, con las cartas que sacamos de la baraja ... analizamos, al principio las cartas con su palo ..
+y luego las de rango
