@@ -74,3 +74,63 @@ Hand 1: 	45.115%  	43.12% 	02.00% 	     904464207 	 41863204.50   { random }
 ---
 
 
+
+---
+   2,097,572,400  games     0.036 secs    58,265,899,999  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	85.204%  	84.93% 	00.27% 	    1781508418 	  5701156.00   { AcAd }
+Hand 1: 	14.796%  	14.52% 	00.27% 	     304661670 	  5701156.00   { random }
+
+
+---
+
+
+
+---
+  12,585,434,400  games     0.003 secs     4,195,144,800,000  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	85.204%  	84.93% 	00.27% 	   10689050508 	 34206936.00   { AA }
+Hand 1: 	14.796%  	14.52% 	00.27% 	    1827970020 	 34206936.00   { random }
+
+
+---
+
+
+
+---
+  20,975,724,000  games     0.003 secs     6,991,908,000,000  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	77.940%  	77.45% 	00.49% 	   16245067368 	103428888.00   { AA, AKs }
+Hand 1: 	22.060%  	21.57% 	00.49% 	    4523798856 	103428888.00   { random }
+
+
+---
+
+
+
+---
+  46,146,592,800  games     0.011 secs     4,195,144,800,000  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	71.056%  	70.37% 	00.69% 	   32472569904 	317555922.00   { AA, AKs, AKo }
+Hand 1: 	28.944%  	28.26% 	00.69% 	   13038911052 	317555922.00   { random }
+
+
+---
+
+
