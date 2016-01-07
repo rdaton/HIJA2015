@@ -34,6 +34,7 @@ List<String> claseInterCerradoOffSuited;
 List<String> claseInterAbiertoSuited;
 List<String> claseInterAbiertoOffSuited;
 List<String> claseDiagonalAbierto;
+List<String> claseCartasSueltas;
 
 public tControlador()
 {
@@ -71,6 +72,9 @@ private void inicializaMatrices()
     claseInterCerradoOffSuited=new ArrayList<>();
     claseInterAbiertoSuited=new ArrayList<>();
     claseInterAbiertoOffSuited=new ArrayList<>();
+    claseCartasSueltas=new ArrayList<>();
+    
+    
     
     
     //inicializar matriz cartas sueltas
@@ -81,7 +85,7 @@ private void inicializaMatrices()
             this.matrizBoolCartas[i][j]=false;
             this.matrizColorCartas[i][j]=0;
             otroBuffer=new StringBuffer().
-                    append(tRango.enumRango.toArrayChar()[i]).
+                    append(tRango.enumRango.toArrayChar()[unaLong-i-1]).
                     append(tPalo.enumPalo.toArrayChar()[j]);
             this.matrizCartas[i][j]=otroBuffer.toString();
         }
@@ -303,11 +307,17 @@ public boolean evaluar(int pos, int act, int juez)
     
     return unReturn;
 }
+
 //presupongo cadenas bien formadas        
 public boolean asignaClase(String entrada)
 {
     if (entrada.length()==2)
-        this.claseDiagonal.add(entrada);    
+    {
+        if (tPalo.esPalo(entrada.charAt(1)))
+            this.claseCartasSueltas.add(entrada);
+        else
+            this.claseDiagonal.add(entrada);    
+    }
     else 
     if (entrada.length()==3)
     {
@@ -328,7 +338,7 @@ public boolean asignaClase(String entrada)
             this.claseInterAbiertoSuited.add(entrada);
         else 
         if (entrada.charAt(2)=='o')
-            this.claseInterAbiertoOffSuited.add(entrada);
+            this.claseInterAbiertoOffSuited.add(entrada);            
     }
     else
     if (entrada.length()==7)
@@ -375,6 +385,7 @@ void calculaPorcentaje()
 }
 void actualizaMatrices()
 {
+    actualizaCartasSueltas(); 
     actualizaDiagonal();
     actualizaDiagonalAbierto();
     actualizaSolosSuited();
@@ -383,11 +394,43 @@ void actualizaMatrices()
     actualizaInterAbiertoOffSuited();
     actualizaInterCerradoSuited();
     actualizaInterCerradoOffSuited();
+    
     calculaPorcentaje();
     
 }
 
+//auxiliar.. agrupa las cartas sueltas de dos en dos
+void convierteSueltasAParejas()
+{
+    //a completar
+}
 
+//al final, recorre la matriz de cartas sueltas y la convierte
+//en pares de cartas (de dos en dos)
+void actualizaCartasSueltas()
+{
+    char unaLetra=' ';
+    char otraLetra=' ';
+    String unPuntero=null;
+    int i=0;
+    int j=0;
+    int r=0;
+    Iterator <String> unIterador=this.claseCartasSueltas.iterator();
+    
+    while (unIterador.hasNext())
+    {
+        unPuntero=unIterador.next();
+        unaLetra=unPuntero.charAt(0);
+        otraLetra=unPuntero.charAt(1);
+        i=new tRango(unaLetra).toInt();
+        i=unaLong-1-i;
+        j=new tPalo(otraLetra).toInt();
+        this.matrizBoolCartas[i][j]=true;
+        
+    }
+    
+    convierteSueltasAParejas();
+}
 void actualizaDiagonal()
 {
     char unaLetra=' ';
@@ -634,7 +677,19 @@ boolean parseaEntrada(String entrada)
 }
 String dameCsvMatrizRangos ()
 {
-    StringBuffer unBuffer=new StringBuffer();
+    StringBuffer unBuffer=new StringBuffer();  
+     for (int i=0;i<unaLong;i++)
+    {
+        for (int j=0;j<otraLong;j++)
+        {
+            if (this.matrizBoolCartas[i][j])
+            {
+               unBuffer.append(matrizCartas[i][j]);                
+               
+                   unBuffer.append(',');
+            }
+        }
+    }
     for (int i=0;i<unaLong;i++)
     {
         for (int j=0;j<unaLong;j++)

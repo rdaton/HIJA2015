@@ -319,7 +319,7 @@ class MyRenderer2 extends DefaultTableCellRenderer {
               if (VentanaPrincipal._unControlador.matrizBoolCartas[row][column])
                   setBackground(Color.YELLOW);
               else
-                  setBackground(Color.GRAY);
+                  setBackground(Color.GREEN);
                  // setBackground(color[VentanaPrincipal._unControlador.matrizColor[row][column]]);
               return this;
          }

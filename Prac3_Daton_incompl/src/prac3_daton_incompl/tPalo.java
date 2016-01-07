@@ -51,6 +51,23 @@ public class tPalo {
             default: return null;
         }
     }
-   
+  static public boolean esPalo (char c)
+   {
+       return ((c=='d') || (c=='s') || (c=='h') || (c=='c'));
+               
+   }
+  
+  public int toInt()
+  {
+      switch (_palo)
+        {
+            case DIAMANTE: return 0;
+            case PICA: return 1;
+            case CORAZON: return 2;
+            case TREBOL: return 3;
+            default: return -1;
+        }
+      
+  }
 
 }
