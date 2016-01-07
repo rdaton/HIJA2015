@@ -11,8 +11,7 @@ package prac3_daton_incompl;
  */
 
 public class VentanaPrincipal extends javax.swing.JFrame {
- static tControlador _unControlador=new tControlador();
- tVentanaMatriz unaVentana;
+ public  static tControlador _unControlador=null;
     /**
      * Creates new form VentanaPrincipal
      */
@@ -87,9 +86,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        _unControlador=new tControlador(1);
        if (_unControlador.parseaEntrada(this.jTextPane1.getText()))
        {
-            unaVentana=new tVentanaMatriz();       
+            tVentanaMatriz unaVentana=new tVentanaMatriz();       
             unaVentana.setVisible(true);            
        }
        else 

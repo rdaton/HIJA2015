@@ -283,8 +283,13 @@ public class tVentanaMatriz extends javax.swing.JFrame {
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         int i= jTable2.getSelectedRow();
         int j= jTable2.getSelectedColumn();
-        //System.out.println("celda seleccionada" + new Integer(i).toString() + new Integer(j).toString());
-        VentanaPrincipal._unControlador.matrizBoolCartas[i][j]=!VentanaPrincipal._unControlador.matrizBool[i][j];
+        //System.out.println("celda seleccionada" + new Integer(i).toString() + new Integer(j).toString());  
+        //cambio la celda sólo si es mía
+        if (tBaraja.getInstance().matrizBoolCartas[i][j]==0 ) 
+                tBaraja.getInstance().matrizBoolCartas[i][j]=VentanaPrincipal._unControlador.idJugador;
+        else if (tBaraja.getInstance().matrizBoolCartas[i][j]==VentanaPrincipal._unControlador.idJugador ) 
+            tBaraja.getInstance().matrizBoolCartas[i][j]=0;
+            
         jTable2.repaint();
     }//GEN-LAST:event_jTable2MouseClicked
 
@@ -316,11 +321,12 @@ class MyRenderer2 extends DefaultTableCellRenderer {
     @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
               this.setValue(value);
-              if (VentanaPrincipal._unControlador.matrizBoolCartas[row][column])
+              if (tBaraja.getInstance().matrizBoolCartas[row][column]==VentanaPrincipal._unControlador.idJugador)
                   setBackground(Color.YELLOW);
-              else
+              else if (tBaraja.getInstance().matrizBoolCartas[row][column]==0)
                   setBackground(Color.GREEN);
-                 // setBackground(color[VentanaPrincipal._unControlador.matrizColor[row][column]]);
+              else
+                 setBackground(Color.RED);
               return this;
          }
 
@@ -334,7 +340,7 @@ class MyRenderer2 extends DefaultTableCellRenderer {
         {
             for (int j=0;j<4;j++)
             {               
-                jTable2.getModel().setValueAt( VentanaPrincipal._unControlador.matrizCartas[i][j],i, j);                
+                jTable2.getModel().setValueAt( tBaraja.getInstance().matrizCartas[i][j],i, j);                
                 jTable2.getColumnModel().getColumn(j).setCellRenderer(mr);
             }
         }

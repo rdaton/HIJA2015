@@ -18,13 +18,11 @@ public class  tControlador {
 double porcentajeManual;
 int unaLong; 
 int otraLong;
+int idJugador;
 boolean[][] matrizBool; 
 String[][] matrizRangos;
 int[][] matrizColor;
-boolean[][] matrizBoolCartas; 
-String[][] matrizCartas;
 int[][] matrizColorCartas;
-
 double[][]  matrizChubukov;
 List<String> claseSolosSuited;
 List<String> claseSolosOffSuited;
@@ -36,8 +34,9 @@ List<String> claseInterAbiertoOffSuited;
 List<String> claseDiagonalAbierto;
 List<String> claseCartasSueltas;
 
-public tControlador()
+public tControlador( int j)
 {
+    idJugador=j;
     
     inicializaMatrices();
     
@@ -61,8 +60,6 @@ private void inicializaMatrices()
     matrizBool= new boolean[unaLong][unaLong];
     matrizRangos=new String[unaLong][unaLong];
     matrizColor=new int[unaLong][unaLong];
-    this.matrizBoolCartas=new boolean[unaLong][otraLong];
-    this.matrizCartas=new String[unaLong][otraLong];
     this.matrizColorCartas=new int [unaLong][otraLong];
     claseDiagonalAbierto=new ArrayList<>();
     claseSolosSuited=new ArrayList<>();
@@ -76,20 +73,7 @@ private void inicializaMatrices()
     
     
     
-    
-    //inicializar matriz cartas sueltas
-    StringBuffer otroBuffer=null;
-    for (int i=0;i<unaLong;i++)
-        for (int j=0;j<otraLong;j++)
-        {
-            this.matrizBoolCartas[i][j]=false;
-            this.matrizColorCartas[i][j]=0;
-            otroBuffer=new StringBuffer().
-                    append(tRango.enumRango.toArrayChar()[unaLong-i-1]).
-                    append(tPalo.enumPalo.toArrayChar()[j]);
-            this.matrizCartas[i][j]=otroBuffer.toString();
-        }
-    
+   
     //inicializar matriz suited/offsuited
     StringBuffer unBuffer=null;
     for (int i=0;i<unaLong;i++)
@@ -219,7 +203,7 @@ void porcentajeBaker(int n)
 }
 boolean ma (int pos)
 {
-   tControlador otroControlador=new tControlador();     
+   tControlador otroControlador=new tControlador(idJugador);     
     StringBuffer unBuffer=new StringBuffer();
     
     switch (pos)
@@ -255,7 +239,7 @@ boolean ma (int pos)
     return enc ;     
 }
 boolean janda(int pos){
-    tControlador otroControlador=new tControlador();     
+    tControlador otroControlador=new tControlador(idJugador);     
     StringBuffer unBuffer=new StringBuffer();
     
     switch (pos)
@@ -425,7 +409,10 @@ void actualizaCartasSueltas()
         i=new tRango(unaLetra).toInt();
         i=unaLong-1-i;
         j=new tPalo(otraLetra).toInt();
-        this.matrizBoolCartas[i][j]=true;
+        //si carta libre, la marco
+        if (tBaraja.getInstance().matrizBoolCartas[i][j] == 0)
+            tBaraja.getInstance().matrizBoolCartas[i][j] = idJugador;         
+            
         
     }
     
@@ -682,9 +669,9 @@ String dameCsvMatrizRangos ()
     {
         for (int j=0;j<otraLong;j++)
         {
-            if (this.matrizBoolCartas[i][j])
+            if (tBaraja.getInstance().matrizBoolCartas[i][j]==idJugador)
             {
-               unBuffer.append(matrizCartas[i][j]);                
+               unBuffer.append(tBaraja.getInstance().matrizCartas[i][j]);                
                
                    unBuffer.append(',');
             }
