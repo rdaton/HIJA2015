@@ -38,7 +38,10 @@ public tControlador( int j)
 {
     idJugador=j;
     
-    inicializaMatrices();
+    
+        inicializaMatrices();
+        inicializaListas();
+    
     
 }
 
@@ -52,15 +55,7 @@ boolean esIzquierda (int a, int b)
     return (!(esDiagonal(a,b))&&(a>b)); 
 }
 
-private void inicializaMatrices() 
-{
-    porcentajeManual=0;
-    unaLong= tRango.enumRango.toArrayChar().length;
-    otraLong= tPalo.enumPalo.toArrayChar().length;
-    matrizBool= new boolean[unaLong][unaLong];
-    matrizRangos=new String[unaLong][unaLong];
-    matrizColor=new int[unaLong][unaLong];
-    this.matrizColorCartas=new int [unaLong][otraLong];
+private void inicializaListas(){
     claseDiagonalAbierto=new ArrayList<>();
     claseSolosSuited=new ArrayList<>();
     claseSolosOffSuited=new ArrayList<>();
@@ -70,6 +65,17 @@ private void inicializaMatrices()
     claseInterAbiertoSuited=new ArrayList<>();
     claseInterAbiertoOffSuited=new ArrayList<>();
     claseCartasSueltas=new ArrayList<>();
+}
+private void inicializaMatrices() 
+{
+    porcentajeManual=0;
+    unaLong= tRango.enumRango.toArrayChar().length;
+    otraLong= tPalo.enumPalo.toArrayChar().length;
+    matrizBool= new boolean[unaLong][unaLong];
+    matrizRangos=new String[unaLong][unaLong];
+    matrizColor=new int[unaLong][unaLong];
+    this.matrizColorCartas=new int [unaLong][otraLong];
+    
     
     
     
@@ -145,7 +151,10 @@ private void inicializaMatrices()
 void porcentajeBaker(int n)
 {
     if (n>=0 && n<=100)
+    {
         inicializaMatrices();
+        inicializaListas();
+    }
     else return;
     StringBuffer unBuffer=new StringBuffer();
     
@@ -383,11 +392,7 @@ void actualizaMatrices()
     
 }
 
-//auxiliar.. agrupa las cartas sueltas de dos en dos
-void convierteSueltasAParejas()
-{
-    //a completar
-}
+
 
 //al final, recorre la matriz de cartas sueltas y la convierte
 //en pares de cartas (de dos en dos)
@@ -416,7 +421,7 @@ void actualizaCartasSueltas()
         
     }
     
-    convierteSueltasAParejas();
+    
 }
 void actualizaDiagonal()
 {
@@ -647,9 +652,17 @@ void actualizaInterAbiertoOffSuited()
 //presupongo cadenas bien formadas        
 boolean parseaEntrada(String entrada)
 {
-    
+    inicializaListas();
+    inicializaMatrices();
+    //si cuadrado vacío
+    if (entrada.length()==0) 
+    {        
+        tBaraja.getInstance().eliminaJugador(idJugador);
+        return true;
+    }
     boolean todoBien=true;    
     String[] partes = entrada.split(",");
+    
     for (int i=0;i<partes.length;i++)
     {
         if (!asignaClase (partes[i])) 
@@ -659,7 +672,7 @@ boolean parseaEntrada(String entrada)
         }
     }
     //todoBien==true
-    inicializaMatrices();
+    
     tBaraja.getInstance().eliminaJugador(idJugador);
     actualizaMatrices();
     return todoBien;

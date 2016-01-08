@@ -118,6 +118,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         jButton12.setText("RD");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setText("RD");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -357,8 +362,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-       if (_unosControladores[0].parseaEntrada(this.jTextPane1.getText()))       {
-            
+       if (_unosControladores[0].parseaEntrada(this.jTextPane1.getText()))       {            
             tVentanaMatriz unaVentana=new tVentanaMatriz(0);       
             unaVentana.setVisible(true);            
        }
@@ -457,7 +461,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        tBaraja.getInstance().eliminaJugador(0);
+        
         tCarta[] unasCartas=new tCarta[2]; 
         unasCartas[0]=tBaraja.getInstance().dameCartaRandomJugador(0);
         unasCartas[1]=tBaraja.getInstance().dameCartaRandomJugador(0);
@@ -476,6 +480,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments
