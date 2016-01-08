@@ -647,18 +647,20 @@ void actualizaInterAbiertoOffSuited()
 //presupongo cadenas bien formadas        
 boolean parseaEntrada(String entrada)
 {
-    inicializaMatrices();
+    
     boolean todoBien=true;    
     String[] partes = entrada.split(",");
     for (int i=0;i<partes.length;i++)
     {
         if (!asignaClase (partes[i])) 
         {            
-            this.inicializaMatrices();
+          //  this.inicializaMatrices();
             return false;        
         }
     }
-    
+    //todoBien==true
+    inicializaMatrices();
+    tBaraja.getInstance().eliminaJugador(idJugador);
     actualizaMatrices();
     return todoBien;
 }

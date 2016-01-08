@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package prac3_daton_incompl;
-
+import java.util.concurrent.ThreadLocalRandom;
 /**
  *
  * @author barfelix
  */
 //existe una única baraja.. luego usaré patrón singleton
 public class tBaraja {
+    int nCartasLibres;
     static int unaLong=tRango.enumRango.toArrayChar().length; 
     static int otraLong=tPalo.enumPalo.toArrayChar().length;
     static private int[][] matrizBoolCartas=new int[unaLong][otraLong]; 
@@ -20,6 +21,7 @@ public class tBaraja {
     
     private tBaraja () 
     {
+    nCartasLibres=unaLong*otraLong;
     //inicializar matriz cartas sueltas
     tCarta unaCarta=null;
     for (int i=0;i<unaLong;i++)
@@ -55,21 +57,60 @@ public class tBaraja {
     
     
     public  String  dameCartaString (int r, int p)
-    {
-                   
-            return matrizCartas[r][p];
-        
+    {                   
+            return matrizCartas[r][p];        
     }
     
-    //si le digo -1, -1, me da una carta aleatoria
+   tCarta dameCartaRandomJugador  (int idJugador)
+   {
+       tCarta unaCarta=null;
+       boolean enc=false;
+       int maxCartas=unaLong*otraLong;
+       int unPuntero=0;
+       int r=0;
+       int p=0;       
+       while (!enc && nCartasLibres>0){
+           unPuntero=this.numAleatorio(0,maxCartas-1);
+           r=unPuntero % unaLong;
+           p=unPuntero % otraLong;
+           enc=esLibre(r,p);           
+       }  
+       
+       if (enc && nCartasLibres>-1)
+       {    
+       coger(r,p,idJugador);
+       unaCarta=new tCarta(
+                    tRango.enumRango.toArrayChar()[unaLong-r-1],
+                    tPalo.enumPalo.toArrayChar()[p]
+                           );
+       }
+       return unaCarta;
+   }
     
+   
+   tCarta dameCartaRandomTablero ()
+   {
+       return dameCartaRandomJugador(-2);
+   }
+   
+   
     static tCarta  dameCarta (int r, int p)
-    {
-                   
-            return matrizCartasReales[r][p];
-        
+    {                   
+            return matrizCartasReales[r][p];        
     }
+    //-3: lista negra; 
+    //-2 : común; 
+    //-1 : libre ;
     
+    boolean esComun (int r, int p)
+    {
+        return (matrizBoolCartas[r][p]==-2);
+    }
+            
+    boolean esNegra(int r, int p)
+    {
+        return (matrizBoolCartas[r][p]==-3);
+    }
       boolean esLibre (int r, int p)
     {
         return (matrizBoolCartas[r][p]==-1);
@@ -79,13 +120,14 @@ public class tBaraja {
         return (matrizBoolCartas[r][p]==id);
     }
     
-     boolean coger (int r, int p, int id)
+    boolean coger (int r, int p, int id)
     {
         if (matrizBoolCartas[r][p]!=-1) 
             return false;
         else
         {
             matrizBoolCartas[r][p]=id;
+            nCartasLibres--;
             return true;
         }
     }
@@ -97,6 +139,7 @@ public class tBaraja {
         else
         {
             matrizBoolCartas[r][p]=-1;
+            nCartasLibres++;
             return true;
         }
     }
@@ -108,10 +151,20 @@ public class tBaraja {
     for (int j=0;j<otraLong;j++)
         {
             if (this.matrizBoolCartas[i][j]==idJugador)
+            {
                 this.matrizBoolCartas[i][j]=-1;
+                nCartasLibres++;
+            }
              
         }
     }
-
-
+     //http://stackoverflow.com/questions/363681/generating-random-integers-in-a-range-with-java
+    int numAleatorio (int min, int max)
+    {
+    // nextInt is normally exclusive of the top value,
+    // so add 1 to make it inclusive
+    return ThreadLocalRandom.current().nextInt(min, max + 1);
+    }
 }
+
+
