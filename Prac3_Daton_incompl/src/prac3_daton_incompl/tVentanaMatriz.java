@@ -18,11 +18,12 @@ import javax.swing.table.TableCellRenderer;
  * @author usuario_local
  */
 public class tVentanaMatriz extends javax.swing.JFrame {
-
+       private int _idJugador;
     /**
      * Creates new form tVentanaMatriz
      */
-    public tVentanaMatriz() {
+    public tVentanaMatriz(int j) {
+        _idJugador=j;
         initComponents();        
     }
 
@@ -98,7 +99,7 @@ public class tVentanaMatriz extends javax.swing.JFrame {
 
         jLabel1.setText("Porcentaje Manual");
         jLabel1.setToolTipText("");
-        jLabel1.setText(String.valueOf(VentanaPrincipal._unControlador.porcentajeManual));
+        jLabel1.setText(String.valueOf(VentanaPrincipal._unosControladores[_idJugador].porcentajeManual));
         jLabel1.repaint();
 
         jButton2.setText("Generar");
@@ -256,14 +257,48 @@ public class tVentanaMatriz extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int n= Integer.parseInt(jTextField1.getText());
-        VentanaPrincipal._unControlador.porcentajeBaker(n);
+        VentanaPrincipal._unosControladores[_idJugador].porcentajeBaker(n);
         jTable1.repaint();
-        jLabel1.setText(String.valueOf(VentanaPrincipal._unControlador.porcentajeManual));
+        jLabel1.setText(String.valueOf(VentanaPrincipal._unosControladores[_idJugador].porcentajeManual));
         jLabel1.repaint();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VentanaPrincipal.jTextPane1.setText(VentanaPrincipal._unControlador.dameCsvMatrizRangos());
+        switch (_idJugador)
+        {            
+            case 0:
+                VentanaPrincipal.jTextPane1.setText(VentanaPrincipal._unosControladores[_idJugador].dameCsvMatrizRangos());
+                break;
+            case 1:
+                VentanaPrincipal.jTextPane2.setText(VentanaPrincipal._unosControladores[_idJugador].dameCsvMatrizRangos());
+                break;
+            case 2:
+                VentanaPrincipal.jTextPane3.setText(VentanaPrincipal._unosControladores[_idJugador].dameCsvMatrizRangos());
+                break;
+            case 3:
+                VentanaPrincipal.jTextPane4.setText(VentanaPrincipal._unosControladores[_idJugador].dameCsvMatrizRangos());
+                break;    
+            case 4:
+                VentanaPrincipal.jTextPane5.setText(VentanaPrincipal._unosControladores[_idJugador].dameCsvMatrizRangos());
+                break;
+            case 5:
+                VentanaPrincipal.jTextPane6.setText(VentanaPrincipal._unosControladores[_idJugador].dameCsvMatrizRangos());
+                break;
+            case 6:
+                VentanaPrincipal.jTextPane7.setText(VentanaPrincipal._unosControladores[_idJugador].dameCsvMatrizRangos());
+                break;
+            case 7:
+                VentanaPrincipal.jTextPane8.setText(VentanaPrincipal._unosControladores[_idJugador].dameCsvMatrizRangos());
+                break;        
+            case 8:
+                VentanaPrincipal.jTextPane9.setText(VentanaPrincipal._unosControladores[_idJugador].dameCsvMatrizRangos());
+                break;
+            case 9:
+                VentanaPrincipal.jTextPane10.setText(VentanaPrincipal._unosControladores[_idJugador].dameCsvMatrizRangos());
+                break;        
+         }
+        
+        
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -272,10 +307,10 @@ public class tVentanaMatriz extends javax.swing.JFrame {
         int i= jTable1.getSelectedRow();
         int j= jTable1.getSelectedColumn();
         //System.out.println("celda seleccionada" + new Integer(i).toString() + new Integer(j).toString());
-        VentanaPrincipal._unControlador.matrizBool[i][j]=!VentanaPrincipal._unControlador.matrizBool[i][j];
-        VentanaPrincipal._unControlador.calculaPorcentaje();
+        VentanaPrincipal._unosControladores[_idJugador].matrizBool[i][j]=!VentanaPrincipal._unosControladores[_idJugador].matrizBool[i][j];
+        VentanaPrincipal._unosControladores[_idJugador].calculaPorcentaje();
         jTable1.repaint();
-        jLabel1.setText(String.valueOf(VentanaPrincipal._unControlador.porcentajeManual));
+        jLabel1.setText(String.valueOf(VentanaPrincipal._unosControladores[_idJugador].porcentajeManual));
 
         jLabel1.repaint();
     }//GEN-LAST:event_jTable1MouseClicked
@@ -285,11 +320,12 @@ public class tVentanaMatriz extends javax.swing.JFrame {
         int j= jTable2.getSelectedColumn();
         //System.out.println("celda seleccionada" + new Integer(i).toString() + new Integer(j).toString());  
         //cambio la celda sólo si es mía
-        if (tBaraja.getInstance().matrizBoolCartas[i][j]==0 ) 
-                tBaraja.getInstance().matrizBoolCartas[i][j]=VentanaPrincipal._unControlador.idJugador;
-        else if (tBaraja.getInstance().matrizBoolCartas[i][j]==VentanaPrincipal._unControlador.idJugador ) 
-            tBaraja.getInstance().matrizBoolCartas[i][j]=0;
-            
+        if (tBaraja.getInstance().esMia(i, j, _idJugador)) 
+            tBaraja.getInstance().soltar(i, j, _idJugador);
+        else 
+                if (tBaraja.getInstance().esLibre(i, j))
+                    tBaraja.getInstance().coger(i, j, _idJugador);
+        
         jTable2.repaint();
     }//GEN-LAST:event_jTable2MouseClicked
 
@@ -304,10 +340,10 @@ class MyRenderer extends DefaultTableCellRenderer {
     @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
               this.setValue(value);
-              if (VentanaPrincipal._unControlador.matrizBool[row][column])
+              if (VentanaPrincipal._unosControladores[_idJugador].matrizBool[row][column])
                   setBackground(Color.YELLOW);
               else
-                  setBackground(color[VentanaPrincipal._unControlador.matrizColor[row][column]]);
+                  setBackground(color[VentanaPrincipal._unosControladores[_idJugador].matrizColor[row][column]]);
               return this;
          }
 
@@ -321,9 +357,9 @@ class MyRenderer2 extends DefaultTableCellRenderer {
     @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
               this.setValue(value);
-              if (tBaraja.getInstance().matrizBoolCartas[row][column]==VentanaPrincipal._unControlador.idJugador)
+              if (tBaraja.getInstance().esMia(row,column,_idJugador))
                   setBackground(Color.YELLOW);
-              else if (tBaraja.getInstance().matrizBoolCartas[row][column]==0)
+              else if (tBaraja.getInstance().esLibre(row,column))
                   setBackground(Color.GREEN);
               else
                  setBackground(Color.RED);
@@ -336,11 +372,11 @@ class MyRenderer2 extends DefaultTableCellRenderer {
     {
         MyRenderer2 mr = new MyRenderer2();
         //VentanaPrincipal._unControlador.matrizBool[2][3]=true;
-        for (int i=0;i<13;i++)
+        for (int i=0;i<tRango.enumRango.toArrayChar().length;i++)
         {
-            for (int j=0;j<4;j++)
+            for (int j=0;j<tPalo.enumPalo.toArrayChar().length;j++)
             {               
-                jTable2.getModel().setValueAt( tBaraja.getInstance().matrizCartas[i][j],i, j);                
+                jTable2.getModel().setValueAt( tBaraja.getInstance().dameCartaString(i, j),i, j);                
                 jTable2.getColumnModel().getColumn(j).setCellRenderer(mr);
             }
         }
@@ -355,11 +391,11 @@ class MyRenderer2 extends DefaultTableCellRenderer {
         {
             for (int j=0;j<13;j++)
             {               
-                jTable1.getModel().setValueAt( VentanaPrincipal._unControlador.matrizRangos[i][j],i, j);                
+                jTable1.getModel().setValueAt( VentanaPrincipal._unosControladores[_idJugador].matrizRangos[i][j],i, j);                
                 jTable1.getColumnModel().getColumn(i).setCellRenderer(mr);
             }
         }
-        jLabel1.setText(String.valueOf(VentanaPrincipal._unControlador.porcentajeManual));
+        jLabel1.setText(String.valueOf(VentanaPrincipal._unosControladores[_idJugador].porcentajeManual));
         jLabel1.repaint();
 
     }

@@ -410,8 +410,8 @@ void actualizaCartasSueltas()
         i=unaLong-1-i;
         j=new tPalo(otraLetra).toInt();
         //si carta libre, la marco
-        if (tBaraja.getInstance().matrizBoolCartas[i][j] == 0)
-            tBaraja.getInstance().matrizBoolCartas[i][j] = idJugador;         
+        if (tBaraja.getInstance().esLibre(i,j))
+            tBaraja.getInstance().coger(i, j, idJugador);
             
         
     }
@@ -664,19 +664,21 @@ boolean parseaEntrada(String entrada)
 }
 String dameCsvMatrizRangos ()
 {
+    //cartas sueltas
     StringBuffer unBuffer=new StringBuffer();  
      for (int i=0;i<unaLong;i++)
     {
         for (int j=0;j<otraLong;j++)
         {
-            if (tBaraja.getInstance().matrizBoolCartas[i][j]==idJugador)
+            if (tBaraja.getInstance().esMia(i,j,idJugador))
             {
-               unBuffer.append(tBaraja.getInstance().matrizCartas[i][j]);                
+               unBuffer.append(tBaraja.getInstance().dameCartaString(i, j));                
                
                    unBuffer.append(',');
             }
         }
     }
+     //rangos
     for (int i=0;i<unaLong;i++)
     {
         for (int j=0;j<unaLong;j++)

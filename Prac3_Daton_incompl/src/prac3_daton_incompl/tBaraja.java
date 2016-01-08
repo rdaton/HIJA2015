@@ -13,10 +13,10 @@ package prac3_daton_incompl;
 public class tBaraja {
     static int unaLong=tRango.enumRango.toArrayChar().length; 
     static int otraLong=tPalo.enumPalo.toArrayChar().length;
-    public static int[][] matrizBoolCartas=new int[unaLong][otraLong]; 
-    static tCarta[][] matrizCartasReales=new tCarta[unaLong][otraLong];    
-    public static String[][] matrizCartas=new String[unaLong][otraLong];
-    static tBaraja instance=new tBaraja();
+    static private int[][] matrizBoolCartas=new int[unaLong][otraLong]; 
+    static private tCarta[][] matrizCartasReales=new tCarta[unaLong][otraLong];    
+    static private String[][] matrizCartas=new String[unaLong][otraLong];
+    static private tBaraja instance=new tBaraja();
     
     private tBaraja () 
     {
@@ -25,7 +25,7 @@ public class tBaraja {
     for (int i=0;i<unaLong;i++)
     for (int j=0;j<otraLong;j++)
         {
-            this.matrizBoolCartas[i][j]=0;            
+            this.matrizBoolCartas[i][j]=-1;            
             unaCarta=new tCarta(
                     tRango.enumRango.toArrayChar()[unaLong-i-1],
                     tPalo.enumPalo.toArrayChar()[j]
@@ -52,8 +52,17 @@ public class tBaraja {
         return instance;
     }
     
+    
+    
+    public  String  dameCartaString (int r, int p)
+    {
+                   
+            return matrizCartas[r][p];
+        
+    }
+    
     //si le digo -1, -1, me da una carta aleatoria
-    //ojo .. matrizBoolCartas lleva lógica inversa
+    
     static tCarta  dameCarta (int r, int p)
     {
                    
@@ -61,12 +70,48 @@ public class tBaraja {
         
     }
     
-    static void sacaCarta (int r, int p, int id)
+      boolean esLibre (int r, int p)
     {
-        matrizBoolCartas[r][p]=id;
+        return (matrizBoolCartas[r][p]==-1);
     }
+    static boolean esMia (int r, int p, int id)
+    {
+        return (matrizBoolCartas[r][p]==id);
+    }
+    
+     boolean coger (int r, int p, int id)
+    {
+        if (matrizBoolCartas[r][p]!=-1) 
+            return false;
+        else
+        {
+            matrizBoolCartas[r][p]=id;
+            return true;
+        }
+    }
+    
+     boolean soltar (int r, int p, int id)
+    {
+        if (matrizBoolCartas[r][p]==-1 || !esMia(r,p,id)) 
+            return false;
+        else
+        {
+            matrizBoolCartas[r][p]=-1;
+            return true;
+        }
+    }
+    
 
-
+      void eliminaJugador (int idJugador)
+    {
+    for (int i=0;i<unaLong;i++)
+    for (int j=0;j<otraLong;j++)
+        {
+            if (this.matrizBoolCartas[i][j]==idJugador)
+                this.matrizBoolCartas[i][j]=-1;
+             
+        }
+    }
 
 
 }

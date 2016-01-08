@@ -238,7 +238,7 @@
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value=" jLabel1.setText(String.valueOf(VentanaPrincipal._unControlador.porcentajeManual));&#xa;        jLabel1.repaint();"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jLabel1.setText(String.valueOf(VentanaPrincipal._unosControladores[_idJugador].porcentajeManual));&#xa;        jLabel1.repaint();"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JButton" name="jButton2">
