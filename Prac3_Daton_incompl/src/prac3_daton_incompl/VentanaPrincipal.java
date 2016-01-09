@@ -132,6 +132,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         jButton14.setText("RD");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -253,16 +258,46 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane12.setViewportView(jTextPane10);
 
         jButton15.setText("RD");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jButton16.setText("RD");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
 
         jButton17.setText("RD");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         jButton18.setText("RD");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         jButton19.setText("RD");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
 
         jButton20.setText("RD");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -460,30 +495,116 @@ public class VentanaPrincipal extends javax.swing.JFrame {
            System.out.println("Jugador 9,me has dado una cadena que no comprendo");
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        
+    void botonesRandom (int id)
+    {
+        tBaraja.getInstance().eliminaJugador(id);
         tCarta[] unasCartas=new tCarta[2]; 
-        unasCartas[0]=tBaraja.getInstance().dameCartaRandomJugador(0);
-        unasCartas[1]=tBaraja.getInstance().dameCartaRandomJugador(0);
+        unasCartas[0]=tBaraja.getInstance().dameCartaRandomJugador(id);
+        unasCartas[1]=tBaraja.getInstance().dameCartaRandomJugador(id);
         StringBuffer unBuffer=new StringBuffer();
         
-        if (unasCartas[0]!=null && unasCartas[1]!=null)
-        {        
-        unBuffer.append(unasCartas[0]).append(',').append(unasCartas[1]).append(',');
-        VentanaPrincipal.jTextPane1.setText(unBuffer.toString());
-        VentanaPrincipal.jTextPane1.repaint();
-        };
+        //pongo las cartas que me haya dado
+        if (unasCartas[0]!=null)
+            unBuffer.append(unasCartas[0]).append(',');
+        if (unasCartas[1]!=null)
+            unBuffer.append(unasCartas[1]).append(',');
+        
+        switch (id){
+            case 0:   
+                VentanaPrincipal.jTextPane1.setText(unBuffer.toString());
+                VentanaPrincipal.jTextPane1.repaint();
+                break;
+            
+            case 1:   
+                VentanaPrincipal.jTextPane2.setText(unBuffer.toString());
+                VentanaPrincipal.jTextPane2.repaint();
+                break;
+                
+            case 2:   
+                VentanaPrincipal.jTextPane3.setText(unBuffer.toString());
+                VentanaPrincipal.jTextPane3.repaint();
+                break;
+                
+            case 3:   
+                VentanaPrincipal.jTextPane4.setText(unBuffer.toString());
+                VentanaPrincipal.jTextPane4.repaint();
+                break;
+            
+            case 4:   
+                VentanaPrincipal.jTextPane5.setText(unBuffer.toString());
+                VentanaPrincipal.jTextPane5.repaint();
+                break;
+                
+            case 5:   
+                VentanaPrincipal.jTextPane6.setText(unBuffer.toString());
+                VentanaPrincipal.jTextPane6.repaint();
+                break;
+                
+            case 6:   
+                VentanaPrincipal.jTextPane7.setText(unBuffer.toString());
+                VentanaPrincipal.jTextPane7.repaint();
+                break;
+                
+            case 7:   
+                VentanaPrincipal.jTextPane8.setText(unBuffer.toString());
+                VentanaPrincipal.jTextPane8.repaint();
+                break;
+                
+            case 8:   
+                VentanaPrincipal.jTextPane9.setText(unBuffer.toString());
+                VentanaPrincipal.jTextPane9.repaint();
+                break;
+                
+            case 9:   
+                VentanaPrincipal.jTextPane10.setText(unBuffer.toString());
+                VentanaPrincipal.jTextPane10.repaint();
+                break;
+        }
         
         
+        
+        
+    }
+    
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        botonesRandom(0);        
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
+         botonesRandom(2);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+        botonesRandom(1);
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        botonesRandom(3);
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+         botonesRandom(4);
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+         botonesRandom(5);
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        botonesRandom(6);
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+         botonesRandom(7);
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+         botonesRandom(8);
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        botonesRandom(9);
+    }//GEN-LAST:event_jButton20ActionPerformed
 
     /**
      * @param args the command line arguments
