@@ -295,7 +295,13 @@ public class tVentanaMatriz extends javax.swing.JFrame {
                 break;
             case 9:
                 VentanaPrincipal.jTextPane10.setText(VentanaPrincipal._unosControladores[_idJugador].dameCsvMatrizRangos());
-                break;        
+                break; 
+            case 10:
+                VentanaPrincipal.jTextPane11.setText(VentanaPrincipal._unosControladores[_idJugador].dameCsvMatrizRangos());
+                break; 
+            case 11:
+                VentanaPrincipal.jTextPane12.setText(VentanaPrincipal._unosControladores[_idJugador].dameCsvMatrizRangos());
+                break; 
          }
         
         
@@ -351,7 +357,7 @@ class MyRenderer extends DefaultTableCellRenderer {
     
 //http://www.dreamincode.net/forums/topic/286338-change-background-color-of-jtable-column-heads/    
 class MyRenderer2 extends DefaultTableCellRenderer {
-    Color[] color = {Color.GREEN,Color.GRAY,  Color.RED};
+    //Color[] color = {Color.GREEN,Color.GRAY,  Color.RED};
     
     
     @Override
@@ -360,9 +366,13 @@ class MyRenderer2 extends DefaultTableCellRenderer {
               if (tBaraja.getInstance().esMia(row,column,_idJugador))
                   setBackground(Color.YELLOW);
               else if (tBaraja.getInstance().esLibre(row,column))
-                  setBackground(Color.GREEN);
-              else
-                 setBackground(Color.RED);
+                  setBackground(Color.WHITE);
+              else if (tBaraja.getInstance().esNegra(row,column))                  
+                 setBackground(Color.BLACK);
+              else if (tBaraja.getInstance().esComun(row, column))
+                 setBackground(Color.MAGENTA); 
+              else //es de alguién
+                 setBackground(Color.RED); 
               return this;
          }
 

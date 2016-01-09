@@ -19,9 +19,9 @@ public class tBaraja {
     static private String[][] matrizCartas=new String[unaLong][otraLong];
     static private tBaraja instance=new tBaraja();
     
-    private tBaraja () 
-    {
-    nCartasLibres=unaLong*otraLong;
+    
+    private void init() {
+        nCartasLibres=unaLong*otraLong;
     //inicializar matriz cartas sueltas
     tCarta unaCarta=null;
     for (int i=0;i<unaLong;i++)
@@ -47,7 +47,11 @@ public class tBaraja {
                     append(tPalo.enumPalo.toArrayChar()[j]);
             this.matrizCartas[i][j]=otroBuffer.toString();
         }
-    
+        
+    }
+    private tBaraja () 
+    {
+     init();    
     }
     
     public static tBaraja getInstance(){
@@ -98,18 +102,18 @@ public class tBaraja {
     {                   
             return matrizCartasReales[r][p];        
     }
-    //-3: lista negra; 
-    //-2 : común; 
+    //10: lista negra; 
+    //11 : común; 
     //-1 : libre ;
     
     boolean esComun (int r, int p)
     {
-        return (matrizBoolCartas[r][p]==-2);
+        return (matrizBoolCartas[r][p]==11);
     }
             
     boolean esNegra(int r, int p)
     {
-        return (matrizBoolCartas[r][p]==-3);
+        return (matrizBoolCartas[r][p]==10);
     }
       boolean esLibre (int r, int p)
     {
@@ -145,7 +149,7 @@ public class tBaraja {
     }
     
 
-      void eliminaJugador (int idJugador)
+    void eliminaJugador (int idJugador)
     {
     for (int i=0;i<unaLong;i++)
     for (int j=0;j<otraLong;j++)
@@ -158,6 +162,10 @@ public class tBaraja {
              
         }
     }
+      
+    void clear(){
+       init(); 
+    }  
      //http://stackoverflow.com/questions/363681/generating-random-integers-in-a-range-with-java
     int numAleatorio (int min, int max)
     {
