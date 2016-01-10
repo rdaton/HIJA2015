@@ -20,6 +20,7 @@ public class tBaraja {
     static private tCarta[][] matrizCartasReales=new tCarta[unaLong][otraLong];    
     static private String[][] matrizCartas=new String[unaLong][otraLong];
     static private tBaraja instance=new tBaraja();
+    static private boolean[] jugadoresRandom;
     //array que dice cuántas cartas tiene cada jugador
     static private int[] jugadoresActivos;
     
@@ -58,8 +59,12 @@ public class tBaraja {
     */
     
     jugadoresActivos=new int[12];
-        for (int i=0;i<12;i++) 
+    for (int i=0;i<12;i++) 
             jugadoresActivos[i]=0;
+        
+    jugadoresRandom=new boolean[12];
+    for (int i=0;i<12;i++)
+        jugadoresRandom[i]=false;
         
     }
     private tBaraja () 
@@ -211,20 +216,55 @@ public class tBaraja {
     {
         List<tCarta> unaListaCartas=null;
         //si el jugador tiene cartas
-        if (jugadoresActivos[idJugador]>0) 
+        
+        if (!jugadoresRandom[idJugador])
         {
-           unaListaCartas=new ArrayList();
-           for (int i=0;i<unaLong;i++)
-               for (int j=0;j<otraLong;j++)
-               {
-                   if (esMia(i,j,idJugador))
+            if (jugadoresActivos[idJugador]>0) 
+            {
+               unaListaCartas=new ArrayList();
+               for (int i=0;i<unaLong;i++)
+                   for (int j=0;j<otraLong;j++)
                    {
-                       unaListaCartas.add(matrizCartasReales[i][j]);
+                       if (esMia(i,j,idJugador))
+                       {
+                           unaListaCartas.add(matrizCartasReales[i][j]);
+                       }
+
                    }
-                       
-               }
-        }                
+            }
+        }
+        else if (jugadoresActivos[idJugador]>0) 
+        {
+             this.eliminaJugador(idJugador);
+             unaListaCartas=new ArrayList();
+             for (int i=0;i<2;i++)
+             {
+                 unaListaCartas.add(this.dameCartaRandomJugador(idJugador));
+             }
+        }
         return unaListaCartas;               
+    }
+    
+    
+    boolean JugadorEsRandom (int idJugador)
+    {
+        return jugadoresRandom[idJugador];
+    }
+    
+    void setJugadorARandom (int idJugador, boolean cond)
+    {        
+        if (!cond) 
+        {
+            eliminaJugador(idJugador);
+            jugadoresActivos[idJugador]=0;
+            jugadoresRandom[idJugador]=false;
+        }
+        else 
+        {
+        jugadoresRandom[idJugador]=true;
+        jugadoresActivos[idJugador]=2;
+        }        
+        
     }
 }
 

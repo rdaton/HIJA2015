@@ -74,16 +74,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton19 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
         ButtonMonteCarlo = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        Equity1 = new javax.swing.JLabel();
+        Equity2 = new javax.swing.JLabel();
+        Equity3 = new javax.swing.JLabel();
+        Equity4 = new javax.swing.JLabel();
+        Equity5 = new javax.swing.JLabel();
+        Equity6 = new javax.swing.JLabel();
+        Equity7 = new javax.swing.JLabel();
+        Equity8 = new javax.swing.JLabel();
+        Equity9 = new javax.swing.JLabel();
+        Equity10 = new javax.swing.JLabel();
         ButtonReset = new javax.swing.JButton();
         jScrollPane13 = new javax.swing.JScrollPane();
         jTextPane11 = new javax.swing.JTextPane();
@@ -328,25 +328,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Equity1");
+        Equity1.setText("Equity1");
 
-        jLabel2.setText("Equity2");
+        Equity2.setText("Equity2");
 
-        jLabel3.setText("Equity3");
+        Equity3.setText("Equity3");
 
-        jLabel4.setText("Equity4");
+        Equity4.setText("Equity4");
 
-        jLabel5.setText("Equity5");
+        Equity5.setText("Equity5");
 
-        jLabel6.setText("Equity6");
+        Equity6.setText("Equity6");
 
-        jLabel7.setText("Equity7");
+        Equity7.setText("Equity7");
 
-        jLabel8.setText("Equity8");
+        Equity8.setText("Equity8");
 
-        jLabel9.setText("Equity9");
+        Equity9.setText("Equity9");
 
-        jLabel10.setText("Equity10");
+        Equity10.setText("Equity10");
 
         ButtonReset.setText("Reset");
         ButtonReset.addActionListener(new java.awt.event.ActionListener() {
@@ -430,8 +430,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel9))
+                                    .addComponent(Equity3)
+                                    .addComponent(Equity9))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -454,20 +454,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(ButtonCartasNegras)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
+                            .addComponent(Equity2)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(Equity1)
                                 .addGap(38, 38, 38)
                                 .addComponent(jLabel11))
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
+                            .addComponent(Equity4)
+                            .addComponent(Equity6)
+                            .addComponent(Equity8)
+                            .addComponent(Equity7)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10)
+                                .addComponent(Equity10)
                                 .addGap(59, 59, 59)
                                 .addComponent(ButtonReset))
-                            .addComponent(jLabel5))
+                            .addComponent(Equity5))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -482,13 +482,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(38, 38, 38)
-                                .addComponent(jLabel1)
+                                .addComponent(Equity1)
                                 .addGap(48, 48, 48)
-                                .addComponent(jLabel2)
+                                .addComponent(Equity2)
                                 .addGap(40, 40, 40)
-                                .addComponent(jLabel3)
+                                .addComponent(Equity3)
                                 .addGap(35, 35, 35)
-                                .addComponent(jLabel4)))
+                                .addComponent(Equity4)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -499,7 +499,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                         .addComponent(jButton15))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(17, 17, 17)
-                                .addComponent(jLabel5)))
+                                .addComponent(Equity5)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -507,21 +507,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addComponent(jButton16))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
-                                .addComponent(jLabel6)))
+                                .addComponent(Equity6)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jButton7)
                                 .addComponent(jButton17))
-                            .addComponent(jLabel7))
+                            .addComponent(Equity7))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jButton18)
                                 .addComponent(jButton8))
-                            .addComponent(jLabel8))
+                            .addComponent(Equity8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(40, 40, 40)
@@ -547,7 +547,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jButton9)
                                 .addComponent(jButton19))
-                            .addComponent(jLabel9))
+                            .addComponent(Equity9))
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -555,7 +555,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addComponent(jButton10))
                             .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel10)
+                                .addComponent(Equity10)
                                 .addComponent(ButtonReset))))
                     .addComponent(ButtonMonteCarlo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -693,8 +693,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         unasCartas[0]=tBaraja.getInstance().dameCartaRandomJugador(id);
         unasCartas[1]=tBaraja.getInstance().dameCartaRandomJugador(id);
         */
-        StringBuffer unBuffer=new StringBuffer().append("random");
-        
+        StringBuffer unBuffer=new StringBuffer();
+       
+        if (tBaraja.getInstance().JugadorEsRandom(id))
+        {
+            tBaraja.getInstance().setJugadorARandom(id, false);
+            unBuffer.append("");
+        }
+        else
+        {
+            tBaraja.getInstance().setJugadorARandom(id, true);
+            unBuffer.append("random");
+        }
         /*//pongo las cartas que me haya dado
         if (unasCartas[0]!=null)
             unBuffer.append(unasCartas[0]).append(',');
@@ -702,7 +712,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             unBuffer.append(unasCartas[1]).append(',');
         */
         switch (id){
-            case 0:   
+            case 0:                  
                 VentanaPrincipal.jTextPane1.setText(unBuffer.toString());
                 VentanaPrincipal.jTextPane1.repaint();
                 break;
@@ -826,9 +836,63 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tSimulador unSimulador= new tSimulador();
         unSimulador.muchasPartidas();
         for (int i=0;i<10;i++)
-            System.out.println(unSimulador.damePorcentaje(i));
+            imprimirPorcentajes(unSimulador.damePorcentaje(i),i);
     }//GEN-LAST:event_ButtonMonteCarloActionPerformed
 
+    void imprimirPorcentajes(double valor, int idJugador)
+    {
+        switch (idJugador){
+            case 0:                  
+                Equity1.setText(String.valueOf(valor));
+                Equity1.repaint();
+                break;
+            
+            case 1:   
+                Equity2.setText(String.valueOf(valor));
+                Equity2.repaint();
+                break;
+                
+            case 2:   
+                Equity3.setText(String.valueOf(valor));
+                Equity3.repaint();
+                break;
+                
+            case 3:   
+                Equity4.setText(String.valueOf(valor));
+                Equity4.repaint();
+                break;
+            
+            case 4:   
+                Equity5.setText(String.valueOf(valor));
+                Equity5.repaint();
+                break;
+                
+            case 5:   
+                Equity6.setText(String.valueOf(valor));
+                Equity6.repaint();
+                break;
+                
+            case 6:   
+                Equity7.setText(String.valueOf(valor));
+                Equity7.repaint();
+                break;
+                
+            case 7:   
+                Equity8.setText(String.valueOf(valor));
+                Equity8.repaint();
+                break;
+                
+            case 8:   
+                Equity9.setText(String.valueOf(valor));
+                Equity9.repaint();
+                break;
+                
+            case 9:   
+                Equity10.setText(String.valueOf(valor));
+                Equity10.repaint();
+                break;
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -871,6 +935,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton ButtonMonteCarlo;
     private javax.swing.JButton ButtonReset;
     private javax.swing.JButton ButtonTablero;
+    private javax.swing.JLabel Equity1;
+    private javax.swing.JLabel Equity10;
+    private javax.swing.JLabel Equity2;
+    private javax.swing.JLabel Equity3;
+    private javax.swing.JLabel Equity4;
+    private javax.swing.JLabel Equity5;
+    private javax.swing.JLabel Equity6;
+    private javax.swing.JLabel Equity7;
+    private javax.swing.JLabel Equity8;
+    private javax.swing.JLabel Equity9;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -891,18 +965,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane12;

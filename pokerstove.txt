@@ -344,3 +344,191 @@ Hand 1: 	49.993%  	47.96% 	02.03% 	       5585711 	   236879.00   { random }
 ---
 
 
+
+---
+   2,097,572,400  games     0.001 secs     2,097,572,400,000  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	14.796%  	14.52% 	00.27% 	     304661670 	  5701156.00   { random }
+Hand 1: 	85.204%  	84.93% 	00.27% 	    1781508418 	  5701156.00   { AhAs }
+
+
+---
+
+
+
+---
+  11,157,794  games     9.907 secs     1,126,253  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	14.808%  	14.54% 	00.27% 	       1621836 	    30402.00   { random }
+Hand 1: 	85.192%  	84.92% 	00.27% 	       9475516 	    30403.00   { AhAs }
+
+
+---
+
+
+
+---
+  10,614,780  games     9.460 secs     1,122,069  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	85.181%  	84.91% 	00.27% 	       9013488 	    28620.50   { AhAs }
+Hand 1: 	14.819%  	14.55% 	00.27% 	       1544399 	    28621.00   { random }
+
+
+---
+
+
+
+---
+   2,097,572,400  games     0.002 secs     1,048,786,200,000  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	85.204%  	84.93% 	00.27% 	    1781508418 	  5701156.00   { AhAs }
+Hand 1: 	14.796%  	14.52% 	00.27% 	     304661670 	  5701156.00   { random }
+
+
+---
+
+
+
+---
+   2,097,572,400  games     0.001 secs     2,097,572,400,000  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	85.204%  	84.93% 	00.27% 	    1781508418 	  5701156.00   { AhAs }
+Hand 1: 	14.796%  	14.52% 	00.27% 	     304661670 	  5701156.00   { random }
+
+
+---
+
+
+
+---
+   2,097,572,400  games     0.000 secs   419,514,480,000  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	14.796%  	14.52% 	00.27% 	     304661670 	  5701156.00   { random }
+Hand 1: 	85.204%  	84.93% 	00.27% 	    1781508418 	  5701156.00   { AhAs }
+
+
+---
+
+
+
+---
+   6,376,177  games     5.672 secs     1,124,149  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	14.794%  	14.52% 	00.27% 	        925972 	    17375.00   { random }
+Hand 1: 	85.206%  	84.94% 	00.27% 	       5415836 	    17376.00   { AhAs }
+
+
+---
+
+
+
+---
+   1,370,754  games     0.030 secs    45,691,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	21.375%  	20.36% 	01.02% 	        279051 	    13948.67   { Ts7s }
+Hand 1: 	45.092%  	44.07% 	01.02% 	        604156 	    13948.67   { KcTc }
+Hand 2: 	33.533%  	33.36% 	00.17% 	        457287 	     2362.67   { Jd9d }
+
+
+---
+
+
+
+---
+   1,370,754  games     0.008 secs   171,344,250  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	21.375%  	20.36% 	01.02% 	        279051 	    13948.67   { Ts7s }
+Hand 1: 	45.092%  	44.07% 	01.02% 	        604156 	    13948.67   { KcTc }
+Hand 2: 	33.533%  	33.36% 	00.17% 	        457287 	     2362.67   { Jd9d }
+
+
+---
+
+
+
+---
+   1,370,754  games     0.010 secs   137,075,400  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	21.375%  	20.36% 	01.02% 	        279051 	    13948.67   { Ts7s }
+Hand 1: 	45.092%  	44.07% 	01.02% 	        604156 	    13948.67   { KcTc }
+Hand 2: 	33.533%  	33.36% 	00.17% 	        457287 	     2362.67   { Jd9d }
+
+
+---
+
+
+
+---
+   8,268,479  games     9.103 secs   908,324  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	21.362%  	20.35% 	01.01% 	       1682722 	    83671.33   { Ts7s }
+Hand 1: 	45.102%  	44.09% 	01.01% 	       3645810 	    83671.33   { KcTc }
+Hand 2: 	33.536%  	33.37% 	00.17% 	       2758853 	    14258.00   { Jd9d }
+
+
+---
+
+
+
+---
+   1,148,985  games     4.109 secs   279,626  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	16.606%  	15.40% 	01.21% 	        176910 	    13898.25   { random }
+Hand 1: 	16.665%  	15.46% 	01.20% 	        177691 	    13798.58   { random }
+Hand 2: 	16.679%  	15.48% 	01.20% 	        177915 	    13745.42   { random }
+Hand 3: 	16.703%  	15.49% 	01.21% 	        178029 	    13898.25   { random }
+Hand 4: 	16.661%  	15.46% 	01.20% 	        177654 	    13801.25   { random }
+Hand 5: 	16.686%  	15.47% 	01.22% 	        177747 	    13992.75   { random }
+
+
+---
+
+

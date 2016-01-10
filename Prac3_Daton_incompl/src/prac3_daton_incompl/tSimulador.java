@@ -133,7 +133,7 @@ public class tSimulador {
     }
     void muchasPartidas()
     {
-        for (int i=0;i<dosMillones;i++)
+        for (int i=0;i<10000;i++)
         {
             partida();
             totalPuntos++;            
@@ -182,11 +182,13 @@ public class tSimulador {
            }
        }
        //victoria
+       if (ganador1!=-1)
+       {
        puntos[ganador1]++;
        //empate
        if (ganador2==ganador1)
             puntos[ganador2]++;
-       
+       };
        //suelto las cartas que usé como relleno del tablero
        limpiaTableroRandom(tableroSup,longTableroSup);       
     }
