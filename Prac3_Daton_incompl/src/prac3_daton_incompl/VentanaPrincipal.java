@@ -322,6 +322,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         ButtonMonteCarlo.setText("MonteCarlo");
+        ButtonMonteCarlo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonMonteCarloActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Equity1");
 
@@ -815,6 +820,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
        else 
            System.out.println("Tablero,me has dado una cadena que no comprendo");
     }//GEN-LAST:event_ButtonTableroActionPerformed
+
+    private void ButtonMonteCarloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonMonteCarloActionPerformed
+        tSimulador unSimulador= new tSimulador();
+        unSimulador.partida();
+    }//GEN-LAST:event_ButtonMonteCarloActionPerformed
 
     /**
      * @param args the command line arguments

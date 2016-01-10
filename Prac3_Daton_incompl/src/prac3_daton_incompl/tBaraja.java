@@ -107,7 +107,10 @@ public class tBaraja {
        return dameCartaRandomJugador(11);
    }
    
-    
+   void soltarCartaTablero (int r, int p)
+   {
+       soltar (r,p,11);
+   } 
    
     static tCarta  dameCarta (int r, int p)
     {                   
@@ -195,25 +198,27 @@ public class tBaraja {
     //devuelve las cartas que son del tablero..
     List<tCarta> dameTablero ()
     {
-        List<tCarta> unTablero=null;
-        //si tablero es vacío
-        if (jugadoresActivos[11]>0) 
+        return dameCartasJugador(11);
+    }
+    
+    List<tCarta> dameCartasJugador( int idJugador)
+    {
+        List<tCarta> unaListaCartas=null;
+        //si el jugador tiene cartas
+        if (jugadoresActivos[idJugador]>0) 
         {
-           unTablero=new ArrayList();
+           unaListaCartas=new ArrayList();
            for (int i=0;i<unaLong;i++)
                for (int j=0;j<otraLong;j++)
                {
                    if (esComun(i,j))
                    {
-                       unTablero.add(matrizCartasReales[i][j]);
+                       unaListaCartas.add(matrizCartasReales[i][j]);
                    }
                        
                }
-        }    
-            
-        return unTablero;    
-        
-        
+        }                
+        return unaListaCartas;               
     }
 }
 
