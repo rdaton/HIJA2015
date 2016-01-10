@@ -314,3 +314,33 @@ Hand 1: 	50.279%  	48.38% 	01.90% 	    1014712347 	 39920339.50   { random }
 ---
 
 
+
+---
+   2,781,381,002,400  games     0.377 secs     7,377,668,441,379  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	50.000%  	47.97% 	02.03% 	 1334125369292 	56565131908.00   { random }
+Hand 1: 	50.000%  	47.97% 	02.03% 	 1334125369292 	56565131908.00   { random }
+
+
+---
+
+
+
+---
+  11,646,592  games    10.502 secs     1,108,988  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	50.007%  	47.97% 	02.03% 	       5587325 	   236877.50   { random }
+Hand 1: 	49.993%  	47.96% 	02.03% 	       5585711 	   236879.00   { random }
+
+
+---
+
+

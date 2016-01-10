@@ -688,18 +688,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
     void botonesRandom (int id)
     {
-        tBaraja.getInstance().eliminaJugador(id);
+        /*tBaraja.getInstance().eliminaJugador(id);
         tCarta[] unasCartas=new tCarta[2]; 
         unasCartas[0]=tBaraja.getInstance().dameCartaRandomJugador(id);
         unasCartas[1]=tBaraja.getInstance().dameCartaRandomJugador(id);
-        StringBuffer unBuffer=new StringBuffer();
+        */
+        StringBuffer unBuffer=new StringBuffer().append("random");
         
-        //pongo las cartas que me haya dado
+        /*//pongo las cartas que me haya dado
         if (unasCartas[0]!=null)
             unBuffer.append(unasCartas[0]).append(',');
         if (unasCartas[1]!=null)
             unBuffer.append(unasCartas[1]).append(',');
-        
+        */
         switch (id){
             case 0:   
                 VentanaPrincipal.jTextPane1.setText(unBuffer.toString());
