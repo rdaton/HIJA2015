@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package prac3_daton_incompl;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 /**
  *
@@ -18,6 +20,8 @@ public class tBaraja {
     static private tCarta[][] matrizCartasReales=new tCarta[unaLong][otraLong];    
     static private String[][] matrizCartas=new String[unaLong][otraLong];
     static private tBaraja instance=new tBaraja();
+    //array que dice cuántas cartas tiene cada jugador
+    static private int[] jugadoresActivos;
     
     
     private void init() {
@@ -47,6 +51,11 @@ public class tBaraja {
                     append(tPalo.enumPalo.toArrayChar()[j]);
             this.matrizCartas[i][j]=otroBuffer.toString();
         }
+    
+    
+    jugadoresActivos=new int[12];
+        for (int i=0;i<12;i++) 
+            jugadoresActivos[i]=0;
         
     }
     private tBaraja () 
@@ -67,6 +76,7 @@ public class tBaraja {
     
    tCarta dameCartaRandomJugador  (int idJugador)
    {
+       
        tCarta unaCarta=null;
        boolean enc=false;
        int maxCartas=unaLong*otraLong;
@@ -94,9 +104,10 @@ public class tBaraja {
    
    tCarta dameCartaRandomTablero ()
    {
-       return dameCartaRandomJugador(-2);
+       return dameCartaRandomJugador(11);
    }
    
+    
    
     static tCarta  dameCarta (int r, int p)
     {                   
@@ -132,11 +143,12 @@ public class tBaraja {
         {
             matrizBoolCartas[r][p]=id;
             nCartasLibres--;
+            jugadoresActivos[id]++;
             return true;
         }
     }
     
-     boolean soltar (int r, int p, int id)
+    boolean soltar (int r, int p, int id)
     {
         if (matrizBoolCartas[r][p]==-1 || !esMia(r,p,id)) 
             return false;
@@ -144,6 +156,7 @@ public class tBaraja {
         {
             matrizBoolCartas[r][p]=-1;
             nCartasLibres++;
+            jugadoresActivos[id]--;
             return true;
         }
     }
@@ -158,11 +171,16 @@ public class tBaraja {
             {
                 this.matrizBoolCartas[i][j]=-1;
                 nCartasLibres++;
+                jugadoresActivos[idJugador]--;
             }
              
         }
     }
-      
+    
+    int[] dameJugadoresActivos()
+    {
+        return jugadoresActivos;
+    }
     void clear(){
        init(); 
     }  
@@ -172,6 +190,30 @@ public class tBaraja {
     // nextInt is normally exclusive of the top value,
     // so add 1 to make it inclusive
     return ThreadLocalRandom.current().nextInt(min, max + 1);
+    }
+    
+    //devuelve las cartas que son del tablero..
+    List<tCarta> dameTablero ()
+    {
+        List<tCarta> unTablero=null;
+        //si tablero es vacío
+        if (jugadoresActivos[11]>0) 
+        {
+           unTablero=new ArrayList();
+           for (int i=0;i<unaLong;i++)
+               for (int j=0;j<otraLong;j++)
+               {
+                   if (esComun(i,j))
+                   {
+                       unTablero.add(matrizCartasReales[i][j]);
+                   }
+                       
+               }
+        }    
+            
+        return unTablero;    
+        
+        
     }
 }
 
