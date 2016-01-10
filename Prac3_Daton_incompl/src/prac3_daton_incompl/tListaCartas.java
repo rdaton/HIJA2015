@@ -13,8 +13,7 @@ import java.util.List;
  * @author Daton
  */
 public class tListaCartas {
-    List<tCarta> _listaCartas;
-    tMano       _mano;
+    List<tCarta> _listaCartas;   
     
     private void init(String unString)
     {
@@ -23,9 +22,8 @@ public class tListaCartas {
         for (int i=0;i<unString.length()-1; i=i+2)
         {
             _listaCartas.add(new tCarta(unString.charAt(i),unString.charAt(i+1)));
-        };
-        
-        _mano= new tMano((_listaCartas));
+        };        
+       
     }
     public tListaCartas (String unString)
     {
@@ -79,11 +77,7 @@ public class tListaCartas {
     public boolean contains(tCarta unaCarta)
     {
         return _listaCartas.contains(unaCarta);
-    }
-    public tMano dameMano()
-    {
-        return _mano;
-    }
+    }    
     
     @Override
     public String toString()

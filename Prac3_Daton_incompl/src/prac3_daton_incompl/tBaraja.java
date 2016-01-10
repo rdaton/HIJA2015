@@ -33,15 +33,19 @@ public class tBaraja {
         {
             this.matrizBoolCartas[i][j]=-1;            
             unaCarta=new tCarta(
-                    tRango.enumRango.toArrayChar()[unaLong-i-1],
+                    //tRango.enumRango.toArrayChar()[unaLong-i-1],
+                    tRango.enumRango.toArrayChar()[i],
                     tPalo.enumPalo.toArrayChar()[j]
                             );
+            //matrizCartasReales[unaLong-i-1][j]=unaCarta;
             matrizCartasReales[i][j]=unaCarta;
+            matrizCartas[i][j]=unaCarta.toString();
         }
     
     
     //código para inicializar matrizCartas
     //inicializar matriz cartas sueltas
+    /*
     StringBuffer otroBuffer=null;
     for (int i=0;i<unaLong;i++)
         for (int j=0;j<otraLong;j++)
@@ -51,7 +55,7 @@ public class tBaraja {
                     append(tPalo.enumPalo.toArrayChar()[j]);
             this.matrizCartas[i][j]=otroBuffer.toString();
         }
-    
+    */
     
     jugadoresActivos=new int[12];
         for (int i=0;i<12;i++) 
@@ -92,12 +96,14 @@ public class tBaraja {
        
        if (enc && nCartasLibres>-1)
        {    
-       coger(r,p,idJugador);
+       unaCarta=coger(r,p,idJugador);
+       /*
        unaCarta=new tCarta(
                     tRango.enumRango.toArrayChar()[unaLong-r-1],
                     tPalo.enumPalo.toArrayChar()[p]
-                           );
+                           ); */
        }
+               
        return unaCarta;
    }
     
@@ -107,9 +113,9 @@ public class tBaraja {
        return dameCartaRandomJugador(11);
    }
    
-   void soltarCartaTablero (int r, int p)
+   boolean soltarCartaTablero (int r, int p)
    {
-       soltar (r,p,11);
+       return soltar (r,p,11);
    } 
    
     static tCarta  dameCarta (int r, int p)
@@ -138,22 +144,22 @@ public class tBaraja {
         return (matrizBoolCartas[r][p]==id);
     }
     
-    boolean coger (int r, int p, int id)
+    tCarta coger (int r, int p, int id)
     {
         if (matrizBoolCartas[r][p]!=-1) 
-            return false;
+            return null;
         else
         {
             matrizBoolCartas[r][p]=id;
             nCartasLibres--;
             jugadoresActivos[id]++;
-            return true;
+            return matrizCartasReales[r][p];
         }
     }
     
     boolean soltar (int r, int p, int id)
     {
-        if (matrizBoolCartas[r][p]==-1 || !esMia(r,p,id)) 
+        if (!esMia(r,p,id)) 
             return false;
         else
         {
@@ -211,7 +217,7 @@ public class tBaraja {
            for (int i=0;i<unaLong;i++)
                for (int j=0;j<otraLong;j++)
                {
-                   if (esComun(i,j))
+                   if (esMia(i,j,idJugador))
                    {
                        unaListaCartas.add(matrizCartasReales[i][j]);
                    }

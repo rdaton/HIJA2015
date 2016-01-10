@@ -21,8 +21,7 @@ public class tSimulador {
     private int[] porcentajes;
     private tCarta[] tablero;
     private int longTablero;
-    private final int maxTablero=5;
-    private int nJugadores;
+    private final int maxTablero=5;    
     static int dosMillones=2000000;
     //el constructor lee la baraja ... almacena las cartas
     //deduce el numero de jugadores, tablero, etc
@@ -89,7 +88,7 @@ public class tSimulador {
     
     void limpiaTableroRandom(tCarta[] tableroSup, int longTableroSup)
     {
-        tCarta unaCarta;
+        tCarta unaCarta=null;
         int r=0;
         int p=0;
         for (int i=0;i<longTableroSup;i++)
@@ -97,8 +96,10 @@ public class tSimulador {
             unaCarta=tableroSup[i];
             r=unaCarta.dameRango().toInt();
             p=unaCarta.damePalo().toInt();
-            tBaraja.getInstance().soltarCartaTablero(r,p);
-        };
+            if (!tBaraja.getInstance().soltarCartaTablero(r, p))
+                System.out.println("tablero: no he podido soltar " + unaCarta);
+        };        
+        
     }
     
     List<tCarta> generaTableroTrabajo(tCarta[] tableroSup,int longTableroSup)
@@ -115,12 +116,13 @@ public class tSimulador {
     
     void partida ()
     {       
-       //relleno las cartas que me faltan para el tabler0
+       //relleno las cartas que me faltan para el tablero
        //normalmente cinco como mucho
        int longTableroSup=maxTablero-longTablero;
        tCarta[] tableroSup=null;
        if (longTableroSup>0)
            tableroSup=generaTableroRandom(longTableroSup);
+       
        //genero mi tablero de trabajo
        List<tCarta> unTableroTrabajo=generaTableroTrabajo(tableroSup,longTableroSup);
        
@@ -144,9 +146,6 @@ public class tSimulador {
            valorMano=unaMano.toInt();           
            }
        }
-       
-       
-       
        
        //suelto las cartas que usé como relleno del tablero
        limpiaTableroRandom(tableroSup,longTableroSup);

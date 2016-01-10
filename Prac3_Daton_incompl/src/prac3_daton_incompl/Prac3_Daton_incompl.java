@@ -9,7 +9,7 @@ package prac3_daton_incompl;
  *
  * @author barfelix
  */
-public class Prac2_Daton_incompl {
+public class Prac3_Daton_incompl {
 
     /**
      * @param args the command line arguments

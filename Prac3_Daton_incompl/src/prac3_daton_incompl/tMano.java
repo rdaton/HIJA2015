@@ -25,7 +25,7 @@ public class tMano
     //la primera mano de mayor Rango (sin contar el palo)
     tCarta  _cartaMax;
     enumManos _tipoMano;
-    tBaraja _Baraja;     
+         
     public tMano(List<tCarta> listaCartas)
     {        
         _cartaMax=listaCartas.get(0);
