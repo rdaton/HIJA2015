@@ -680,8 +680,11 @@ boolean parseaEntrada(String entrada)
 String dameCsvMatrizRangos ()
 {
     //cartas sueltas
-    StringBuffer unBuffer=new StringBuffer();      
-    Iterator<tCarta> unIterador=tBaraja.getInstance().dameCartasJugador(idJugador).iterator();
+    StringBuffer unBuffer=new StringBuffer(); 
+    List<tCarta> unasCartas=tBaraja.getInstance().dameCartasJugador(idJugador);
+    if (unasCartas==null)
+        return "";
+    Iterator<tCarta> unIterador=unasCartas.iterator();
     while (unIterador.hasNext())
     {
         unBuffer.append(unIterador.next()).append(',');

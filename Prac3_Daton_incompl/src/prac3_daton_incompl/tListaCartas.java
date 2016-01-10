@@ -47,7 +47,7 @@ public class tListaCartas {
     
     public void add (tCarta unaCarta)
     {
-        if (_listaCartas.size()<5)
+        if (_listaCartas.size()<7)
             _listaCartas.add(unaCarta);
            
     }

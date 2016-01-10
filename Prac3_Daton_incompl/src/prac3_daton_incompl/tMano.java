@@ -18,7 +18,7 @@ public class tMano
     enum enumManos {ESCALERA_REAL,ESCALERA_COLOR,POKER,FULL,COLOR,ESCALERA,
                     TRIO,DOBLE_PAREJA,PAREJA,CARTA_ALTA;}        
     
-    //lista de cartas: 5 como mucho.. tal como dictan las reglas del poker
+    //clase ligeramente modificada, para aceptar siete cartas
     private tListaCartas _listaCartas ;
     //cartas representante de la mano (lo estrictamente minimo)
     private tListaCartas _cartasRep;    
@@ -31,7 +31,7 @@ public class tMano
         _cartaMax=listaCartas.get(0);
         _cartasRep=new tListaCartas();
         _listaCartas=new tListaCartas();        
-        for (int i=0;i<5;i++)
+        for (int i=0;i<7;i++)
         {
             this._listaCartas.add(listaCartas.get(i));           
         }
@@ -75,7 +75,7 @@ public class tMano
     public String toString()
     {
         StringBuffer unBuffer=new StringBuffer();
-        for (int i=0;i<5;i++)
+        for (int i=0;i<7;i++)
             unBuffer.append(this._listaCartas.get(i).toString());    
         
         String unString="";
@@ -133,7 +133,7 @@ public class tMano
         boolean esColor=false;
         int total=0;        
         
-        //parseo las cinco cartas y las reflejo en 
+        //parseo las siete cartas y las reflejo en 
         //contadores y estructuras
         for (int i=0;i<_listaCartas.size();i++)
         {

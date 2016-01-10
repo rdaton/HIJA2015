@@ -823,7 +823,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void ButtonMonteCarloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonMonteCarloActionPerformed
         tSimulador unSimulador= new tSimulador();
-        unSimulador.partida();
+        unSimulador.muchasPartidas();
+        for (int i=0;i<10;i++)
+            System.out.println(unSimulador.damePorcentaje(i));
     }//GEN-LAST:event_ButtonMonteCarloActionPerformed
 
     /**

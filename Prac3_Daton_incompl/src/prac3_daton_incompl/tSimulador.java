@@ -18,7 +18,8 @@ import java.util.List;
 public class tSimulador {
     private int[] jugadoresActivos;   
     private long[] puntos ;
-    private int[] porcentajes;
+    private long totalPuntos;
+    private double[] porcentajes;
     private tCarta[] tablero;
     private int longTablero;
     private final int maxTablero=5;    
@@ -70,7 +71,7 @@ public class tSimulador {
         for (int i=0;i<10;i++) 
             puntos[i]=0; 
         
-        porcentajes=new int[10];
+        porcentajes=new double[10];
         for (int i=0;i<10;i++) 
             porcentajes[i]=0;
                  
@@ -114,6 +115,31 @@ public class tSimulador {
         return unTableroTrabajo;
     }
     
+    void calculaPorcentajes()
+    {
+        double unPorcentaje=0;
+        double unPunto=0;
+        for (int i=0;i<10;i++)
+        {
+            unPunto=puntos[i];
+            unPorcentaje= unPunto/(double)totalPuntos;
+            porcentajes[i]=(double)(unPorcentaje * 100);
+        }
+    }
+    
+    double damePorcentaje(int i)
+    {
+        return porcentajes[i];
+    }
+    void muchasPartidas()
+    {
+        for (int i=0;i<dosMillones;i++)
+        {
+            partida();
+            totalPuntos++;            
+        }
+        calculaPorcentajes();
+    }
     void partida ()
     {       
        //relleno las cartas que me faltan para el tablero
@@ -126,30 +152,43 @@ public class tSimulador {
        //genero mi tablero de trabajo
        List<tCarta> unTableroTrabajo=generaTableroTrabajo(tableroSup,longTableroSup);
        
-       //evaluo las manos de todos los jugadores
+       //evaluo las mejores manos de  los jugadores
        List<tCarta> unaListaCartas=null;
        tMano unaMano=null;
        int valorMano=0;
+       int maxMano=-1;
+       int ganador1=-1;
+       int ganador2=-1;
        for (int i=0;i<10;i++) 
        {
            if (sentado(i))
            {
            unaListaCartas=tBaraja.getInstance().dameCartasJugador(i);
-           unaListaCartas.addAll(unTableroTrabajo);
-           //hmm... este assert comprueba si de verdad tenemos siete cartas
-           //antes de crear la mano
-           //lo voy  a comentar una vez hecho el debug
-           assert (unaListaCartas!=null);
-           assert (unaListaCartas.size()==7);
+           unaListaCartas.addAll(unTableroTrabajo);          
            //creo la mano que voy a evaluar y saco su valor
            unaMano=new tMano(unaListaCartas);
-           valorMano=unaMano.toInt();           
+           valorMano=unaMano.toInt();        
+           if (valorMano>maxMano)
+           {
+               maxMano=valorMano;
+               ganador1=i;   
+           }
+           else if (valorMano==maxMano)
+           {
+               ganador2=i;
+           }
+           
+               
            }
        }
+       //victoria
+       puntos[ganador1]++;
+       //empate
+       if (ganador2==ganador1)
+            puntos[ganador2]++;
        
        //suelto las cartas que usé como relleno del tablero
-       limpiaTableroRandom(tableroSup,longTableroSup);
-       
+       limpiaTableroRandom(tableroSup,longTableroSup);       
     }
 
 }
