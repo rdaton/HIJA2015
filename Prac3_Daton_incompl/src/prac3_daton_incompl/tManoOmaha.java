@@ -39,7 +39,7 @@ public class tManoOmaha
         _cartaMax=listaCartas.get(0);
         _cartasRep=new tListaCartas();
         _listaCartas=new tListaCartas();        
-        for (int i=0;i<7;i++)
+        for (int i=0;i<5;i++)
         {
             this._listaCartas.add(listaCartas.get(i));           
         }
@@ -121,7 +121,7 @@ public class tManoOmaha
     public String toString()
     {
         StringBuffer unBuffer=new StringBuffer();
-        for (int i=0;i<7;i++)
+        for (int i=0;i<5;i++)
             unBuffer.append(this._listaCartas.get(i).toString());    
         
         String unString="";

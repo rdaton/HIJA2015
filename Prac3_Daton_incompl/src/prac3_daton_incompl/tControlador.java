@@ -725,7 +725,9 @@ String dameCsvMatrizRangos ()
 {
     //cartas sueltas
     StringBuffer unBuffer=new StringBuffer(); 
-    List<tCarta> unasCartas=tBaraja.getInstance().dameCartasJugador(idJugador);
+    List<tCarta> unasCartas=null;
+    if (!tBaraja.getInstance().JugadorEsRandom(idJugador))
+        unasCartas=tBaraja.getInstance().dameCartasJugador(idJugador);
     if (unasCartas==null)
         return "";
     Iterator<tCarta> unIterador=unasCartas.iterator();

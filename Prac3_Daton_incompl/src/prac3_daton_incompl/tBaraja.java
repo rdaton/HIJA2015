@@ -214,6 +214,12 @@ public class tBaraja {
     
     List<tCarta> dameCartasJugador( int idJugador)
     {
+        return dameCartasJugador(idJugador,0);          
+    }
+    
+    //tipojuego: 0 Holdem; 1: Omaha 
+    List<tCarta> dameCartasJugador( int idJugador, int tipoJuego)
+    {
         List<tCarta> unaListaCartas=null;
         //si el jugador tiene cartas
         
@@ -233,11 +239,19 @@ public class tBaraja {
                    }
             }
         }
+        //tengo que dar cartas random...
+        //normalmente son dos, pero
+        //si estoy jugando a Omaha, deben ser cuatro
         else if (jugadoresActivos[idJugador]>0) 
         {
+             int tope=0;
+             if (tipoJuego!=1)
+                 tope=2;
+             else 
+                 tope=4;
              this.eliminaJugador(idJugador);
              unaListaCartas=new ArrayList();
-             for (int i=0;i<2;i++)
+             for (int i=0;i<tope;i++)
              {
                  unaListaCartas.add(this.dameCartaRandomJugador(idJugador));
              }

@@ -141,6 +141,17 @@ public class tSimuladorOmaha {
         }
         calculaPorcentajes();
     }
+    /*
+    
+    At showdown, the best five-card hand using exactly two of your hole cards 
+    and three cards from the board wins.
+    */
+    
+    int evaluadorOmaha(List<tCarta> unaListaCartas)
+    {
+        tMano unaMano=new tMano(unaListaCartas);        
+        return unaMano.toInt();
+    }
     void partida ()
     {       
        //relleno las cartas que me faltan para el tablero
@@ -164,11 +175,11 @@ public class tSimuladorOmaha {
        {
            if (sentado(i))
            {
-           unaListaCartas=tBaraja.getInstance().dameCartasJugador(i);
+           unaListaCartas=tBaraja.getInstance().dameCartasJugador(i,1);
            unaListaCartas.addAll(unTableroTrabajo);          
-           //creo la mano que voy a evaluar y saco su valor
-           unaMano=new tMano(unaListaCartas);
-           valorMano=unaMano.toInt();        
+           //doy la lista de siete cartas al evaluador Omaha
+           //y él me devuelve la mejor puntuación
+           valorMano=evaluadorOmaha(unaListaCartas);
            if (valorMano>maxMano)
            {
                maxMano=valorMano;
