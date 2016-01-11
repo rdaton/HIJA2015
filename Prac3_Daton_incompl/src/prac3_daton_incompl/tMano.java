@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class tMano 
 {   
-    enum enumManos {ESCALERA_REAL,ESCALERA_COLOR,POKER,FULL,COLOR,ESCALERA,
+    public enum enumManos {ESCALERA_REAL,ESCALERA_COLOR,POKER,FULL,COLOR,ESCALERA,
                     TRIO,DOBLE_PAREJA,PAREJA,CARTA_ALTA;}        
     
     //clase ligeramente modificada, para aceptar siete cartas

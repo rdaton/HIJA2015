@@ -28,7 +28,7 @@ public class tSimuladorOmaha {
     private final int maxJugadorUsable=2;
     private final int posibJug=6;
     private final int posibTab=10;
-    static int dosMillones=20000;
+    static int dosMillones=200000;
     //el constructor lee la baraja ... almacena las cartas
     //deduce el numero de jugadores, tablero, etc
     public tSimuladorOmaha()
@@ -321,7 +321,7 @@ public class tSimuladorOmaha {
            //unaListaCartas.addAll(unTableroTrabajo);          
            //doy cartas de jugador y cartas de tablero al evaluador
            //y él me devuelve el resultado
-           valorMano=evaluadorOmaha(unaListaJugador,unTableroTrabajo);
+           valorMano=evaluadorOmaha(unaListaJugador,unTableroTrabajo);          
            if (valorMano>maxMano)
            {
                maxMano=valorMano;
