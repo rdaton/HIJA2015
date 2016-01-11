@@ -23,7 +23,7 @@ public class tSimulador {
     private tCarta[] tablero;
     private int longTablero;
     private final int maxTablero=5;    
-    static int dosMillones=2000000;
+    static int dosMillones=20000;
     //el constructor lee la baraja ... almacena las cartas
     //deduce el numero de jugadores, tablero, etc
     public tSimulador()
@@ -133,7 +133,7 @@ public class tSimulador {
     }
     void muchasPartidas()
     {
-        for (int i=0;i<10000;i++)
+        for (int i=0;i<dosMillones;i++)
         {
             partida();
             totalPuntos++;            

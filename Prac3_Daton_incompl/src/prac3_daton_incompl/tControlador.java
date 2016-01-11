@@ -5,9 +5,15 @@
  */
 package prac3_daton_incompl;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,6 +21,9 @@ import java.util.List;
  */
 
 public class  tControlador {
+static String ficheroBaker="baker.txt";
+static String ficheroBakerBak="baker.txt.bak";
+static String[] tablaBaker=parseaBaker();
 double porcentajeManual;
 int unaLong; 
 int otraLong;
@@ -147,6 +156,41 @@ private void inicializaMatrices()
     
     
 }
+
+static String[] parseaBaker()
+{
+    //intento leer el fichero de rangos.
+    //si no está, o está dañado, uso el de respaldo
+    FileReader lectorFichero=null;
+        try {
+        lectorFichero=new FileReader(ficheroBaker);
+    } catch (FileNotFoundException ex) {
+        Logger.getLogger(tControlador.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            lectorFichero=new FileReader(ficheroBakerBak);
+        } catch (FileNotFoundException ex1) {
+            Logger.getLogger(tControlador.class.getName()).log(Level.SEVERE, null, ex1);
+            return new String[1];
+        }
+        
+    }
+    BufferedReader unBufferFichero=new BufferedReader(lectorFichero);
+    
+    String cadenaFichero="";
+    try {
+        cadenaFichero=unBufferFichero.readLine();
+    } catch (IOException ex) {
+        Logger.getLogger(tControlador.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+    //String cadenaFichero="88+,AJs+,KQs,AKo;77+,A9s+,KTs+,QTs+,AJo+,KQo;77+,A7s+,K9s+,QTs+,JTs,ATo+,KTo+,QJo;66+,A4s+,K8s+,Q9s+,J9s+,T9s,A9o+,KTo+,QTo+JTo;66+,A2s+,K6s+,Q8s+,J8s+,T8s+,A7o+,K9o+,QTo+,JTo;55+,A2s+,K5s+,Q7s+,J8s+,T8s+,98s,A7o+,A5o,K9o+,Q9o+,J9o+,T9o;55+,A2s+,K3s+,Q6s+,J7s+,T7s+,97s+,87s,A4o,K8o+,Q9o+,J9o+,T9o;44+,A2s+,K2s+,Q4s+,J7s+,T7s+,97s+,87s,A3o,K7o+,Q8o+,J8o+,T9o;44+,A2s+,K2s+,Q4s+,J6s+,T6s+,96s+,86s+,76s+,A2o+,K6o+,Q8o+,J8o+,T8o+,98o;33+, A2s+ K2s+,Q2s+,J4s+,T6s+,96s+,86s+,76s,65s,A2o+,K5o+,Q7o+,J7o+,T7o+,98o;33+,A2s+,K2s+,Q2s+,J3s+,T5s+,95s+,85s+,75s+,65s,A2o+,K4o+,Q6o+,J7o+,T7o+,97o+,87o;22+,A2s+,K2s+,Q2s+,J2s+,T3s+,95s+,85s+,75s+,64s+,54s,A2o+,K2o+,Q5o+,J7o+,97o+,87o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,94s+,84s+,74s+,64s+,54s,A2o+,K2o+,Q4o+,J6o+,T7o+,97o+,86o+,76o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,93s+,83s+,73s+,63s+,53s+,43s,A2o+,K2o+,Q3o+,J4o+,T6o+,96o+,86o+,76o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,83s+,73s+,63s+,52s+,43s,A2o+,K2o+,Q2o+,J4o+,T6o+,95o+,85o+,75o+,65o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,73s+,62s+,52s+,43s,A2o+,K2o+,Q2o+,J3o+,T5o+,95o+,85o+,75o+,65o,54o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T3o+,95o+,85o+,74o+,64o+,54o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T2o+,93o+,84o+,74o+,64o+,53o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T2o+,92o+,83o+,73o+,63o+,52o+,43o;";
+    String[] unaTablaBaker=new String[19];
+    unaTablaBaker=cadenaFichero.split(";");    
+    //para invoccaciones externas
+    tablaBaker=unaTablaBaker;
+    return unaTablaBaker;
+    
+}
 //de 5 en 5
 void porcentajeBaker(int n)
 {
@@ -160,43 +204,43 @@ void porcentajeBaker(int n)
     
     switch (n)
     {
-        case 5: unBuffer.append("88+,AJs+,KQs,AKo");
+        case 5:  unBuffer.append(tablaBaker[0]);//"88+,AJs+,KQs,AKo");
         break;
-        case 10: unBuffer.append("77+,A9s+,KTs+,QTs+,AJo+,KQo");
+        case 10: unBuffer.append(tablaBaker[1]);//"77+,A9s+,KTs+,QTs+,AJo+,KQo");
         break;
-        case 15: unBuffer.append("77+,A7s+,K9s+,QTs+,JTs,ATo+,KTo+,QJo");
+        case 15: unBuffer.append(tablaBaker[2]);//"77+,A7s+,K9s+,QTs+,JTs,ATo+,KTo+,QJo");
         break;    
-        case 20: unBuffer.append("66+,A4s+,K8s+,Q9s+,J9s+,T9s,A9o+,KTo+,QTo+JTo");
+        case 20: unBuffer.append(tablaBaker[3]);//"66+,A4s+,K8s+,Q9s+,J9s+,T9s,A9o+,KTo+,QTo+JTo");
         break;            
-        case 25: unBuffer.append("66+,A2s+,K6s+,Q8s+,J8s+,T8s+,A7o+,K9o+,QTo+,JTo");
+        case 25: unBuffer.append(tablaBaker[4]);//"66+,A2s+,K6s+,Q8s+,J8s+,T8s+,A7o+,K9o+,QTo+,JTo");
         break;   
-        case 30: unBuffer.append("55+,A2s+,K5s+,Q7s+,J8s+,T8s+,98s,A7o+,A5o,K9o+,Q9o+,J9o+,T9o");
+        case 30: unBuffer.append(tablaBaker[5]);//"55+,A2s+,K5s+,Q7s+,J8s+,T8s+,98s,A7o+,A5o,K9o+,Q9o+,J9o+,T9o");
         break;
-        case 35: unBuffer.append("55+,A2s+,K3s+,Q6s+,J7s+,T7s+,97s+,87s,A4o,K8o+,Q9o+,J9o+,T9o");
+        case 35: unBuffer.append(tablaBaker[6]);//"55+,A2s+,K3s+,Q6s+,J7s+,T7s+,97s+,87s,A4o,K8o+,Q9o+,J9o+,T9o");
         break;    
-        case 40: unBuffer.append("44+,A2s+,K2s+,Q4s+,J7s+,T7s+,97s+,87s,A3o,K7o+,Q8o+,J8o+,T9o");
+        case 40: unBuffer.append(tablaBaker[7]);//"44+,A2s+,K2s+,Q4s+,J7s+,T7s+,97s+,87s,A3o,K7o+,Q8o+,J8o+,T9o");
         break;    
-        case 45: unBuffer.append("44+,A2s+,K2s+,Q4s+,J6s+,T6s+,96s+,86s+,76s+,A2o+,K6o+,Q8o+,J8o+,T8o+,98o");
+        case 45: unBuffer.append(tablaBaker[8]);//"44+,A2s+,K2s+,Q4s+,J6s+,T6s+,96s+,86s+,76s+,A2o+,K6o+,Q8o+,J8o+,T8o+,98o");
         break;    
-        case 50: unBuffer.append("33+, A2s+ K2s+,Q2s+,J4s+,T6s+,96s+,86s+,76s,65s,A2o+,K5o+,Q7o+,J7o+,T7o+,98o");
+        case 50: unBuffer.append(tablaBaker[9]);//"33+, A2s+ K2s+,Q2s+,J4s+,T6s+,96s+,86s+,76s,65s,A2o+,K5o+,Q7o+,J7o+,T7o+,98o");
         break;    
-        case 55: unBuffer.append("33+,A2s+,K2s+,Q2s+,J3s+,T5s+,95s+,85s+,75s+,65s,A2o+,K4o+,Q6o+,J7o+,T7o+,97o+,87o");
+        case 55: unBuffer.append(tablaBaker[10]);//"33+,A2s+,K2s+,Q2s+,J3s+,T5s+,95s+,85s+,75s+,65s,A2o+,K4o+,Q6o+,J7o+,T7o+,97o+,87o");
         break;    
-        case 60: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T3s+,95s+,85s+,75s+,64s+,54s,A2o+,K2o+,Q5o+,J7o+,97o+,87o");
+        case 60: unBuffer.append(tablaBaker[11]);//"22+,A2s+,K2s+,Q2s+,J2s+,T3s+,95s+,85s+,75s+,64s+,54s,A2o+,K2o+,Q5o+,J7o+,97o+,87o");
         break;    
-        case 65: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T2s+,94s+,84s+,74s+,64s+,54s,A2o+,K2o+,Q4o+,J6o+,T7o+,97o+,86o+,76o");
+        case 65: unBuffer.append(tablaBaker[12]);//"22+,A2s+,K2s+,Q2s+,J2s+,T2s+,94s+,84s+,74s+,64s+,54s,A2o+,K2o+,Q4o+,J6o+,T7o+,97o+,86o+,76o");
         break;    
-        case 70: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T2s+,93s+,83s+,73s+,63s+,53s+,43s,A2o+,K2o+,Q3o+,J4o+,T6o+,96o+,86o+,76o");
+        case 70: unBuffer.append(tablaBaker[13]);//"22+,A2s+,K2s+,Q2s+,J2s+,T2s+,93s+,83s+,73s+,63s+,53s+,43s,A2o+,K2o+,Q3o+,J4o+,T6o+,96o+,86o+,76o");
         break;    
-        case 75: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,83s+,73s+,63s+,52s+,43s,A2o+,K2o+,Q2o+,J4o+,T6o+,95o+,85o+,75o+,650");
+        case 75: unBuffer.append(tablaBaker[14]);//"22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,83s+,73s+,63s+,52s+,43s,A2o+,K2o+,Q2o+,J4o+,T6o+,95o+,85o+,75o+,65o");
         break;
-        case 80: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,73s+,62s+,52s+,43s,A2o+,K2o+,Q2o+,J3o+,T5o+,95o+,85o+,75o+,65o,54o");
+        case 80: unBuffer.append(tablaBaker[15]);//"22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,73s+,62s+,52s+,43s,A2o+,K2o+,Q2o+,J3o+,T5o+,95o+,85o+,75o+,65o,54o");
         break; 
-        case 85: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T3o+,95o+,85o+,74o+,64o+,54o");
+        case 85: unBuffer.append(tablaBaker[16]);//"22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T3o+,95o+,85o+,74o+,64o+,54o");
         break;
-        case 90: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T2o+,93o+,84o+,74o+,64o+,53o+");
+        case 90: unBuffer.append(tablaBaker[17]);//"22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T2o+,93o+,84o+,74o+,64o+,53o+");
         break; 
-        case 95: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T2o+,92o+,83o+,73o+,63o+,52o+,43o");
+        case 95: unBuffer.append(tablaBaker[18]);//"22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T2o+,92o+,83o+,73o+,63o+,52o+,43o");
         break;
         case 100: {
             for (int i=0;i<unaLong;i++)

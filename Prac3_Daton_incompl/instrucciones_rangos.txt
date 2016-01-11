@@ -1,0 +1,12 @@
+CONSIDERACIONES PREVIAS:
+Los rangos están indexados de 5% en 5% . Teniendo en cuenta de que el 100% representa
+todas las cartas, no tiene sentido incluirlo.
+
+TECNICIDADES:
+Hay que meter los rangos de 5% a 95% . Estos son 19 conjuntos. Los elementos de cada
+conjunto están separados por comas(,), mientras que los conjuntos están separados entre sí
+por punto y coma(;).
+Hay dos formas de introducir el rango, uno, dentro del programa, y el otro, es editando el 
+fichero "baker.txt", en la raíz del proyecto.
+En todo caso, la entrada es una sóla línea de CSV, siguiendo la notación arriba indicada.
+
