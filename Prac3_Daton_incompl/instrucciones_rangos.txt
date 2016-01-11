@@ -6,7 +6,13 @@ TECNICIDADES:
 Hay que meter los rangos de 5% a 95% . Estos son 19 conjuntos. Los elementos de cada
 conjunto están separados por comas(,), mientras que los conjuntos están separados entre sí
 por punto y coma(;).
+El fichero baker.txt.bak es un fichero de respaldo, por si baker.txt se queda dañado
+
+INSTRUCCIONES
 Hay dos formas de introducir el rango, uno, dentro del programa, y el otro, es editando el 
 fichero "baker.txt", en la raíz del proyecto.
 En todo caso, la entrada es una sóla línea de CSV, siguiendo la notación arriba indicada.
+El fichero de rangos se presupone sintacticamente correcto. (si sospechamos que está mal, 
+lo podemos eliminar y reiniciar el programa.
+
 

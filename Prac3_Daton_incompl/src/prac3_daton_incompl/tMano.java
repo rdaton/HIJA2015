@@ -5,8 +5,14 @@
  */
 package prac3_daton_incompl;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -25,7 +31,9 @@ public class tMano
     //la primera mano de mayor Rango (sin contar el palo)
     tCarta  _cartaMax;
     enumManos _tipoMano;
-         
+    static String ficheroRankings="rankings.txt";
+    static String ficheroRankingsBak="rankings.txt.bak";
+    static int[]  arrayRankings=parseaRanking();     
     public tMano(List<tCarta> listaCartas)
     {        
         _cartaMax=listaCartas.get(0);
@@ -37,22 +45,60 @@ public class tMano
         }
         analizar();
     }
+    
+    static int[] parseaRanking()
+    {
+    //intento leer el fichero de rankings
+    //si no está, o está dañado, uso el de respaldo
+    FileReader lectorFichero=null;
+        try {
+        lectorFichero=new FileReader(ficheroRankings);
+    } catch (FileNotFoundException ex) {
+        Logger.getLogger(tControlador.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            lectorFichero=new FileReader(ficheroRankingsBak);
+        } catch (FileNotFoundException ex1) {
+            Logger.getLogger(tControlador.class.getName()).log(Level.SEVERE, null, ex1);
+            return new int[10];
+        }
+        
+    }
+    BufferedReader unBufferFichero=new BufferedReader(lectorFichero);
+    
+    String cadenaFichero="";
+    try {
+        cadenaFichero=unBufferFichero.readLine();
+    } catch (IOException ex) {
+        Logger.getLogger(tControlador.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+        
+        //String cadenaFichero="10;9;8;7;6;5;4;3;2;1";
+        String[] cadenasRankings=new String[10];
+        int[] unosRankings=new int[10];
+        cadenasRankings=cadenaFichero.split(";");    
+        for (int i=0;i<10;i++)
+            unosRankings[i]=Integer.parseInt(cadenasRankings[i]);
+        //para invoccaciones externas
+        arrayRankings=unosRankings;
+        return unosRankings;
+    }
     //peso de la mano
     public int toInt()
     {
         int unLong=enumManos.values().length;
         switch (_tipoMano)
         {
-            case ESCALERA_REAL: return unLong;
-            case ESCALERA_COLOR: return unLong-1;
-            case POKER: return  unLong-2;
-            case FULL: return unLong-3;
-            case COLOR: return unLong-4;
-            case ESCALERA: return unLong-5;
-            case TRIO: return unLong-6;
-            case DOBLE_PAREJA: return unLong-7;
-            case PAREJA: return unLong-8;
-            case CARTA_ALTA: return unLong-9;
+            case ESCALERA_REAL: return arrayRankings[0];//unLong;
+            case ESCALERA_COLOR: return arrayRankings[1];//unLong-1;
+            case POKER: return  arrayRankings[2];//unLong-2;
+            case FULL: return arrayRankings[3];//unLong-3;
+            case COLOR: return arrayRankings[4];//unLong-4;
+            case ESCALERA: return arrayRankings[5];//unLong-5;
+            case TRIO: return arrayRankings[6];//unLong-6;
+            case DOBLE_PAREJA: return arrayRankings[7];//return unLong-7;
+            case PAREJA: return arrayRankings[8];//unLong-8;
+            case CARTA_ALTA: return arrayRankings[9];//unLong-9;
             default: return 0;
         }
     }
