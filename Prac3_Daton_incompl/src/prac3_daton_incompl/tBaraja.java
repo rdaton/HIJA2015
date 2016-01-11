@@ -240,8 +240,8 @@ public class tBaraja {
             }
         }
         //tengo que dar cartas random...
-        //normalmente son dos, pero
-        //si estoy jugando a Omaha, deben ser cuatro
+        //normalmente son dos(codigo 0), pero
+        //si estoy jugando a Omaha(codigo 1), deben ser cuatro
         else if (jugadoresActivos[idJugador]>0) 
         {
              int tope=0;

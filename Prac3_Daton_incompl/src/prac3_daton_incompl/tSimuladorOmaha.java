@@ -24,6 +24,10 @@ public class tSimuladorOmaha {
     private int longTablero;
     private final int maxTablero=5; 
     private final int maxTableroUsable=3;
+    private final int maxJugador=4;
+    private final int maxJugadorUsable=2;
+    private final int posibJug=6;
+    private final int posibTab=10;
     static int dosMillones=20000;
     //el constructor lee la baraja ... almacena las cartas
     //deduce el numero de jugadores, tablero, etc
@@ -141,16 +145,56 @@ public class tSimuladorOmaha {
         }
         calculaPorcentajes();
     }
-    /*
     
+    //lista de combinaciones de dos de cuatro
+    //4!/(2!(2-4)!) == 6 combinaciones
+    List <tCarta> posibJugador (List <tCarta> unaListaJugador, int n)
+    {
+        List <tCarta> unaLista=null;
+        
+        switch (n)
+        {
+            case 0:
+                break;
+
+            case 1:
+                break;
+            
+            case 2:
+                break;
+                        
+            case 3:
+                break;
+            
+            case 4:
+                break;
+            
+            case 5:
+                break;                        
+        }
+    
+        return unaLista;
+    }
+    //5!/(3!(5-3)!) == 10 combinaciones
+    List <tCarta> posibTablero (List <tCarta> unaListaTablero, int n)
+    {
+        List <tCarta> unaLista=null;
+    
+        return unaLista;
+    }
+    /*
     At showdown, the best five-card hand using exactly two of your hole cards 
     and three cards from the board wins.
     */
-    
-    int evaluadorOmaha(List<tCarta> unaListaCartas)
+    //cuatro cartas de jugador 
+    //y tres de tablero
+    //evidentemente, cojo todas las posibilidades de dos de jugador
+    //y tres de tablero
+    int evaluadorOmaha(List<tCarta> unaListaJugador,List<tCarta>unTableroTrabajo)
     {
-        tMano unaMano=new tMano(unaListaCartas);        
-        return unaMano.toInt();
+             
+       
+        return 0;
     }
     void partida ()
     {       
@@ -165,7 +209,8 @@ public class tSimuladorOmaha {
        List<tCarta> unTableroTrabajo=generaTableroTrabajo(tableroSup,longTableroSup);
        
        //evaluo las mejores manos de  los jugadores
-       List<tCarta> unaListaCartas=null;
+       List<tCarta> unaListaJugador=null;
+       List<tCarta> unaListaTablero=null;       
        tMano unaMano=null;
        int valorMano=0;
        int maxMano=-1;
@@ -175,11 +220,11 @@ public class tSimuladorOmaha {
        {
            if (sentado(i))
            {
-           unaListaCartas=tBaraja.getInstance().dameCartasJugador(i,1);
-           unaListaCartas.addAll(unTableroTrabajo);          
-           //doy la lista de siete cartas al evaluador Omaha
-           //y él me devuelve la mejor puntuación
-           valorMano=evaluadorOmaha(unaListaCartas);
+           unaListaJugador=tBaraja.getInstance().dameCartasJugador(i,1);
+           //unaListaCartas.addAll(unTableroTrabajo);          
+           //doy cartas de jugador y cartas de tablero al evaluador
+           //y él me devuelve el resultado
+           valorMano=evaluadorOmaha(unaListaJugador,unTableroTrabajo);
            if (valorMano>maxMano)
            {
                maxMano=valorMano;
