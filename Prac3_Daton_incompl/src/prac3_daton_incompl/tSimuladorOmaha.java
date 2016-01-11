@@ -155,36 +155,109 @@ public class tSimuladorOmaha {
         switch (n)
         {
             case 0:
-                
+                unaLista.add(unaListaJugador.get(0));
+                unaLista.add(unaListaJugador.get(1));                
                 break;
 
             case 1:
+                unaLista.add(unaListaJugador.get(1));
+                unaLista.add(unaListaJugador.get(2));                
                 break;
             
             case 2:
+                unaLista.add(unaListaJugador.get(2));
+                unaLista.add(unaListaJugador.get(3));                
                 break;
                         
             case 3:
+                unaLista.add(unaListaJugador.get(0));
+                unaLista.add(unaListaJugador.get(2));                
                 break;
             
             case 4:
+                unaLista.add(unaListaJugador.get(1));
+                unaLista.add(unaListaJugador.get(3));                
                 break;
             
             case 5:
+                unaLista.add(unaListaJugador.get(0));
+                unaLista.add(unaListaJugador.get(3));                
                 break;                        
         }
     
         return unaLista;
     }
     //5!/(3!(5-3)!) == 10 combinaciones
-    List <tCarta> posibTablero (List <tCarta> unaListaTablero, int n)
+    List <tCarta> posibTablero (List <tCarta> unTableroTrabajo, int n)
     {
         List <tCarta> unaLista=new ArrayList();
-        
+        switch (n)
+        {
+            case 0:
+                unaLista.add(unTableroTrabajo.get(0));
+                unaLista.add(unTableroTrabajo.get(1));
+                unaLista.add(unTableroTrabajo.get(2));
+                break;
+
+            case 1:
+                unaLista.add(unTableroTrabajo.get(1));
+                unaLista.add(unTableroTrabajo.get(2));
+                unaLista.add(unTableroTrabajo.get(3));
+                break;
+            
+            case 2:
+                unaLista.add(unTableroTrabajo.get(2));
+                unaLista.add(unTableroTrabajo.get(3));
+                unaLista.add(unTableroTrabajo.get(4));
                 
-    
+            case 3:
+                unaLista.add(unTableroTrabajo.get(0));
+                unaLista.add(unTableroTrabajo.get(2));
+                unaLista.add(unTableroTrabajo.get(3));                               
+                break;
+                        
+            case 4:
+                unaLista.add(unTableroTrabajo.get(0));
+                unaLista.add(unTableroTrabajo.get(3));
+                unaLista.add(unTableroTrabajo.get(4));        
+                break;
+            
+            case 5:
+                unaLista.add(unTableroTrabajo.get(1));
+                unaLista.add(unTableroTrabajo.get(3));
+                unaLista.add(unTableroTrabajo.get(4));             
+                break;
+            
+            case 6:
+                unaLista.add(unTableroTrabajo.get(0));
+                unaLista.add(unTableroTrabajo.get(1));
+                unaLista.add(unTableroTrabajo.get(3));             
+                break;    
+            
+            case 7:
+                unaLista.add(unTableroTrabajo.get(0));
+                unaLista.add(unTableroTrabajo.get(1));
+                unaLista.add(unTableroTrabajo.get(4));             
+                break;        
+            
+            case 8:
+                unaLista.add(unTableroTrabajo.get(0));
+                unaLista.add(unTableroTrabajo.get(2));
+                unaLista.add(unTableroTrabajo.get(4));             
+                break;    
+                
+            case 9:
+                unaLista.add(unTableroTrabajo.get(1));
+                unaLista.add(unTableroTrabajo.get(2));
+                unaLista.add(unTableroTrabajo.get(4));             
+                             
+                break;            
+        }
+        
         return unaLista;
     }
+    
+    //http://www.fulltilt.com/poker/games/omaha/omaha
     /*
     At showdown, the best five-card hand using exactly two of your hole cards 
     and three cards from the board wins.
@@ -197,7 +270,7 @@ public class tSimuladorOmaha {
     {
         int maxMano=0;
         int aux=0;
-        tMano unaMano=null;
+        tManoOmaha unaMano=null;
         List<tCarta> unaListaCartas=new ArrayList();
                 
         for (int i=0;i<posibJug;i++)
@@ -208,14 +281,12 @@ public class tSimuladorOmaha {
                 unaListaCartas.addAll(posibTablero(unTableroTrabajo,j));
                 if (!unaListaCartas.isEmpty())
                 {
-                    unaMano=new tMano(unaListaCartas);
+                    unaMano=new tManoOmaha(unaListaCartas);
                     aux=unaMano.toInt();
                     if (aux>maxMano)
                         maxMano=aux;
                 }
             }
-                    
-       
         return maxMano;
     }
     
