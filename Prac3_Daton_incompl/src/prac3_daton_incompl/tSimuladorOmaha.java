@@ -150,11 +150,12 @@ public class tSimuladorOmaha {
     //4!/(2!(2-4)!) == 6 combinaciones
     List <tCarta> posibJugador (List <tCarta> unaListaJugador, int n)
     {
-        List <tCarta> unaLista=null;
+        List <tCarta> unaLista=new ArrayList();
         
         switch (n)
         {
             case 0:
+                
                 break;
 
             case 1:
@@ -178,7 +179,9 @@ public class tSimuladorOmaha {
     //5!/(3!(5-3)!) == 10 combinaciones
     List <tCarta> posibTablero (List <tCarta> unaListaTablero, int n)
     {
-        List <tCarta> unaLista=null;
+        List <tCarta> unaLista=new ArrayList();
+        
+                
     
         return unaLista;
     }
@@ -192,10 +195,32 @@ public class tSimuladorOmaha {
     //y tres de tablero
     int evaluadorOmaha(List<tCarta> unaListaJugador,List<tCarta>unTableroTrabajo)
     {
-             
+        int maxMano=0;
+        int aux=0;
+        tMano unaMano=null;
+        List<tCarta> unaListaCartas=new ArrayList();
+                
+        for (int i=0;i<posibJug;i++)
+            for (int j=0;j<posibTab;j++)
+            {
+                unaListaCartas.clear();
+                unaListaCartas.addAll(posibJugador(unaListaJugador,i));
+                unaListaCartas.addAll(posibTablero(unTableroTrabajo,j));
+                if (!unaListaCartas.isEmpty())
+                {
+                    unaMano=new tMano(unaListaCartas);
+                    aux=unaMano.toInt();
+                    if (aux>maxMano)
+                        maxMano=aux;
+                }
+            }
+                    
        
-        return 0;
+        return maxMano;
     }
+    
+    //solo almacena empate para dos jugadores
+    //convertir en lista!!
     void partida ()
     {       
        //relleno las cartas que me faltan para el tablero
@@ -214,6 +239,7 @@ public class tSimuladorOmaha {
        tMano unaMano=null;
        int valorMano=0;
        int maxMano=-1;
+       int maxMano2=-1;
        int ganador1=-1;
        int ganador2=-1;
        for (int i=0;i<10;i++) 
@@ -233,6 +259,7 @@ public class tSimuladorOmaha {
            else if (valorMano==maxMano)
            {
                ganador2=i;
+               maxMano2=valorMano;
            }
            
                
@@ -243,7 +270,7 @@ public class tSimuladorOmaha {
        {
        puntos[ganador1]++;
        //empate
-       if (ganador2==ganador1)
+       if ((ganador2!=-1)&& (maxMano2==maxMano))
             puntos[ganador2]++;
        };
        //suelto las cartas que usé como relleno del tablero

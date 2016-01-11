@@ -140,6 +140,9 @@ public class tSimulador {
         }
         calculaPorcentajes();
     }
+    
+    //solo almacena empate para dos jugadores
+    //convertir en lista!!
     void partida ()
     {       
        //relleno las cartas que me faltan para el tablero
@@ -157,6 +160,7 @@ public class tSimulador {
        tMano unaMano=null;
        int valorMano=0;
        int maxMano=-1;
+       int maxMano2=-1;
        int ganador1=-1;
        int ganador2=-1;
        for (int i=0;i<10;i++) 
@@ -176,6 +180,7 @@ public class tSimulador {
            else if (valorMano==maxMano)
            {
                ganador2=i;
+               maxMano2=valorMano;
            }
            
                
@@ -186,7 +191,7 @@ public class tSimulador {
        {
        puntos[ganador1]++;
        //empate
-       if (ganador2==ganador1)
+       if (ganador2!=-1&& (maxMano2==maxMano))
             puntos[ganador2]++;
        };
        //suelto las cartas que usé como relleno del tablero
