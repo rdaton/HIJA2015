@@ -422,7 +422,7 @@ void calculaPorcentaje()
 }
 void actualizaMatrices()
 {
-    actualizaCartasSueltas(); 
+     
     actualizaDiagonal();
     actualizaDiagonalAbierto();
     actualizaSolosSuited();
@@ -431,7 +431,7 @@ void actualizaMatrices()
     actualizaInterAbiertoOffSuited();
     actualizaInterCerradoSuited();
     actualizaInterCerradoOffSuited();
-    
+    actualizaCartasSueltas();
     calculaPorcentaje();
     
 }
@@ -689,7 +689,7 @@ void actualizaInterAbiertoOffSuited()
     claseInterCerradoOffSuited.clear();
     actualizaSolosOffSuited();         
     }
-    
+    /*
     //pares 6,suited 4, off-suited 12 
     StringBuffer convierteSueltas(String unRango)
     {
@@ -706,7 +706,7 @@ void actualizaInterAbiertoOffSuited()
             
             case 3:
                 if (unRango.charAt(2)=='s')
-                    unaListaCartas=tBaraja.getInstance().dameCartasSet(
+                    unaListaCartas=tBaraja.getInstance().dameCartasuited(
                             new tCarta(unRango.charAt(0),'h').dameRango().toInt(),
                             new tCarta(unRango.charAt(1),'h').dameRango().toInt(),
                             idJugador);
@@ -724,6 +724,7 @@ void actualizaInterAbiertoOffSuited()
        
        return unBuffer;
     }
+    */
 
 //presupongo cadenas bien formadas        
 boolean parseaEntrada(String entrada)
@@ -781,10 +782,10 @@ String dameCsvMatrizRangos ()
             if (this.matrizBool[i][j])
             {
                 
-               /*unBuffer.append(this.matrizRangos[i][j]);                
+               unBuffer.append(this.matrizRangos[i][j]);                
                if (i*j<((unaLong-1)*(unaLong-1)))
-                   unBuffer.append(',');*/
-               unBuffer.append(convierteSueltas(this.matrizRangos[i][j]));
+                   unBuffer.append(',');
+             //  unBuffer.append(convierteSueltas(this.matrizRangos[i][j]));
                /*if (i*j<((unaLong-1)*(unaLong-1)))
                    unBuffer.append(',');*/
             }

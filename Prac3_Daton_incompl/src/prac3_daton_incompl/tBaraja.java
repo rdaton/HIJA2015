@@ -282,144 +282,264 @@ public class tBaraja {
     }
     
     //pares 6,suited 4, off-suited 12 
-    List<tCarta> dameCartasSet(int una, int otra,int idJugador)
+    List<tCarta> dameCartasSuited(int una, int otra,int idJugador, int sel)
     {
         List cartasSet=new ArrayList();        
-        for (int i=0;i<otraLong;i++)
-        {
-            if(esLibre(una,i)&&esLibre(otra,i))
+        
+        
+            if((esLibre(una,sel) || esMia(una,sel,idJugador))
+                    &&((esLibre(otra,sel)||esMia(otra,sel,idJugador))))
             {
-                cartasSet.add(coger(una,i,idJugador));
-                cartasSet.add(coger(otra,i,idJugador));
+                cartasSet.add(coger(una,sel,idJugador));
+                cartasSet.add(coger(otra,sel,idJugador));
             }            
-        }
+        
         return cartasSet;        
     }
     
+    void soltarCartasSuited(int una, int otra, int idJugador, int sel)
+    {
+        soltar(una,sel,idJugador);
+        soltar(otra,sel,idJugador); 
+    }
+    
     //pares 6,suited 4, off-suited 12 
-    List<tCarta> dameCartasOffSet (int una, int otra, int idJugador)
+    List<tCarta> dameCartasOffSet (int una, int otra, int idJugador,int sel)
     {
         List cartasOffSet=new ArrayList();
-                
+        switch (sel)
+        {
+            case 0:
         if(esLibre(una,0)&&esLibre(otra,1))
             {
                 cartasOffSet.add(coger(una,0,idJugador));
                 cartasOffSet.add(coger(otra,1,idJugador));
             }            
-        
+        break;
+            case 1:
         if(esLibre(una,0)&&esLibre(otra,2))
             {
                 cartasOffSet.add(coger(una,0,idJugador));
                 cartasOffSet.add(coger(otra,2,idJugador));
             }            
-        
+        break;
+            case 2:
         if(esLibre(una,0)&&esLibre(otra,3))
             {
                 cartasOffSet.add(coger(una,0,idJugador));
                 cartasOffSet.add(coger(otra,3,idJugador));
             }            
-        
+        break;
+            case 3:
         if(esLibre(una,1)&&esLibre(otra,2))
             {
                 cartasOffSet.add(coger(una,1,idJugador));
                 cartasOffSet.add(coger(otra,2,idJugador));
             }            
-        
+        break;
+            case 4:
         if(esLibre(una,1)&&esLibre(otra,3))
             {
                 cartasOffSet.add(coger(una,1,idJugador));
                 cartasOffSet.add(coger(otra,3,idJugador));
-            }            
-        
+            }      
+        break;
+            case 5:
         if(esLibre(una,2)&&esLibre(otra,3))
             {
                 cartasOffSet.add(coger(una,2,idJugador));
                 cartasOffSet.add(coger(otra,3,idJugador));
             }            
         
-        
+        break;
         //50%
+            case 6:
         if(esLibre(una,1)&&esLibre(otra,0))
             {
                 cartasOffSet.add(coger(una,1,idJugador));
                 cartasOffSet.add(coger(otra,0,idJugador));
             }            
-        
+        break;
+            case 7:
         if(esLibre(una,2)&&esLibre(otra,0))
             {
                 cartasOffSet.add(coger(una,2,idJugador));
                 cartasOffSet.add(coger(otra,0,idJugador));
             }            
-        
+        break;
+            case 8:
         if(esLibre(una,3)&&esLibre(otra,0))
             {
                 cartasOffSet.add(coger(una,3,idJugador));
                 cartasOffSet.add(coger(otra,0,idJugador));
             }            
-        
+        break;
+            case 9:
         if(esLibre(una,1)&&esLibre(otra,0))
             {
                 cartasOffSet.add(coger(una,1,idJugador));
                 cartasOffSet.add(coger(otra,0,idJugador));
             }            
-        
+        break;
+            case 10:
         if(esLibre(una,3)&&esLibre(otra,1))
             {
                 cartasOffSet.add(coger(una,3,idJugador));
                 cartasOffSet.add(coger(otra,1,idJugador));
             }            
-        
+        break;
+            case 11:
         if(esLibre(una,3)&&esLibre(otra,2))
             {
                 cartasOffSet.add(coger(una,3,idJugador));
                 cartasOffSet.add(coger(otra,2,idJugador));
             }            
-        
+        }
         
         return cartasOffSet;        
     }
     
+    void soltarCartasOffsuited (int una, int otra, int idJugador, int sel)
+    {
+        switch (sel)
+        {
+            case 0:
+        
+               soltar(una,0,idJugador);
+               soltar(otra,1,idJugador);
+                     
+        break;
+            case 1:
+        if(esLibre(una,0)&&esLibre(otra,2))
+            {
+               soltar(una,0,idJugador);
+               soltar(otra,2,idJugador);
+            }            
+        break;
+            case 2:
+        if(esLibre(una,0)&&esLibre(otra,3))
+            {
+               soltar(una,0,idJugador);
+               soltar(otra,3,idJugador);
+            }            
+        break;
+            case 3:
+        if(esLibre(una,1)&&esLibre(otra,2))
+            {
+                soltar(una,1,idJugador);
+                soltar(otra,2,idJugador);
+            }            
+        break;
+            case 4:
+        if(esLibre(una,1)&&esLibre(otra,3))
+            {
+                soltar(una,1,idJugador);
+                soltar(otra,3,idJugador);
+            }      
+        break;
+            case 5:
+        if(esLibre(una,2)&&esLibre(otra,3))
+            {
+                soltar(una,2,idJugador);
+                soltar(otra,3,idJugador);
+            }            
+        
+        break;
+        //50%
+            case 6:
+        if(esLibre(una,1)&&esLibre(otra,0))
+            {
+                soltar(una,1,idJugador);
+                soltar(otra,0,idJugador);
+            }            
+        break;
+            case 7:
+        if(esLibre(una,2)&&esLibre(otra,0))
+            {
+               soltar(una,2,idJugador);
+               soltar(otra,0,idJugador);
+            }            
+        break;
+            case 8:
+        if(esLibre(una,3)&&esLibre(otra,0))
+            {
+                soltar(una,3,idJugador);
+                soltar(otra,0,idJugador);
+            }            
+        break;
+            case 9:
+        if(esLibre(una,1)&&esLibre(otra,0))
+            {
+                soltar(una,1,idJugador);
+                soltar(otra,0,idJugador);
+            }            
+        break;
+            case 10:
+        if(esLibre(una,3)&&esLibre(otra,1))
+            {
+                soltar(una,3,idJugador);
+                soltar(otra,1,idJugador);
+            }            
+        break;
+            case 11:
+        if(esLibre(una,3)&&esLibre(otra,2))
+            {
+                soltar(una,3,idJugador);
+                soltar(otra,2,idJugador);
+            }            
+        }
+        
+    }
+    
     //pares 6,suited 4, off-suited 12 
     
-    List damePares (int unRango,int idJugador)
+    List damePares (int unRango,int idJugador,int sel)
     {
          List cartasPares=new ArrayList();
-                
+        
+        switch (sel)
+        {
+            case 0:
         if(esLibre(unRango,0)&&esLibre(unRango,1))
             {
                 cartasPares.add(coger(unRango,0,idJugador));
                 cartasPares.add(coger(unRango,1,idJugador));
             }            
-        
+        break;
+            case 1:
         if(esLibre(unRango,0)&&esLibre(unRango,2))
             {
                 cartasPares.add(coger(unRango,0,idJugador));
                 cartasPares.add(coger(unRango,2,idJugador));
-            }            
-        
+            }      
+        break; 
+            case 2:
         if(esLibre(unRango,0)&&esLibre(unRango,3))
             {
                 cartasPares.add(coger(unRango,0,idJugador));
                 cartasPares.add(coger(unRango,3,idJugador));
             }            
-        
+            case 3:
         if(esLibre(unRango,1)&&esLibre(unRango,2))
             {
                 cartasPares.add(coger(unRango,1,idJugador));
                 cartasPares.add(coger(unRango,2,idJugador));
             }            
-        
+        break;
+            case 4:
         if(esLibre(unRango,1)&&esLibre(unRango,3))
             {
                 cartasPares.add(coger(unRango,1,idJugador));
                 cartasPares.add(coger(unRango,3,idJugador));
             }            
-        
+        break;
+            case 5:
         if(esLibre(unRango,2)&&esLibre(unRango,3))
             {
                 cartasPares.add(coger(unRango,2,idJugador));
                 cartasPares.add(coger(unRango,3,idJugador));
-            }            
+            }
+        }            
         return cartasPares;
     }
     

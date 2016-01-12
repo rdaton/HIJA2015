@@ -136,7 +136,7 @@ public class tSimulador {
         for (int i=0;i<dosMillones;i++)
         {
             partida();
-            totalPuntos++;            
+                     
         }
         calculaPorcentajes();
     }
@@ -178,7 +178,8 @@ public class tSimulador {
        while (unIterador.hasNext())
            puntos[unIterador.next()]++;
        //suelto las cartas que usé como relleno del tablero
-       limpiaTableroRandom(tableroSup,longTableroSup);       
+       limpiaTableroRandom(tableroSup,longTableroSup);         
+      totalPuntos++;  
     }
 
 }

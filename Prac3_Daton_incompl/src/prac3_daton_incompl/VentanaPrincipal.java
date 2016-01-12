@@ -869,11 +869,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonTableroActionPerformed
 
     private void ButtonMonteCarloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonMonteCarloActionPerformed
-        tSimulador unSimulador= new tSimulador();
-        unSimulador.muchasPartidas();
-        for (int i=0;i<10;i++)
-            imprimirPorcentajes(unSimulador.damePorcentaje(i),i);
-        
+       this.hacerSimulaciones();        
     }//GEN-LAST:event_ButtonMonteCarloActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
@@ -922,6 +918,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             imprimirPorcentajes(unSimulador.damePorcentaje(i),i);
     }//GEN-LAST:event_jButton23ActionPerformed
 
+    void hacerSimulaciones()
+    {
+         tSimulador unSimulador= new tSimulador();
+        unSimulador.muchasPartidas();
+    }
     void imprimirPorcentajes(double valor, int idJugador)
     {
         switch (idJugador){
