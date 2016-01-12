@@ -34,7 +34,7 @@ public class tResultadosPartida {
         {
             jugadaMaxima=valor;
             List<Integer> unaLista=new ArrayList();
-            unaLista.add(valor);
+            unaLista.add(idJugador);
             puntuaciones.put(valor,unaLista);            
         }
         //sólo me molesto en almacenar jugadas mayores que la jugada máxima
@@ -50,5 +50,5 @@ public class tResultadosPartida {
         return puntuaciones.get(jugadaMaxima);
     }
     
-    
-}
+}    
+

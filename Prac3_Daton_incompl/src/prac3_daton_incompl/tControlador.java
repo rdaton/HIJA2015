@@ -691,7 +691,12 @@ void actualizaInterAbiertoOffSuited()
     
         
     }
-
+    //pares 6,suited 4, off-suited 12 ??
+    String convierteSueltas(String unRango)
+    {
+       // return unRango;
+        return new StringBuffer().append(unRango).append(',').toString();
+    }
 
 //presupongo cadenas bien formadas        
 boolean parseaEntrada(String entrada)
@@ -728,40 +733,37 @@ String dameCsvMatrizRangos ()
     List<tCarta> unasCartas=null;
     if (!tBaraja.getInstance().JugadorEsRandom(idJugador))
         unasCartas=tBaraja.getInstance().dameCartasJugador(idJugador);
-    if (unasCartas==null)
-        return "";
+   // if (unasCartas==null)
+     //   return "";
+    if (unasCartas!=null)
+    {
     Iterator<tCarta> unIterador=unasCartas.iterator();
     while (unIterador.hasNext())
     {
         unBuffer.append(unIterador.next()).append(',');
     }
+    };
     
-    
-    /*for (int i=0;i<unaLong;i++)
-    {
-        for (int j=0;j<otraLong;j++)
-        {
-            if (tBaraja.getInstance().esMia(i,j,idJugador))
-            {
-               unBuffer.append(tBaraja.getInstance().dameCartaString(i, j));                
-               
-                   unBuffer.append(',');
-            }
-        }
-    }*/
-     //rangos
+   
+   //rangos
     for (int i=0;i<unaLong;i++)
     {
         for (int j=0;j<unaLong;j++)
         {
             if (this.matrizBool[i][j])
             {
-               unBuffer.append(matrizRangos[i][j]);                
+                
+               /*unBuffer.append(this.matrizRangos[i][j]);                
                if (i*j<((unaLong-1)*(unaLong-1)))
-                   unBuffer.append(',');
+                   unBuffer.append(',');*/
+               unBuffer.append(convierteSueltas(this.matrizRangos[i][j]));
+               /*if (i*j<((unaLong-1)*(unaLong-1)))
+                   unBuffer.append(',');*/
             }
         }
     }
+    
+    parseaEntrada(unBuffer.toString());
     return unBuffer.toString();
 }
 }

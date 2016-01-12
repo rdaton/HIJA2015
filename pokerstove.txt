@@ -532,3 +532,64 @@ Hand 5: 	16.686%  	15.47% 	01.22% 	        177747 	    13992.75   { random }
 ---
 
 
+
+---
+   1,712,304  games     0.002 secs   856,152,000  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	93.470%  	92.80% 	00.67% 	       1588961 	    11536.00   { AhAs }
+Hand 1: 	06.530%  	05.86% 	00.67% 	        100271 	    11536.00   { AdKs }
+
+
+---
+
+
+
+---
+   1,712,304  games     0.003 secs   570,768,000  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	93.470%  	92.80% 	00.67% 	       1588961 	    11536.00   { AhAs }
+Hand 1: 	06.530%  	05.86% 	00.67% 	        100271 	    11536.00   { AdKs }
+
+
+---
+
+
+
+---
+   1,712,304  games     0.001 secs     1,712,304,000  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	93.470%  	92.80% 	00.67% 	       1588961 	    11536.00   { AhAs }
+Hand 1: 	06.530%  	05.86% 	00.67% 	        100271 	    11536.00   { AdKs }
+
+
+---
+
+
+
+---
+   1,546,210,512  games     2.535 secs   609,944,975  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	78.511%  	78.00% 	00.51% 	    1206065324 	  7885687.50   { AhAs }
+Hand 1: 	06.157%  	05.62% 	00.53% 	      86966976 	  8239502.00   { AdKs }
+Hand 2: 	15.331%  	15.18% 	00.15% 	     234684756 	  2368266.50   { random }
+
+
+---
+
+

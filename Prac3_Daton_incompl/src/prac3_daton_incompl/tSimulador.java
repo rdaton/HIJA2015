@@ -23,7 +23,7 @@ public class tSimulador {
     private tCarta[] tablero;
     private int longTablero;
     private final int maxTablero=5;    
-    static int dosMillones=20000;
+    static int dosMillones=2000;
     //el constructor lee la baraja ... almacena las cartas
     //deduce el numero de jugadores, tablero, etc
     public tSimulador()
@@ -145,6 +145,9 @@ public class tSimulador {
     //convertir en lista!!
     void partida ()
     {       
+        tResultadosPartida unosResultados=new tResultadosPartida();
+        List<Integer> listaGanadores=new ArrayList();
+        
        //relleno las cartas que me faltan para el tablero
        //normalmente cinco como mucho
        int longTableroSup=maxTablero-longTablero;
@@ -158,11 +161,7 @@ public class tSimulador {
        //evaluo las mejores manos de  los jugadores
        List<tCarta> unaListaCartas=null;
        tMano unaMano=null;
-       int valorMano=0;
-       int maxMano=-1;
-       int maxMano2=-1;
-       int ganador1=-1;
-       int ganador2=-1;
+     
        for (int i=0;i<10;i++) 
        {
            if (sentado(i))
@@ -171,29 +170,13 @@ public class tSimulador {
            unaListaCartas.addAll(unTableroTrabajo);          
            //creo la mano que voy a evaluar y saco su valor
            unaMano=new tMano(unaListaCartas);
-           valorMano=unaMano.toInt();        
-           if (valorMano>maxMano)
-           {
-               maxMano=valorMano;
-               ganador1=i;   
-           }
-           else if (valorMano==maxMano)
-           {
-               ganador2=i;
-               maxMano2=valorMano;
-           }
-           
-               
+           unosResultados.ponResultado(unaMano.toInt(),i);
            }
        }
-       //victoria
-       if (ganador1!=-1)
-       {
-       puntos[ganador1]++;
-       //empate
-       if (ganador2!=-1&& (maxMano2==maxMano))
-            puntos[ganador2]++;
-       };
+        
+       Iterator<Integer> unIterador=unosResultados.dameGanadores().iterator();
+       while (unIterador.hasNext())
+           puntos[unIterador.next()]++;
        //suelto las cartas que usé como relleno del tablero
        limpiaTableroRandom(tableroSup,longTableroSup);       
     }

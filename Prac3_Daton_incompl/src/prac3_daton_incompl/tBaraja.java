@@ -280,6 +280,149 @@ public class tBaraja {
         }        
         
     }
+    
+    //pares 6,suited 4, off-suited 12 
+    List<tCarta> dameCartasSet(int una, int otra,int idJugador)
+    {
+        List cartasSet=new ArrayList();        
+        for (int i=0;i<otraLong;i++)
+        {
+            if(esLibre(una,i)&&esLibre(otra,i))
+            {
+                cartasSet.add(coger(una,i,idJugador));
+                cartasSet.add(coger(otra,i,idJugador));
+            }            
+        }
+        return cartasSet;        
+    }
+    
+    //pares 6,suited 4, off-suited 12 
+    List<tCarta> dameCartasOffSet (int una, int otra, int idJugador)
+    {
+        List cartasOffSet=new ArrayList();
+                
+        if(esLibre(una,1)&&esLibre(otra,2))
+            {
+                cartasOffSet.add(coger(una,1,idJugador));
+                cartasOffSet.add(coger(otra,2,idJugador));
+            }            
+        
+        if(esLibre(una,1)&&esLibre(otra,3))
+            {
+                cartasOffSet.add(coger(una,1,idJugador));
+                cartasOffSet.add(coger(otra,3,idJugador));
+            }            
+        
+        if(esLibre(una,1)&&esLibre(otra,4))
+            {
+                cartasOffSet.add(coger(una,1,idJugador));
+                cartasOffSet.add(coger(otra,4,idJugador));
+            }            
+        
+        if(esLibre(una,2)&&esLibre(otra,3))
+            {
+                cartasOffSet.add(coger(una,2,idJugador));
+                cartasOffSet.add(coger(otra,3,idJugador));
+            }            
+        
+        if(esLibre(una,2)&&esLibre(otra,4))
+            {
+                cartasOffSet.add(coger(una,2,idJugador));
+                cartasOffSet.add(coger(otra,4,idJugador));
+            }            
+        
+        if(esLibre(una,3)&&esLibre(otra,4))
+            {
+                cartasOffSet.add(coger(una,3,idJugador));
+                cartasOffSet.add(coger(otra,4,idJugador));
+            }            
+        
+        
+        //50%
+        if(esLibre(una,2)&&esLibre(otra,1))
+            {
+                cartasOffSet.add(coger(una,2,idJugador));
+                cartasOffSet.add(coger(otra,1,idJugador));
+            }            
+        
+        if(esLibre(una,3)&&esLibre(otra,1))
+            {
+                cartasOffSet.add(coger(una,3,idJugador));
+                cartasOffSet.add(coger(otra,1,idJugador));
+            }            
+        
+        if(esLibre(una,4)&&esLibre(otra,1))
+            {
+                cartasOffSet.add(coger(una,4,idJugador));
+                cartasOffSet.add(coger(otra,1,idJugador));
+            }            
+        
+        if(esLibre(una,3)&&esLibre(otra,2))
+            {
+                cartasOffSet.add(coger(una,3,idJugador));
+                cartasOffSet.add(coger(otra,2,idJugador));
+            }            
+        
+        if(esLibre(una,4)&&esLibre(otra,2))
+            {
+                cartasOffSet.add(coger(una,4,idJugador));
+                cartasOffSet.add(coger(otra,2,idJugador));
+            }            
+        
+        if(esLibre(una,4)&&esLibre(otra,3))
+            {
+                cartasOffSet.add(coger(una,4,idJugador));
+                cartasOffSet.add(coger(otra,3,idJugador));
+            }            
+        
+        
+        return cartasOffSet;        
+    }
+    
+    //pares 6,suited 4, off-suited 12 
+    
+    List damePares (int unRango,int idJugador)
+    {
+         List cartasPares=new ArrayList();
+                
+        if(esLibre(unRango,1)&&esLibre(unRango,2))
+            {
+                cartasPares.add(coger(unRango,1,idJugador));
+                cartasPares.add(coger(unRango,2,idJugador));
+            }            
+        
+        if(esLibre(unRango,1)&&esLibre(unRango,3))
+            {
+                cartasPares.add(coger(unRango,1,idJugador));
+                cartasPares.add(coger(unRango,3,idJugador));
+            }            
+        
+        if(esLibre(unRango,1)&&esLibre(unRango,4))
+            {
+                cartasPares.add(coger(unRango,1,idJugador));
+                cartasPares.add(coger(unRango,4,idJugador));
+            }            
+        
+        if(esLibre(unRango,2)&&esLibre(unRango,3))
+            {
+                cartasPares.add(coger(unRango,2,idJugador));
+                cartasPares.add(coger(unRango,3,idJugador));
+            }            
+        
+        if(esLibre(unRango,2)&&esLibre(unRango,4))
+            {
+                cartasPares.add(coger(unRango,2,idJugador));
+                cartasPares.add(coger(unRango,4,idJugador));
+            }            
+        
+        if(esLibre(unRango,3)&&esLibre(unRango,4))
+            {
+                cartasPares.add(coger(unRango,3,idJugador));
+                cartasPares.add(coger(unRango,4,idJugador));
+            }            
+        return cartasPares;
+    }
+    
 }
 
 

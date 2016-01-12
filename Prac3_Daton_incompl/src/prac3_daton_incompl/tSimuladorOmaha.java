@@ -28,7 +28,7 @@ public class tSimuladorOmaha {
     private final int maxJugadorUsable=2;
     private final int posibJug=6;
     private final int posibTab=10;
-    static int dosMillones=200000;
+    static int dosMillones=2000;
     //el constructor lee la baraja ... almacena las cartas
     //deduce el numero de jugadores, tablero, etc
     public tSimuladorOmaha()
@@ -293,7 +293,9 @@ public class tSimuladorOmaha {
     //solo almacena empate para dos jugadores
     //convertir en lista!!
     void partida ()
-    {       
+    {  
+       tResultadosPartida unosResultados=new tResultadosPartida();
+       List<Integer> listaGanadores=new ArrayList(); 
        //relleno las cartas que me faltan para el tablero
        //normalmente cinco como mucho
        int longTableroSup=maxTablero-longTablero;
@@ -307,12 +309,7 @@ public class tSimuladorOmaha {
        //evaluo las mejores manos de  los jugadores
        List<tCarta> unaListaJugador=null;
        List<tCarta> unaListaTablero=null;       
-       tMano unaMano=null;
-       int valorMano=0;
-       int maxMano=-1;
-       int maxMano2=-1;
-       int ganador1=-1;
-       int ganador2=-1;
+       tMano unaMano=null;      
        for (int i=0;i<10;i++) 
        {
            if (sentado(i))
@@ -320,30 +317,13 @@ public class tSimuladorOmaha {
            unaListaJugador=tBaraja.getInstance().dameCartasJugador(i,1);
            //unaListaCartas.addAll(unTableroTrabajo);          
            //doy cartas de jugador y cartas de tablero al evaluador
-           //y él me devuelve el resultado
-           valorMano=evaluadorOmaha(unaListaJugador,unTableroTrabajo);          
-           if (valorMano>maxMano)
-           {
-               maxMano=valorMano;
-               ganador1=i;   
-           }
-           else if (valorMano==maxMano)
-           {
-               ganador2=i;
-               maxMano2=valorMano;
-           }
-           
-               
-           }
-       }
-       //victoria
-       if (ganador1!=-1)
-       {
-       puntos[ganador1]++;
-       //empate
-       if ((ganador2!=-1)&& (maxMano2==maxMano))
-            puntos[ganador2]++;
-       };
+           //y él me devuelve el resultado                  
+           unosResultados.ponResultado(evaluadorOmaha(unaListaJugador,unTableroTrabajo),i);
+           }               
+        }
+       Iterator<Integer> unIterador=unosResultados.dameGanadores().iterator();
+       while (unIterador.hasNext())
+           puntos[unIterador.next()]++;
        //suelto las cartas que usé como relleno del tablero
        limpiaTableroRandom(tableroSup,longTableroSup);       
     }
