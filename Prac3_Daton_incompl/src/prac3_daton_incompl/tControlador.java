@@ -687,15 +687,42 @@ void actualizaInterAbiertoOffSuited()
     }
     
     claseInterCerradoOffSuited.clear();
-    actualizaSolosOffSuited();
-    
-        
+    actualizaSolosOffSuited();         
     }
-    //pares 6,suited 4, off-suited 12 ??
-    String convierteSueltas(String unRango)
+    
+    //pares 6,suited 4, off-suited 12 
+    StringBuffer convierteSueltas(String unRango)
     {
-       // return unRango;
-        return new StringBuffer().append(unRango).append(',').toString();
+        StringBuffer unBuffer=new StringBuffer();
+        List<tCarta> unaListaCartas=new ArrayList();
+        int onLong=unRango.length();
+        
+        switch (onLong)
+        {
+            case 2:
+                unaListaCartas=tBaraja.getInstance().damePares(
+                    new tCarta(unRango.charAt(0),'h').dameRango().toInt(), idJugador);
+                break;
+            
+            case 3:
+                if (unRango.charAt(2)=='s')
+                    unaListaCartas=tBaraja.getInstance().dameCartasSet(
+                            new tCarta(unRango.charAt(0),'h').dameRango().toInt(),
+                            new tCarta(unRango.charAt(1),'h').dameRango().toInt(),
+                            idJugador);
+                else if (unRango.charAt(2)=='o')
+                    unaListaCartas=tBaraja.getInstance().dameCartasOffSet(
+                            new tCarta(unRango.charAt(0),'h').dameRango().toInt(),
+                            new tCarta(unRango.charAt(1),'h').dameRango().toInt(),
+                            idJugador);
+                break;        
+        };
+
+        Iterator <tCarta> unIterador=unaListaCartas.iterator();
+        while (unIterador.hasNext())
+            unBuffer.append(unIterador.next()).append(',');
+       
+       return unBuffer;
     }
 
 //presupongo cadenas bien formadas        
@@ -746,6 +773,7 @@ String dameCsvMatrizRangos ()
     
    
    //rangos
+    StringBuffer otroBuffer=new StringBuffer();
     for (int i=0;i<unaLong;i++)
     {
         for (int j=0;j<unaLong;j++)
@@ -763,7 +791,7 @@ String dameCsvMatrizRangos ()
         }
     }
     
-    parseaEntrada(unBuffer.toString());
+  //  parseaEntrada(unBuffer.toString());
     return unBuffer.toString();
 }
 }

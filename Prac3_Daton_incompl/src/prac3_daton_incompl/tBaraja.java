@@ -301,6 +301,24 @@ public class tBaraja {
     {
         List cartasOffSet=new ArrayList();
                 
+        if(esLibre(una,0)&&esLibre(otra,1))
+            {
+                cartasOffSet.add(coger(una,0,idJugador));
+                cartasOffSet.add(coger(otra,1,idJugador));
+            }            
+        
+        if(esLibre(una,0)&&esLibre(otra,2))
+            {
+                cartasOffSet.add(coger(una,0,idJugador));
+                cartasOffSet.add(coger(otra,2,idJugador));
+            }            
+        
+        if(esLibre(una,0)&&esLibre(otra,3))
+            {
+                cartasOffSet.add(coger(una,0,idJugador));
+                cartasOffSet.add(coger(otra,3,idJugador));
+            }            
+        
         if(esLibre(una,1)&&esLibre(otra,2))
             {
                 cartasOffSet.add(coger(una,1,idJugador));
@@ -313,36 +331,36 @@ public class tBaraja {
                 cartasOffSet.add(coger(otra,3,idJugador));
             }            
         
-        if(esLibre(una,1)&&esLibre(otra,4))
-            {
-                cartasOffSet.add(coger(una,1,idJugador));
-                cartasOffSet.add(coger(otra,4,idJugador));
-            }            
-        
         if(esLibre(una,2)&&esLibre(otra,3))
             {
                 cartasOffSet.add(coger(una,2,idJugador));
                 cartasOffSet.add(coger(otra,3,idJugador));
             }            
         
-        if(esLibre(una,2)&&esLibre(otra,4))
-            {
-                cartasOffSet.add(coger(una,2,idJugador));
-                cartasOffSet.add(coger(otra,4,idJugador));
-            }            
-        
-        if(esLibre(una,3)&&esLibre(otra,4))
-            {
-                cartasOffSet.add(coger(una,3,idJugador));
-                cartasOffSet.add(coger(otra,4,idJugador));
-            }            
-        
         
         //50%
-        if(esLibre(una,2)&&esLibre(otra,1))
+        if(esLibre(una,1)&&esLibre(otra,0))
+            {
+                cartasOffSet.add(coger(una,1,idJugador));
+                cartasOffSet.add(coger(otra,0,idJugador));
+            }            
+        
+        if(esLibre(una,2)&&esLibre(otra,0))
             {
                 cartasOffSet.add(coger(una,2,idJugador));
-                cartasOffSet.add(coger(otra,1,idJugador));
+                cartasOffSet.add(coger(otra,0,idJugador));
+            }            
+        
+        if(esLibre(una,3)&&esLibre(otra,0))
+            {
+                cartasOffSet.add(coger(una,3,idJugador));
+                cartasOffSet.add(coger(otra,0,idJugador));
+            }            
+        
+        if(esLibre(una,1)&&esLibre(otra,0))
+            {
+                cartasOffSet.add(coger(una,1,idJugador));
+                cartasOffSet.add(coger(otra,0,idJugador));
             }            
         
         if(esLibre(una,3)&&esLibre(otra,1))
@@ -351,28 +369,10 @@ public class tBaraja {
                 cartasOffSet.add(coger(otra,1,idJugador));
             }            
         
-        if(esLibre(una,4)&&esLibre(otra,1))
-            {
-                cartasOffSet.add(coger(una,4,idJugador));
-                cartasOffSet.add(coger(otra,1,idJugador));
-            }            
-        
         if(esLibre(una,3)&&esLibre(otra,2))
             {
                 cartasOffSet.add(coger(una,3,idJugador));
                 cartasOffSet.add(coger(otra,2,idJugador));
-            }            
-        
-        if(esLibre(una,4)&&esLibre(otra,2))
-            {
-                cartasOffSet.add(coger(una,4,idJugador));
-                cartasOffSet.add(coger(otra,2,idJugador));
-            }            
-        
-        if(esLibre(una,4)&&esLibre(otra,3))
-            {
-                cartasOffSet.add(coger(una,4,idJugador));
-                cartasOffSet.add(coger(otra,3,idJugador));
             }            
         
         
@@ -385,6 +385,24 @@ public class tBaraja {
     {
          List cartasPares=new ArrayList();
                 
+        if(esLibre(unRango,0)&&esLibre(unRango,1))
+            {
+                cartasPares.add(coger(unRango,0,idJugador));
+                cartasPares.add(coger(unRango,1,idJugador));
+            }            
+        
+        if(esLibre(unRango,0)&&esLibre(unRango,2))
+            {
+                cartasPares.add(coger(unRango,0,idJugador));
+                cartasPares.add(coger(unRango,2,idJugador));
+            }            
+        
+        if(esLibre(unRango,0)&&esLibre(unRango,3))
+            {
+                cartasPares.add(coger(unRango,0,idJugador));
+                cartasPares.add(coger(unRango,3,idJugador));
+            }            
+        
         if(esLibre(unRango,1)&&esLibre(unRango,2))
             {
                 cartasPares.add(coger(unRango,1,idJugador));
@@ -397,28 +415,10 @@ public class tBaraja {
                 cartasPares.add(coger(unRango,3,idJugador));
             }            
         
-        if(esLibre(unRango,1)&&esLibre(unRango,4))
-            {
-                cartasPares.add(coger(unRango,1,idJugador));
-                cartasPares.add(coger(unRango,4,idJugador));
-            }            
-        
         if(esLibre(unRango,2)&&esLibre(unRango,3))
             {
                 cartasPares.add(coger(unRango,2,idJugador));
                 cartasPares.add(coger(unRango,3,idJugador));
-            }            
-        
-        if(esLibre(unRango,2)&&esLibre(unRango,4))
-            {
-                cartasPares.add(coger(unRango,2,idJugador));
-                cartasPares.add(coger(unRango,4,idJugador));
-            }            
-        
-        if(esLibre(unRango,3)&&esLibre(unRango,4))
-            {
-                cartasPares.add(coger(unRango,3,idJugador));
-                cartasPares.add(coger(unRango,4,idJugador));
             }            
         return cartasPares;
     }
