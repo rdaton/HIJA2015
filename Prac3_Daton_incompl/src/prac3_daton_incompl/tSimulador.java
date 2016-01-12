@@ -6,6 +6,7 @@
 package prac3_daton_incompl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -137,66 +138,140 @@ public class tSimulador {
         //o trabajo con rangos, o trabajo 
         //con cartas sueltas (ya implementado mediante 
         //tBaraja
-        
+        if (tBaraja.getInstance().nCartasLibres<52)
+        {
         for (int j=0;j<dosMillones;j++)
             {
                 partidaCartasSueltas();
 
             }
             calculaPorcentajes();
-            
+        }  
         //si la baraja está llena, eso significa que estamos trabajando con 
             //rangos
-   /*         
-        String[] listasRangosVista=new String[10];
-        String[][] listaIndividual=new String[999][];        
-        int tam[]=new int[10];
-        List <tCarta> listasCartas[]=new ArrayList[10];
-        //leo las listas de rango de cada uno
-        for (int i=0;i<10;i++)
-        {
-            listasRangosVista[i]=VentanaPrincipal._unosControladores[i].dameCsvMatrizRangos();
-            listasCartas[i]=new ArrayList();
-        }
-        //hago una lista de las cadenas de rangos de cada uno
-        for (int i=0;i<10;i++)
-        {
-            tam[i]=listasRangosVista[i].length();
-            listaIndividual[i]=listasRangosVista[i].split(",");
-        }
-                    
-        int acum=0;
-        int r=0;
-        for (int i=0;i<10;i++)
             
-            while ((acum<tam[i]) && tam[i]>0 && r<tam[i])
-            {
-               switch (listaIndividual[i][r].length())
-            {
-            case 2:
-                listasCartas[i]=tBaraja.getInstance().damePares(
-                    new tCarta(listaIndividual[i][r].charAt(0),'h').dameRango().toInt(), i,1);
-                break;
-            
-            case 3:
-                if (listaIndividual[i][r].charAt(2)=='s')
-                    listasCartas[i]=tBaraja.getInstance().dameCartasuited(
-                            new tCarta(unRango.charAt(0),'h').dameRango().toInt(),
-                            new tCarta(unRango.charAt(1),'h').dameRango().toInt(),
-                            idJugador);
-                else if (unRango.charAt(2)=='o')
-                    unaListaCartas=tBaraja.getInstance().dameCartasOffSet(
-                            new tCarta(unRango.charAt(0),'h').dameRango().toInt(),
-                            new tCarta(unRango.charAt(1),'h').dameRango().toInt(),
-                            idJugador);
-                break;        
-        };
-            }*/
         
+        List <String> listasCartasString[]=new ArrayList[10];        
+        List<tCarta> listasCartas[]=new ArrayList[10];
+        //leo las listas de rango de cada  controlador
+        //hago una lista de las cadenas de rangos de cada jugador
+        
+        for (int i=0;i<10;i++)
+        {
+            String unString=VentanaPrincipal._unosControladores[i].dameCsvMatrizRangos();
+            if (!unString.isEmpty())
+            {
+                listasCartasString[i]=new ArrayList();
+                String[] unasCadenas=unString.split(",");
+                for (int j=0;j<unasCadenas.length;j++)
+                    listasCartasString[i].add(unasCadenas[j]);
+            }
+            else
+                listasCartasString[i]=null;
+            
+        }
+        //aquí, ya tengo parseado todas las cadenas de cartas de los jugadores
+        
+       for (int i=0;i<10;i++)
+            {
+            if (listasCartasString[i]!=null)
+            {
+                Iterator<String> unIterador=listasCartasString[i].iterator();
+                listasCartasString[i]=new ArrayList();
+                while (unIterador.hasNext()){
+                        String unString=unIterador.next();
+                    
+                        switch (unString.length())
+                        {
+                        case 2:
+                            listasCartas[i]=new ArrayList();
+                            listasCartas[i].addAll(tBaraja.getInstance().damePares(
+                                new tCarta(unString.charAt(0),'h').dameRango().toInt(),
+                                    i,
+                                    1));                    
+                            break;
+
+                        case 3:                    
+                            listasCartas[i]=new ArrayList();
+                            if (unString.charAt(2)=='s')
+                                listasCartas[i].addAll(tBaraja.getInstance().dameCartasSuited(
+                                        new tCarta(unString.charAt(0),'h').dameRango().toInt(),
+                                        new tCarta(unString.charAt(1),'h').dameRango().toInt(),
+                                        i,
+                                        1));
+                            else if (unString.charAt(2)=='o')
+                                listasCartas[i]=tBaraja.getInstance().dameCartasOffSet(
+                                        new tCarta(unString.charAt(0),'h').dameRango().toInt(),
+                                        new tCarta(unString.charAt(1),'h').dameRango().toInt(),
+                                        i,
+                                        1);
+                            break;        
+                };
+            }
+                    }
+            }
+        partidaRangos(listasCartas);
+                
+                if (totalPuntos >0 )
+                    calculaPorcentajes();
     }
     
-    //solo almacena empate para dos jugadores
-    //convertir en lista!!
+    void partidaRangos (List<tCarta> listasCartas[])
+    {
+                
+      for (int i=0;i<(listasCartas.length/2);i++);
+      {
+        partidaSueltaEspecial(listasCartas);
+      }
+    }
+    
+    void partidaSueltaEspecial (List<tCarta> listasCartas[])
+    {       
+        tResultadosPartida unosResultados=new tResultadosPartida();
+        List<Integer> listaGanadores=new ArrayList();
+        
+       //relleno las cartas que me faltan para el tablero
+       //normalmente cinco como mucho
+       int longTableroSup=maxTablero-longTablero;
+       tCarta[] tableroSup=null;
+       if (longTableroSup>0)
+           tableroSup=generaTableroRandom(longTableroSup);
+       
+       //genero mi tablero de trabajo
+       List<tCarta> unTableroTrabajo=generaTableroTrabajo(tableroSup,longTableroSup);
+       
+       //evaluo las mejores manos de  los jugadores
+       List<tCarta> unaListaCartas=null;
+       tMano unaMano=null;
+     
+       for (int i=0;i<10;i++) 
+       {   if (listasCartas[i]!=null)
+       {
+           unaListaCartas = new ArrayList();
+           unaListaCartas=tBaraja.getInstance().cogeDosCartasRandomRango(listasCartas[i], i);
+           tCarta[] unasCartas= new tCarta[2];
+           unasCartas[0]=unaListaCartas.get(0);
+           unasCartas[1]=unaListaCartas.get(1);
+           unaListaCartas.addAll(unTableroTrabajo);            
+           //creo la mano que voy a evaluar y saco su valor
+           unaMano=new tMano(unaListaCartas);
+           unosResultados.ponResultado(unaMano.toInt(),i);
+           tBaraja.getInstance().soltar(unasCartas[0].dameRango().toInt(), 
+                   unasCartas[0].damePalo().toInt(), i);
+           tBaraja.getInstance().soltar(unasCartas[1].dameRango().toInt(), 
+                   unasCartas[1].damePalo().toInt(), i);         
+       }   
+       }
+        
+       Iterator<Integer> unIterador=unosResultados.dameGanadores().iterator();
+       while (unIterador.hasNext())
+           puntos[unIterador.next()]++;
+       //suelto las cartas que usé como relleno del tablero
+       limpiaTableroRandom(tableroSup,longTableroSup);         
+      totalPuntos++;  
+    }
+
+    
     void partidaCartasSueltas ()
     {       
         tResultadosPartida unosResultados=new tResultadosPartida();

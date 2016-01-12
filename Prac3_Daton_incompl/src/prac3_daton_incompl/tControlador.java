@@ -701,20 +701,24 @@ void actualizaInterAbiertoOffSuited()
         {
             case 2:
                 unaListaCartas=tBaraja.getInstance().damePares(
-                    new tCarta(unRango.charAt(0),'h').dameRango().toInt(), idJugador);
+                    new tCarta(unRango.charAt(0),'h').dameRango().toInt(), idJugador,
+                        1
+               );
                 break;
             
             case 3:
                 if (unRango.charAt(2)=='s')
-                    unaListaCartas=tBaraja.getInstance().dameCartasuited(
+                    unaListaCartas=tBaraja.getInstance().dameCartasSuited(
                             new tCarta(unRango.charAt(0),'h').dameRango().toInt(),
                             new tCarta(unRango.charAt(1),'h').dameRango().toInt(),
-                            idJugador);
+                            idJugador,
+                            1);
                 else if (unRango.charAt(2)=='o')
                     unaListaCartas=tBaraja.getInstance().dameCartasOffSet(
                             new tCarta(unRango.charAt(0),'h').dameRango().toInt(),
                             new tCarta(unRango.charAt(1),'h').dameRango().toInt(),
-                            idJugador);
+                            idJugador,
+                            1);
                 break;        
         };
 
