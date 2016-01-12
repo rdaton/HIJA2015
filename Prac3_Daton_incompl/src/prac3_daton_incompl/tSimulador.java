@@ -133,17 +133,71 @@ public class tSimulador {
     }
     void muchasPartidas()
     {
-        for (int i=0;i<dosMillones;i++)
+        //aquí tengo dos posibilidades
+        //o trabajo con rangos, o trabajo 
+        //con cartas sueltas (ya implementado mediante 
+        //tBaraja
+        
+        for (int j=0;j<dosMillones;j++)
+            {
+                partidaCartasSueltas();
+
+            }
+            calculaPorcentajes();
+            
+        //si la baraja está llena, eso significa que estamos trabajando con 
+            //rangos
+   /*         
+        String[] listasRangosVista=new String[10];
+        String[][] listaIndividual=new String[999][];        
+        int tam[]=new int[10];
+        List <tCarta> listasCartas[]=new ArrayList[10];
+        //leo las listas de rango de cada uno
+        for (int i=0;i<10;i++)
         {
-            partida();
-                     
+            listasRangosVista[i]=VentanaPrincipal._unosControladores[i].dameCsvMatrizRangos();
+            listasCartas[i]=new ArrayList();
         }
-        calculaPorcentajes();
+        //hago una lista de las cadenas de rangos de cada uno
+        for (int i=0;i<10;i++)
+        {
+            tam[i]=listasRangosVista[i].length();
+            listaIndividual[i]=listasRangosVista[i].split(",");
+        }
+                    
+        int acum=0;
+        int r=0;
+        for (int i=0;i<10;i++)
+            
+            while ((acum<tam[i]) && tam[i]>0 && r<tam[i])
+            {
+               switch (listaIndividual[i][r].length())
+            {
+            case 2:
+                listasCartas[i]=tBaraja.getInstance().damePares(
+                    new tCarta(listaIndividual[i][r].charAt(0),'h').dameRango().toInt(), i,1);
+                break;
+            
+            case 3:
+                if (listaIndividual[i][r].charAt(2)=='s')
+                    listasCartas[i]=tBaraja.getInstance().dameCartasuited(
+                            new tCarta(unRango.charAt(0),'h').dameRango().toInt(),
+                            new tCarta(unRango.charAt(1),'h').dameRango().toInt(),
+                            idJugador);
+                else if (unRango.charAt(2)=='o')
+                    unaListaCartas=tBaraja.getInstance().dameCartasOffSet(
+                            new tCarta(unRango.charAt(0),'h').dameRango().toInt(),
+                            new tCarta(unRango.charAt(1),'h').dameRango().toInt(),
+                            idJugador);
+                break;        
+        };
+            }*/
+        
     }
     
     //solo almacena empate para dos jugadores
     //convertir en lista!!
-    void partida ()
+    void partidaCartasSueltas ()
     {       
         tResultadosPartida unosResultados=new tResultadosPartida();
         List<Integer> listaGanadores=new ArrayList();
