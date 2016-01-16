@@ -18,13 +18,13 @@ import java.util.List;
 //voy a suponer
 public class tSimulador {
     private int[] jugadoresActivos;   
-    private long[] puntos ;
+    private double[] puntos ;
     private long totalPuntos;
     private double[] porcentajes;
     private tCarta[] tablero;
     private int longTablero;
     private final int maxTablero=5;    
-    static int dosMillones=2000;
+    static int dosMillones=200000;
     //el constructor lee la baraja ... almacena las cartas
     //deduce el numero de jugadores, tablero, etc
     public tSimulador()
@@ -68,7 +68,7 @@ public class tSimulador {
             
         parseaJugadoresActivos();
         
-        puntos= new long[10];
+        puntos= new double[10];
         for (int i=0;i<10;i++) 
             puntos[i]=0; 
         
@@ -200,11 +200,11 @@ public class tSimulador {
                                         i,
                                         1));
                             else if (unString.charAt(2)=='o')
-                                listasCartas[i]=tBaraja.getInstance().dameCartasOffSet(
+                                listasCartas[i].addAll(tBaraja.getInstance().dameCartasOffSet(
                                         new tCarta(unString.charAt(0),'h').dameRango().toInt(),
                                         new tCarta(unString.charAt(1),'h').dameRango().toInt(),
                                         i,
-                                        1);
+                                        1));
                             break;        
                 };
             }
@@ -216,62 +216,135 @@ public class tSimulador {
                     calculaPorcentajes();
     }
     
-    void partidaRangos (List<tCarta> listasCartas[])
+    
+    List<tParejaCartas>[] organizaParejas(List<tCarta> listasCartas_n[])
     {
-                
-      for (int i=0;i<(listasCartas.length/2);i++);
-      {
-        partidaSueltaEspecial(listasCartas);
-      }
+        List<tParejaCartas>[] unaLista = new ArrayList[10];
+        
+        for (int i=0;i<unaLista.length;i++)
+        {
+            unaLista[i]=new ArrayList();
+            if (listasCartas_n[i]!=null)
+            {
+            for (int j=0;j<listasCartas_n[i].size();j+=2)
+            {
+               tParejaCartas unaPareja= new tParejaCartas(listasCartas_n[i].get(j),
+                                        listasCartas_n[i].get(j+1));               
+                unaLista[i].add(unaPareja);
+            }
+            }
+            
+        }        
+        return unaLista;
     }
     
-    void partidaSueltaEspecial (List<tCarta> listasCartas[])
-    {       
-        tResultadosPartida unosResultados=new tResultadosPartida();
-        List<Integer> listaGanadores=new ArrayList();
-        
-       //relleno las cartas que me faltan para el tablero
-       //normalmente cinco como mucho
-       int longTableroSup=maxTablero-longTablero;
-       tCarta[] tableroSup=null;
-       if (longTableroSup>0)
-           tableroSup=generaTableroRandom(longTableroSup);
-       
-       //genero mi tablero de trabajo
-       List<tCarta> unTableroTrabajo=generaTableroTrabajo(tableroSup,longTableroSup);
-       
-       //evaluo las mejores manos de  los jugadores
-       List<tCarta> unaListaCartas=null;
-       tMano unaMano=null;
+    List<tTupla> parejasATuplas (List<tParejaCartas> ent)
+    {
+        List<tTupla> unaLista=new ArrayList();
+        Iterator<tParejaCartas> unIterador=ent.iterator();
+        tTupla unaTupla=null;
+        while (unIterador.hasNext())
+        {
+            unaTupla=new tTupla();
+            unaTupla.add(unIterador.next());
+            unaLista.add(unaTupla);
+        }        
+        return unaLista;
+    }
+    void partidaRangos (List<tCarta> listasCartas_n[])
+    {
+     boolean error=false;
+     int r=0;
+     while (!error && r<listasCartas_n.length)
+     {
+         if (listasCartas_n[r] != null)
+         {
+             error=(listasCartas_n[r].size()%2!=0);
+         }
+         r++;
+     }
+     if (error) return;
      
-       for (int i=0;i<10;i++) 
-       {   if (listasCartas[i]!=null)
-       {
-           unaListaCartas = new ArrayList();
-           unaListaCartas=tBaraja.getInstance().cogeDosCartasRandomRango(listasCartas[i], i);
-           tCarta[] unasCartas= new tCarta[2];
-           unasCartas[0]=unaListaCartas.get(0);
-           unasCartas[1]=unaListaCartas.get(1);
-           unaListaCartas.addAll(unTableroTrabajo);            
-           //creo la mano que voy a evaluar y saco su valor
-           unaMano=new tMano(unaListaCartas);
-           unosResultados.ponResultado(unaMano.toInt(),i);
-           tBaraja.getInstance().soltar(unasCartas[0].dameRango().toInt(), 
-                   unasCartas[0].damePalo().toInt(), i);
-           tBaraja.getInstance().soltar(unasCartas[1].dameRango().toInt(), 
-                   unasCartas[1].damePalo().toInt(), i);         
-       }   
-       }
-        
-       Iterator<Integer> unIterador=unosResultados.dameGanadores().iterator();
-       while (unIterador.hasNext())
-           puntos[unIterador.next()]++;
-       //suelto las cartas que usé como relleno del tablero
-       limpiaTableroRandom(tableroSup,longTableroSup);         
-      totalPuntos++;  
-    }
-
+     
+    List<tParejaCartas>[] listasCartas=organizaParejas(listasCartas_n);     
+     
+     //aqui ya sabemos que todos tienen longitud par o cero
     
+     List<tTupla> unAcumulador=new ArrayList();
+     
+     
+     for (int i=0;i<listasCartas.length;i++)
+     {
+        if (listasCartas[i] != null && (listasCartas[i].size()>0))   
+        {
+           unAcumulador=mezcla(unAcumulador,parejasATuplas(listasCartas[i]));
+        }
+     }  
+     
+     //tengo generadas todas las tuplas
+     //cada tupla es una partida posible
+     //recorro todas las tuplas y voy sacando cartas
+     //e invoco partidaCartasSueltas
+     tTupla unPuntero=null;
+     Iterator<tTupla> unIterador=unAcumulador.iterator();
+     while (unIterador.hasNext())
+     {          
+          unPuntero=unIterador.next();
+          sacaCartas(unPuntero); 
+          for (int i=0;i<dosMillones;i++)
+            partidaCartasSueltas();          
+          liberarCartas(unPuntero);
+          unPuntero=null;
+      }
+     
+    }
+    
+    void sacaCartas(tTupla unaTupla)
+    {
+        Iterator<tParejaCartas> unIterador=unaTupla.iterator();
+        int idJugador=0;
+        tParejaCartas unaPareja=null;
+        while (unIterador.hasNext())
+        {
+            unaPareja=unIterador.next();
+            tBaraja.getInstance().coger(unaPareja.get(0).dameRango().toInt(), unaPareja.get(0).damePalo().toInt(), idJugador);
+            tBaraja.getInstance().coger(unaPareja.get(1).dameRango().toInt(), unaPareja.get(1).damePalo().toInt(), idJugador);
+            idJugador++;
+        }
+    }
+    
+    void liberarCartas(tTupla unaTupla)
+    {
+        Iterator<tParejaCartas> unIterador=unaTupla.iterator();
+        int idJugador=0;
+        tParejaCartas unaPareja=null;
+        while (unIterador.hasNext())
+        {
+            unaPareja=unIterador.next();
+            tBaraja.getInstance().soltar(unaPareja.get(0).dameRango().toInt(), unaPareja.get(0).damePalo().toInt(), idJugador);
+            tBaraja.getInstance().soltar(unaPareja.get(1).dameRango().toInt(), unaPareja.get(1).damePalo().toInt(), idJugador);
+            idJugador++;
+        }
+    }
+    
+    
+    List <tTupla> mezcla(List<tTupla> aux1, List<tTupla> aux2)
+    {
+        //caso base
+        if (aux1.isEmpty()) return aux2;
+        List <tTupla> unaLista=new ArrayList();
+        tTupla unaTupla=new tTupla();
+        for (int i=0;i<aux1.size();i++)
+            for (int j=0;j<aux2.size();j++)
+            {
+                unaTupla.addAll(aux1.get(i));
+                unaTupla.addAll(aux2.get(j));
+                unaLista.add(unaTupla);
+                unaTupla=new tTupla();
+             }
+        return unaLista;
+    }
+  
     void partidaCartasSueltas ()
     {       
         tResultadosPartida unosResultados=new tResultadosPartida();
@@ -303,11 +376,25 @@ public class tSimulador {
            }
        }
         
+       
        Iterator<Integer> unIterador=unosResultados.dameGanadores().iterator();
-       while (unIterador.hasNext())
+       // si hay un solo ganador, le doy cien puntos
+       int numGanadores=unosResultados.dameGanadores().size();
+       if (numGanadores==1)
            puntos[unIterador.next()]++;
+       else
+       {       
+       while (unIterador.hasNext())
+       {
+           
+           int puntero=unIterador.next();
+           double unPunto=(double)puntos[puntero]+((double)1/(double)numGanadores);
+           puntos[puntero]=unPunto;
+       }
+       }
        //suelto las cartas que usé como relleno del tablero
-       limpiaTableroRandom(tableroSup,longTableroSup);         
+       limpiaTableroRandom(tableroSup,longTableroSup);   
+      //actualizo total puntos (cien en cada ronda)
       totalPuntos++;  
     }
 

@@ -50,5 +50,6 @@ public class tResultadosPartida {
         return puntuaciones.get(jugadaMaxima);
     }
     
+    
 }    
 

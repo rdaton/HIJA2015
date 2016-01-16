@@ -593,3 +593,588 @@ Hand 2: 	15.331%  	15.18% 	00.15% 	     234684756 	  2368266.50   { random }
 ---
 
 
+
+---
+  27,396,864  games     0.249 secs   110,027,566  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.001 secs    27,396,864,000  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  27,396,864  games     0.000 secs     5,479,372,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	36.721%  	34.57% 	02.15% 	       9471372 	   588962.00   { 65s }
+Hand 1: 	63.279%  	61.13% 	02.15% 	      16747568 	   588962.00   { 87s }
+
+
+---
+
+
+
+---
+  10,273,824  games     0.230 secs    44,668,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	50.000%  	02.17% 	47.83% 	        223260 	  4913652.00   { AA }
+Hand 1: 	50.000%  	02.17% 	47.83% 	        223260 	  4913652.00   { AA }
+
+
+---
+
+
+
+---
+  10,273,824  games     0.000 secs     2,054,764,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	50.000%  	02.17% 	47.83% 	        223260 	  4913652.00   { AA }
+Hand 1: 	50.000%  	02.17% 	47.83% 	        223260 	  4913652.00   { AA }
+
+
+---
+
+
+
+---
+ 123,285,888  games     0.000 secs    24,657,177,600  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	87.987%  	87.77% 	00.21% 	     108210924 	   264222.00   { AA }
+Hand 1: 	12.013%  	11.80% 	00.21% 	      14546520 	   264222.00   { T2o }
+
+
+---
+
+
+
+---
+ 123,285,888  games     0.000 secs    24,657,177,600  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	87.987%  	87.77% 	00.21% 	     108210924 	   264222.00   { AA }
+Hand 1: 	12.013%  	11.80% 	00.21% 	      14546520 	   264222.00   { T2o }
+
+
+---
+
+
+
+---
+ 123,285,888  games     0.000 secs    24,657,177,600  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	87.987%  	87.77% 	00.21% 	     108210924 	   264222.00   { AA }
+Hand 1: 	12.013%  	11.80% 	00.21% 	      14546520 	   264222.00   { T2o }
+
+
+---
+
+
+
+---
+ 123,285,888  games     0.000 secs    24,657,177,600  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	87.987%  	87.77% 	00.21% 	     108210924 	   264222.00   { AA }
+Hand 1: 	12.013%  	11.80% 	00.21% 	      14546520 	   264222.00   { T2o }
+
+
+---
+
+
+
+---
+  61,642,944  games     0.000 secs    12,328,588,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	81.946%  	81.71% 	00.23% 	      50371344 	   142614.00   { AA }
+Hand 1: 	18.054%  	17.82% 	00.23% 	      10986372 	   142614.00   { KK }
+
+
+---
+
+
+
+---
+   1,712,304  games     0.412 secs     4,156,077  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	83.064%  	82.86% 	00.21% 	       1418746 	     3569.50   { AdAs }
+Hand 1: 	16.936%  	16.73% 	00.21% 	        286419 	     3569.50   { 6d4c }
+
+
+---
+
+
+
+---
+   1,712,304  games     0.002 secs   856,152,000  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	51.010%  	50.70% 	00.31% 	        868097 	     5350.00   { QdJd }
+Hand 1: 	48.990%  	48.68% 	00.31% 	        833507 	     5350.00   { 5c5h }
+
+
+---
+
+
+
+---
+   1,712,304  games     0.001 secs     1,712,304,000  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	51.010%  	50.70% 	00.31% 	        868097 	     5350.00   { QdJd }
+Hand 1: 	48.990%  	48.68% 	00.31% 	        833507 	     5350.00   { 5c5h }
+
+
+---
+
+
+
+---
+   1,712,304  games     0.002 secs   856,152,000  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	51.010%  	50.70% 	00.31% 	        868097 	     5350.00   { QdJd }
+Hand 1: 	48.990%  	48.68% 	00.31% 	        833507 	     5350.00   { 5c5h }
+
+
+---
+
+
+
+---
+   1,712,304  games     0.001 secs     1,712,304,000  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	51.010%  	50.70% 	00.31% 	        868097 	     5350.00   { QdJd }
+Hand 1: 	48.990%  	48.68% 	00.31% 	        833507 	     5350.00   { 5c5h }
+
+
+---
+
+
+
+---
+  61,642,944  games     0.000 secs    12,328,588,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	80.481%  	80.31% 	00.17% 	      49506984 	   103734.00   { AA }
+Hand 1: 	19.519%  	19.35% 	00.17% 	      11928492 	   103734.00   { 77 }
+
+
+---
+
+
+
+---
+  61,642,944  games     0.000 secs    12,328,588,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	80.481%  	80.31% 	00.17% 	      49506984 	   103734.00   { AA }
+Hand 1: 	19.519%  	19.35% 	00.17% 	      11928492 	   103734.00   { 77 }
+
+
+---
+
+
+
+---
+  61,642,944  games     0.000 secs    12,328,588,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	80.481%  	80.31% 	00.17% 	      49506984 	   103734.00   { AA }
+Hand 1: 	19.519%  	19.35% 	00.17% 	      11928492 	   103734.00   { 77 }
+
+
+---
+
+
+
+---
+  61,642,944  games     0.000 secs    12,328,588,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	80.481%  	80.31% 	00.17% 	      49506984 	   103734.00   { AA }
+Hand 1: 	19.519%  	19.35% 	00.17% 	      11928492 	   103734.00   { 77 }
+
+
+---
+
+
+
+---
+  61,642,944  games     0.000 secs    12,328,588,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	80.481%  	80.31% 	00.17% 	      49506984 	   103734.00   { AA }
+Hand 1: 	19.519%  	19.35% 	00.17% 	      11928492 	   103734.00   { 77 }
+
+
+---
+
+
+
+---
+  61,642,944  games     0.000 secs    12,328,588,800  games/sec
+
+Board: 
+Dead:  
+
+	equity 	win 	tie 	      pots won 	pots tied	
+Hand 0: 	80.481%  	80.31% 	00.17% 	      49506984 	   103734.00   { AA }
+Hand 1: 	19.519%  	19.35% 	00.17% 	      11928492 	   103734.00   { 77 }
+
+
+---
+
+
