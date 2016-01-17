@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Pocket Stove</string>
+    <string name="title_activity_ventana_principal">VentanaPrincipal</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_ventana_evaluador">VentanaEvaluador</string>
+    <string name="edit_message">Pon un rango</string>
+    <string name="button_send">Parsear</string>
+</resources>
