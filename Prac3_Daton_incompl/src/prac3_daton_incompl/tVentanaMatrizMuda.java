@@ -95,7 +95,7 @@ public class tVentanaMatrizMuda extends javax.swing.JFrame {
 
         jLabel1.setText("Porcentaje Manual");
         jLabel1.setToolTipText("");
-        jLabel1.setText(String.valueOf(VentanaPrincipal._unControlador.porcentajeManual));
+        jLabel1.setText(String.valueOf(tVentanaJanda._unControlador.porcentajeManual));
         jLabel1.repaint();
 
         jButton2.setText("Generar");
@@ -183,25 +183,25 @@ public class tVentanaMatrizMuda extends javax.swing.JFrame {
         int i= jTable1.getSelectedRow();
         int j= jTable1.getSelectedColumn();
         //System.out.println("celda seleccionada" + new Integer(i).toString() + new Integer(j).toString());
-        VentanaPrincipal._unControlador.matrizBool[i][j]=!VentanaPrincipal._unControlador.matrizBool[i][j];
-        VentanaPrincipal._unControlador.calculaPorcentaje();
+        tVentanaJanda._unControlador.matrizBool[i][j]=!tVentanaJanda._unControlador.matrizBool[i][j];
+        tVentanaJanda._unControlador.calculaPorcentaje();
         jTable1.repaint();
-        jLabel1.setText(String.valueOf(VentanaPrincipal._unControlador.porcentajeManual));
+        jLabel1.setText(String.valueOf(tVentanaJanda._unControlador.porcentajeManual));
         
         jLabel1.repaint();
         
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VentanaPrincipal.jTextPane1.setText(VentanaPrincipal._unControlador.dameCsvMatrizRangos());
+        tVentanaJanda.jTextPane1.setText(tVentanaJanda._unControlador.dameCsvMatrizRangos());
         this.dispose();        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        int n= Integer.parseInt(jTextField1.getText());
-       VentanaPrincipal._unControlador.porcentajeBaker(n);
+       tVentanaJanda._unControlador.porcentajeBaker(n);
        jTable1.repaint();
-        jLabel1.setText(String.valueOf(VentanaPrincipal._unControlador.porcentajeManual));
+        jLabel1.setText(String.valueOf(tVentanaJanda._unControlador.porcentajeManual));
        jLabel1.repaint();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -224,10 +224,10 @@ class MyRenderer extends DefaultTableCellRenderer {
     @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
               this.setValue(value);
-              if (VentanaPrincipal._unControlador.matrizBool[row][column])
+              if (tVentanaJanda._unControlador.matrizBool[row][column])
                   setBackground(Color.YELLOW);
               else
-                  setBackground(color[VentanaPrincipal._unControlador.matrizColor[row][column]]);
+                  setBackground(color[tVentanaJanda._unControlador.matrizColor[row][column]]);
               return this;
          }
 
@@ -243,11 +243,11 @@ class MyRenderer extends DefaultTableCellRenderer {
         {
             for (int j=0;j<13;j++)
             {               
-                jTable1.getModel().setValueAt( VentanaPrincipal._unControlador.matrizRangos[i][j],i, j);                
+                jTable1.getModel().setValueAt( tVentanaJanda._unControlador.matrizRangos[i][j],i, j);                
                 jTable1.getColumnModel().getColumn(i).setCellRenderer(mr);
             }
         }
-        jLabel1.setText(String.valueOf(VentanaPrincipal._unControlador.porcentajeManual));
+        jLabel1.setText(String.valueOf(tVentanaJanda._unControlador.porcentajeManual));
         jLabel1.repaint();
 
     }

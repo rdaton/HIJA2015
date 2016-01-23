@@ -104,8 +104,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
         jButton23 = new javax.swing.JButton();
+        UnBotonJanda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -377,17 +377,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton22.setText("Ranking_Personalizado");
-        jButton22.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton22ActionPerformed(evt);
-            }
-        });
-
         jButton23.setText("Omaha_MonteCarlo");
         jButton23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton23ActionPerformed(evt);
+            }
+        });
+
+        UnBotonJanda.setText("Janda");
+        UnBotonJanda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UnBotonJandaActionPerformed(evt);
             }
         });
 
@@ -488,16 +488,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton22)
-                            .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(66, 66, 66))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(133, 133, 133)
                         .addComponent(ButtonReset)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jButton21)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(UnBotonJanda, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(137, 137, 137))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -526,17 +530,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(17, 17, 17)
                                 .addComponent(Equity5)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton6)
-                                .addComponent(jButton16))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton22, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton6)
+                                    .addComponent(jButton16)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(UnBotonJanda, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Equity6))))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -569,11 +574,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ButtonCartasNegras)
                                     .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(62, 62, 62))
+                                .addGap(47, 47, 47))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(ButtonTablero)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(jButton21)
+                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(184, 184, 184)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -871,10 +876,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
        this.hacerSimulaciones();        
     }//GEN-LAST:event_ButtonMonteCarloActionPerformed
 
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        tSimuladorOmaha unSimulador= new tSimuladorOmaha();
+        unSimulador.muchasPartidas();
+        for (int i=0;i<10;i++)
+            imprimirPorcentajes(unSimulador.damePorcentaje(i),i);
+    }//GEN-LAST:event_jButton23ActionPerformed
+
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-//http://stackoverflow.com/questions/8852560/how-to-make-popup-window-in-java
+        //http://stackoverflow.com/questions/8852560/how-to-make-popup-window-in-java
         String unosRangos = JOptionPane.showInputDialog(null,"Dame unos rangos", null);
-//http://stackoverflow.com/questions/1053467/how-do-i-save-a-string-to-a-text-file-using-java
+        //http://stackoverflow.com/questions/1053467/how-do-i-save-a-string-to-a-text-file-using-java
         if (!unosRangos.isEmpty())
         {
             PrintWriter out = null;
@@ -887,35 +899,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         };
-        
+
         initControladores();
     }//GEN-LAST:event_jButton21ActionPerformed
 
-    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        //http://stackoverflow.com/questions/8852560/how-to-make-popup-window-in-java
-        String unosRankings = JOptionPane.showInputDialog(null,"Dame unos rankings", null);
-//http://stackoverflow.com/questions/1053467/how-do-i-save-a-string-to-a-text-file-using-java
-        if (!unosRankings.isEmpty())
-        {
-            PrintWriter out = null;
-            try {
-                out = new PrintWriter(tMano.ficheroRankings);
-                out.println(unosRankings);
-                out.close();
-                tMano.parseaRanking();
-                tManoOmaha.parseaRanking();
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        };        
-    }//GEN-LAST:event_jButton22ActionPerformed
-
-    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        tSimuladorOmaha unSimulador= new tSimuladorOmaha();
-        unSimulador.muchasPartidas();
-        for (int i=0;i<10;i++)
-            imprimirPorcentajes(unSimulador.damePorcentaje(i),i);
-    }//GEN-LAST:event_jButton23ActionPerformed
+    private void UnBotonJandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnBotonJandaActionPerformed
+              
+           tVentanaJanda unaVentana=new tVentanaJanda();
+           unaVentana.setVisible(true);
+    }//GEN-LAST:event_UnBotonJandaActionPerformed
 
     void hacerSimulaciones()
     {
@@ -1030,6 +1022,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel Equity7;
     private javax.swing.JLabel Equity8;
     private javax.swing.JLabel Equity9;
+    private javax.swing.JButton UnBotonJanda;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -1044,7 +1037,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prac2_daton_incompl;
+package prac3_daton_incompl;
+
+
 
 /**
  *
@@ -11,8 +13,8 @@ package prac2_daton_incompl;
  */
 
 public class tVentanaJanda extends javax.swing.JFrame {
- static tControlador _unControlador=new tControlador();
- tVentanaMatriz unaVentana;
+ public static tControladorMudo _unControlador=new tControladorMudo();
+ tVentanaMatrizMuda unaVentana;
     /**
      * Creates new form VentanaPrincipal
      */
@@ -38,8 +40,14 @@ public class tVentanaJanda extends javax.swing.JFrame {
         jComboJuez = new javax.swing.JComboBox();
         jButton2 = new javax.swing.JButton();
         jLabelEval = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -110,6 +118,13 @@ public class tVentanaJanda extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jButton3.setText("Cerrar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,13 +133,19 @@ public class tVentanaJanda extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(52, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,7 +154,7 @@ public class tVentanaJanda extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        if (_unControlador.parseaEntrada(this.jTextPane1.getText()))
        {
-            unaVentana=new tVentanaMatriz();       
+            unaVentana=new tVentanaMatrizMuda();       
             unaVentana.setVisible(true);            
        }
        else 
@@ -149,6 +170,14 @@ public class tVentanaJanda extends javax.swing.JFrame {
             this.jLabelEval.setText("Correcto");
         else this.jLabelEval.setText("Erróneo");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+    
+    }//GEN-LAST:event_formWindowClosed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,6 +220,7 @@ public class tVentanaJanda extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboAcc;
     private javax.swing.JComboBox jComboJuez;
     private javax.swing.JComboBox jComboPos;
