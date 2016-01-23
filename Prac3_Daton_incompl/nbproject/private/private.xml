@@ -3,13 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user1/HIJA2015/Prac3_Daton_incompl/src/prac3_daton_incompl/tMano.java</file>
-            <file>file:/C:/Users/user1/HIJA2015/Prac3_Daton_incompl/src/prac3_daton_incompl/tBaraja.java</file>
-            <file>file:/C:/Users/user1/HIJA2015/Prac3_Daton_incompl/src/prac3_daton_incompl/tRango.java</file>
-            <file>file:/C:/Users/user1/HIJA2015/Prac3_Daton_incompl/src/prac3_daton_incompl/tResultadosPartida.java</file>
-            <file>file:/C:/Users/user1/HIJA2015/Prac3_Daton_incompl/src/prac3_daton_incompl/tParejaCartas.java</file>
-            <file>file:/C:/Users/user1/HIJA2015/Prac3_Daton_incompl/src/prac3_daton_incompl/tTupla.java</file>
-            <file>file:/C:/Users/user1/HIJA2015/Prac3_Daton_incompl/src/prac3_daton_incompl/tSimulador.java</file>
+            <file>file:/home/barfelix/HIJA/HIJA2015/Prac3_Daton_incompl/src/prac3_daton_incompl/VentanaPrincipal.java</file>
+            <file>file:/home/barfelix/HIJA/HIJA2015/Prac3_Daton_incompl/src/prac3_daton_incompl/tSimulador.java</file>
+            <file>file:/home/barfelix/HIJA/HIJA2015/Prac3_Daton_incompl/src/prac3_daton_incompl/tControlador.java</file>
+            <file>file:/home/barfelix/HIJA/HIJA2015/Prac3_Daton_incompl/src/prac3_daton_incompl/tControladorMudo.java</file>
+            <file>file:/home/barfelix/HIJA/HIJA2015/Prac3_Daton_incompl/src/prac3_daton_incompl/tVentanaMatrizMuda.java</file>
+            <file>file:/home/barfelix/HIJA/HIJA2015/Prac3_Daton_incompl/src/prac3_daton_incompl/tVentanaMatriz.java</file>
         </group>
     </open-files>
 </project-private>
