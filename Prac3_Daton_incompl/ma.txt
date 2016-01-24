@@ -1,0 +1,1 @@
+AA,KK,QQ,JJ,AKs,AKo,TT,AQs,AQo,99,AJs,KQs,88;88+,AQs+,AQo+,AJs,KQs,77,AJs,AJo,KQs,KQo,ATs;77+,AJs+,AJo+,ATs,KQs+,KQo+,66,ATo,A9s,KJs;66+,ATs+,ATo+,A9s+,KQs,KQo,KJs,55,A8s,A9o,KJo;55+,A8s+,A9o+,KJo+,22+,A2s+;

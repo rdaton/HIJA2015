@@ -1,0 +1,18 @@
+CONSIDERACIONES PREVIAS
+Hay diez manos en poker.
+
+TECNICIDADES
+Existe el fichero principal y el de respaldo, por si el principal  falla o es dañado.
+Se presupone que los ficheros son sintacticamente correctos.
+
+INSTRUCCIONES
+El formato de rankings, debe de ser de una sola línea, con valores enteros positivos
+separados por punto y com (;). Siendo su significancia la siguiente:
+ESCALERA_REAL;ESCALERA_COLOR;POKER;FULL;COLOR;ESCALERA;TRIO,DOBLE_PAREJA;PAREJA;CARTA_ALTA;
+Hay dos formas de introducir los rankings, uno, dentro del programa, y el otro, es editando el
+fichero "rankings.txt", en la raíz del proyecto.
+En todo caso, la entrada es una sóla línea de CSV, siguiendo la notación arriba indicada.
+El fichero de rankings se presupone sintacticamente correcto. (si sospechamos que está mal,               
+lo podemos eliminar y reiniciar el programa.
+
+

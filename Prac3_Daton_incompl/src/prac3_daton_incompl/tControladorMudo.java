@@ -8,6 +8,7 @@ package prac3_daton_incompl;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -643,7 +644,7 @@ String dameCsvMatrizRangos ()
 }
 static String[] parseaJanda()
 {
-    /*
+    
     //intento leer el fichero de rangos.
     //si no está, o está dañado, uso el de respaldo
     FileReader lectorFichero=null;
@@ -667,10 +668,10 @@ static String[] parseaJanda()
     } catch (IOException ex) {
         Logger.getLogger(tControlador.class.getName()).log(Level.SEVERE, null, ex);
     }
-    */
-    String cadenaFichero="33+,AKo-AJo,KQo,AKs-ATs,KQs-KTs,JTs-J9s,T9s,98s,87s,76s,65s;22+,AKo-ATo,KQo,AKs-A7s,A5s,KQs-KTs,QJs-QTs,JTs-J9s,T9s-T8s,98s-97s,87s-86s,76s-75s,65s,54s;22+,AKo-ATo,KQo-KJo,QJo,AKs-A2s,KQs-K6s,QJs-Q7s,JTs-J8s,T9s-T8s,98s-97s,87s-86s,76s-75s,65s-64s,54s;22+,AKo-A2o,KQo-K7o,QJo-Q9o, JTo-J9o,T9o-T8o,98o,87o,AKs-A2s,KQs-K2s,QJs-Q2s,JTs-J5s,T9s-T6s,98s-96s,87s-85s,76s-74s,65s-64s,54s-53s,43s;22+,AKo-A7o,KQo-K9o,QJo-Q9o,JTo-J9o,T9o,98o,AKs-A2s,KQs-K2s,QJs-Q4s,JTs-J7s,T9s-T7s,98s-97s,87s-86s,75s,65s-64s,54s;";
     
-    String[] unaTablaJanda=new String[19];
+    //String cadenaFichero="33+,AKo-AJo,KQo,AKs-ATs,KQs-KTs,JTs-J9s,T9s,98s,87s,76s,65s;22+,AKo-ATo,KQo,AKs-A7s,A5s,KQs-KTs,QJs-QTs,JTs-J9s,T9s-T8s,98s-97s,87s-86s,76s-75s,65s,54s;22+,AKo-ATo,KQo-KJo,QJo,AKs-A2s,KQs-K6s,QJs-Q7s,JTs-J8s,T9s-T8s,98s-97s,87s-86s,76s-75s,65s-64s,54s;22+,AKo-A2o,KQo-K7o,QJo-Q9o, JTo-J9o,T9o-T8o,98o,87o,AKs-A2s,KQs-K2s,QJs-Q2s,JTs-J5s,T9s-T6s,98s-96s,87s-85s,76s-74s,65s-64s,54s-53s,43s;22+,AKo-A7o,KQo-K9o,QJo-Q9o,JTo-J9o,T9o,98o,AKs-A2s,KQs-K2s,QJs-Q4s,JTs-J7s,T9s-T7s,98s-97s,87s-86s,75s,65s-64s,54s;";
+    
+    String[] unaTablaJanda=new String[5];
     unaTablaJanda=cadenaFichero.split(";");    
     //para invoccaciones externas
     tablaJanda=unaTablaJanda;
@@ -682,7 +683,7 @@ static String[] parseaMa()
 {
     //intento leer el fichero de rangos.
     //si no está, o está dañado, uso el de respaldo
-    /*
+    
     FileReader lectorFichero=null;
         try {
         lectorFichero=new FileReader(ficheroMa);
@@ -704,9 +705,9 @@ static String[] parseaMa()
     } catch (IOException ex) {
         Logger.getLogger(tControlador.class.getName()).log(Level.SEVERE, null, ex);
     }
-    */
-    String cadenaFichero="88+,AJs+,KQs,AKo;77+,A9s+,KTs+,QTs+,AJo+,KQo;77+,A7s+,K9s+,QTs+,JTs,ATo+,KTo+,QJo;66+,A4s+,K8s+,Q9s+,J9s+,T9s,A9o+,KTo+,QTo+JTo;66+,A2s+,K6s+,Q8s+,J8s+,T8s+,A7o+,K9o+,QTo+,JTo;55+,A2s+,K5s+,Q7s+,J8s+,T8s+,98s,A7o+,A5o,K9o+,Q9o+,J9o+,T9o;55+,A2s+,K3s+,Q6s+,J7s+,T7s+,97s+,87s,A4o,K8o+,Q9o+,J9o+,T9o;44+,A2s+,K2s+,Q4s+,J7s+,T7s+,97s+,87s,A3o,K7o+,Q8o+,J8o+,T9o;44+,A2s+,K2s+,Q4s+,J6s+,T6s+,96s+,86s+,76s+,A2o+,K6o+,Q8o+,J8o+,T8o+,98o;33+, A2s+ K2s+,Q2s+,J4s+,T6s+,96s+,86s+,76s,65s,A2o+,K5o+,Q7o+,J7o+,T7o+,98o;33+,A2s+,K2s+,Q2s+,J3s+,T5s+,95s+,85s+,75s+,65s,A2o+,K4o+,Q6o+,J7o+,T7o+,97o+,87o;22+,A2s+,K2s+,Q2s+,J2s+,T3s+,95s+,85s+,75s+,64s+,54s,A2o+,K2o+,Q5o+,J7o+,97o+,87o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,94s+,84s+,74s+,64s+,54s,A2o+,K2o+,Q4o+,J6o+,T7o+,97o+,86o+,76o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,93s+,83s+,73s+,63s+,53s+,43s,A2o+,K2o+,Q3o+,J4o+,T6o+,96o+,86o+,76o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,83s+,73s+,63s+,52s+,43s,A2o+,K2o+,Q2o+,J4o+,T6o+,95o+,85o+,75o+,65o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,73s+,62s+,52s+,43s,A2o+,K2o+,Q2o+,J3o+,T5o+,95o+,85o+,75o+,65o,54o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T3o+,95o+,85o+,74o+,64o+,54o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T2o+,93o+,84o+,74o+,64o+,53o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T2o+,92o+,83o+,73o+,63o+,52o+,43o;";
-    String[] unaTablaMa=new String[19];
+    
+    //String cadenaFichero="AA,KK,QQ,JJ,AKs,AKo,TT,AQs,AQo,99,AJs,KQs,88;88+,AQs+,AQo+,AJs,KQs,77,AJs,AJo,KQs,KQo,ATs;77+,AJs+,AJo+,ATs,KQs+,KQo+,66,ATo,A9s,KJs;66+,ATs+,ATo+,A9s+,KQs,KQo,KJs,55,A8s,A9o,KJo;55+,A8s+,A9o+,KJo+,22+,A2s+;";
+    String[] unaTablaMa=new String[5];
     unaTablaMa=cadenaFichero.split(";");    
     //para invoccaciones externas
     tablaMA=unaTablaMa;
