@@ -27,6 +27,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="hja.practica.ultima.pocketstove.VentanaPrincipal" />
         </activity>
+        <activity
+            android:name=".VentanaMatriz"
+            android:label="@string/title_activity_ventana_matriz"
+            android:parentActivityName=".VentanaPrincipal"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="hja.practica.ultima.pocketstove.VentanaPrincipal" />
+        </activity>
     </application>
 
 </manifest>

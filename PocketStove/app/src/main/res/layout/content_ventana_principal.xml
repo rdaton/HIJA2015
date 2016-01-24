@@ -14,12 +14,89 @@
     <EditText android:id="@+id/edit_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/edit_message" />
+        android:hint="@string/edit_message"
+        android:layout_alignBottom="@+id/button"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/button" />
     <Button
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/button_send"
     android:onClick="parsear"
-        />
+        android:id="@+id/button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="497dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:context=".MainActivity"
+        android:id="@+id/AbsoluteLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/labelPosicion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Posición" />
+
+        <Spinner
+            android:id="@+id/comboPosicion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/prompt_posicion"
+            android:spinnerMode="dropdown"
+            android:entries="@array/array_posiciones" />
+
+
+        <TextView
+            android:id="@+id/labelDecision"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Decisión" />
+
+        <Spinner
+            android:id="@+id/comboDecision"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/prompt_decision"
+            android:spinnerMode="dropdown"
+            android:entries="@array/array_decision"/>
+
+        <TextView
+            android:id="@+id/labelTipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ranking" />
+
+        <TextView
+            android:id="@+id/labelMensajeEva"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+        <Spinner
+            android:id="@+id/comboTipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/prompt_tipo"
+            android:spinnerMode="dropdown"
+            android:entries="@array/array_tipo"/>
+
+        <Button
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="Evaluar"
+            android:onClick="recuperarEstados"
+            android:nestedScrollingEnabled="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp" />
+
+    </LinearLayout>
 </LinearLayout>
+

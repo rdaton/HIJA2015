@@ -39,12 +39,12 @@ public tControlador()
     
 }
 
-boolean esDiagonal (int a, int b)
+public boolean esDiagonal (int a, int b)
 {
     return (a==b);
 }
 
-boolean esIzquierda (int a, int b)
+public boolean esIzquierda (int a, int b)
 {
     return (!(esDiagonal(a,b))&&(a>b)); 
 }

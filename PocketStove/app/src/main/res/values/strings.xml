@@ -7,4 +7,8 @@
     <string name="title_activity_ventana_evaluador">VentanaEvaluador</string>
     <string name="edit_message">Pon un rango</string>
     <string name="button_send">Parsear</string>
+    <string name="prompt_posicion">Posición</string>
+    <string name="prompt_decision">Decisión</string>
+    <string name="prompt_tipo">Tipo</string>
+    <string name="title_activity_ventana_matriz">VentanaMatriz</string>
 </resources>
