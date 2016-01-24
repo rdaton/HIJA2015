@@ -306,7 +306,7 @@ public class VentanaMatriz extends AppCompatActivity {
            switch (position)
            {
                case 0:  return FirstFragment.newInstance("pestania1");
-               break;
+
                default:
 
            };
