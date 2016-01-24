@@ -191,6 +191,8 @@ static String[] parseaBaker()
     return unaTablaBaker;
     
 }
+
+
 //de 5 en 5
 void porcentajeBaker(int n)
 {
@@ -254,6 +256,10 @@ void porcentajeBaker(int n)
   if (n!=100)
       this.parseaEntrada(unBuffer.toString());
 }
+
+
+
+
 boolean ma (int pos)
 {
    tControlador otroControlador=new tControlador(idJugador);     
