@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Pocket Stove</string>
+    <string name="title_activity_ventana_principal">VentanaPrincipal</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_ventana_evaluador">VentanaEvaluador</string>
+    <string name="edit_message">Pon un rango</string>
+    <string name="button_send">Parsear</string>
+    <string name="prompt_posicion">Posición</string>
+    <string name="prompt_decision">Decisión</string>
+    <string name="prompt_tipo">Tipo</string>
+    <string name="prompt_tipoCarta">TipoCarta</string>
+    <string name="title_activity_ventana_matriz2">VentanaMatriz2</string>
+    <string name="title_activity_ventana_matriz">VentanaMatriz</string>
+    <string name="CodeColor" >"#0000ff"</string>
+</resources>

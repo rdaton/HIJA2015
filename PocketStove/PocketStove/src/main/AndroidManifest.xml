@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="hja.practica.ultima.pocketstove">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".VentanaPrincipal"
+            android:label="@string/title_activity_ventana_principal"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".VentanaEvaluador"
+            android:label="@string/title_activity_ventana_evaluador"
+            android:parentActivityName=".VentanaPrincipal"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="hja.practica.ultima.pocketstove.VentanaPrincipal" />
+        </activity>
+        <activity
+            android:name=".VentanaMatriz"
+            android:label="@string/title_activity_ventana_matriz"
+            android:parentActivityName=".VentanaPrincipal"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="hja.practica.ultima.pocketstove.VentanaPrincipal" />
+        </activity>
+        <activity
+            android:name=".VentanaMatriz2"
+            android:label="@string/title_activity_ventana_matriz2"
+            android:parentActivityName=".VentanaPrincipal"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="hja.practica.ultima.pocketstove.VentanaPrincipal" />
+        </activity>
+    </application>
+
+</manifest>
