@@ -89,16 +89,16 @@ public class tMano
         int unLong=enumManos.values().length;
         switch (_tipoMano)
         {
-            case ESCALERA_REAL: return arrayRankings[0];//unLong;
-            case ESCALERA_COLOR: return arrayRankings[1];//unLong-1;
-            case POKER: return  arrayRankings[2];//unLong-2;
-            case FULL: return arrayRankings[3];//unLong-3;
-            case COLOR: return arrayRankings[4];//unLong-4;
-            case ESCALERA: return arrayRankings[5];//unLong-5;
-            case TRIO: return arrayRankings[6];//unLong-6;
-            case DOBLE_PAREJA: return arrayRankings[7];//return unLong-7;
-            case PAREJA: return arrayRankings[8];//unLong-8;
-            case CARTA_ALTA: return arrayRankings[9];//unLong-9;
+            case ESCALERA_REAL: return arrayRankings[0]+_cartaMax.dameRango().toInt();//unLong;
+            case ESCALERA_COLOR: return arrayRankings[1]+_cartaMax.dameRango().toInt();//unLong-1;
+            case POKER: return  arrayRankings[2]+_cartaMax.dameRango().toInt();//unLong-2;
+            case FULL: return arrayRankings[3]+_cartaMax.dameRango().toInt();//unLong-3;
+            case COLOR: return arrayRankings[4]+_cartaMax.dameRango().toInt();//unLong-4;
+            case ESCALERA: return arrayRankings[5]+_cartaMax.dameRango().toInt();//unLong-5;
+            case TRIO: return arrayRankings[6]+_cartaMax.dameRango().toInt();//unLong-6;
+            case DOBLE_PAREJA: return arrayRankings[7]+_cartaMax.dameRango().toInt();//return unLong-7;
+            case PAREJA: return arrayRankings[8]+_cartaMax.dameRango().toInt();//unLong-8;
+            case CARTA_ALTA: return arrayRankings[9]+_cartaMax.dameRango().toInt();//unLong-9;
             default: return 0;
         }
     }

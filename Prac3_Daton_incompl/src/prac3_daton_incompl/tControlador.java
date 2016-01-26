@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -172,7 +173,12 @@ static String[] parseaBaker()
             Logger.getLogger(tControlador.class.getName()).log(Level.SEVERE, null, ex1);
             return new String[1];
         }
-        
+        if (lectorFichero!=null)
+            try {
+                lectorFichero.close();
+        } catch (IOException ex1) {
+            Logger.getLogger(tControlador.class.getName()).log(Level.SEVERE, null, ex1);
+        }
     }
     BufferedReader unBufferFichero=new BufferedReader(lectorFichero);
     
@@ -805,4 +811,24 @@ String dameCsvMatrizRangos ()
   //  parseaEntrada(unBuffer.toString());
     return unBuffer.toString();
 }
+
+static void escribeBaker()
+{
+    StringBuffer unosRangos=new StringBuffer();
+    for (int i=0;i<tablaBaker.length;i++)
+    {
+        unosRangos.append(tablaBaker[i]).append(";");
+    }
+    PrintWriter out;
+       try {
+           out = new PrintWriter(tControlador.ficheroBaker);
+            out.println(unosRangos);
+            out.close();     
+            
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(tControladorMudo.class.getName()).log(Level.SEVERE, null, ex);
+       }
+               
+}
+
 }

@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
 
 /**
  *
@@ -27,9 +28,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     {
         for (int i=0;i<12;i++)
             _unosControladores[i]=new tControlador(i);
-        initComponents();
+       
     }
     public VentanaPrincipal() {
+        initComponents();
         initControladores();
     }
 
@@ -103,12 +105,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ButtonCartasNegras = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jButton21 = new javax.swing.JButton();
         jButton23 = new javax.swing.JButton();
         UnBotonJanda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTextPane1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTextPane1PropertyChange(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextPane1);
 
         jButton1.setText("Parsear");
@@ -370,13 +376,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel12.setText("Cartas Negras");
 
-        jButton21.setText("Rango_Personalizado");
-        jButton21.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton21ActionPerformed(evt);
-            }
-        });
-
         jButton23.setText("Omaha_MonteCarlo");
         jButton23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -384,7 +383,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        UnBotonJanda.setText("Janda");
+        UnBotonJanda.setText("Juez");
         UnBotonJanda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UnBotonJandaActionPerformed(evt);
@@ -438,70 +437,61 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(jButton9)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jLabel12)
-                                                        .addGap(82, 82, 82))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addComponent(jLabel11)
-                                                            .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGap(18, 18, 18))))
+                                                .addComponent(jLabel12)
+                                                .addGap(82, 82, 82))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(Equity3)
-                                                    .addComponent(Equity9))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                        .addComponent(ButtonMonteCarlo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(50, 50, 50)))))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ButtonTablero)
-                                            .addComponent(ButtonCartasNegras)))
+                                                    .addComponent(jLabel11)
+                                                    .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(Equity2)
-                                            .addComponent(Equity1)
-                                            .addComponent(Equity4)
-                                            .addComponent(Equity7)
-                                            .addComponent(Equity10)
-                                            .addComponent(Equity5)
-                                            .addComponent(Equity6))
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addContainerGap())
+                                            .addComponent(Equity3)
+                                            .addComponent(Equity9))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(ButtonMonteCarlo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(50, 50, 50)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ButtonTablero)
+                                    .addComponent(ButtonCartasNegras)
+                                    .addComponent(ButtonReset, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(Equity8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(ButtonReset)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Equity2)
+                                    .addComponent(Equity1)
+                                    .addComponent(Equity4)
+                                    .addComponent(Equity7)
+                                    .addComponent(Equity5)
+                                    .addComponent(Equity6))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Equity8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jButton21)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(UnBotonJanda, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(137, 137, 137))))))
+                        .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Equity10)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(UnBotonJanda, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(137, 137, 137))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -574,13 +564,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ButtonCartasNegras)
                                     .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(47, 47, 47))
+                                .addGap(271, 271, 271))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(ButtonTablero)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(jButton21, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(184, 184, 184)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -595,9 +583,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addComponent(jButton10))
                             .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Equity10)))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(ButtonMonteCarlo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ButtonReset)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -711,19 +698,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tBaraja.getInstance().clear();
         //reseteo controladores(jugadores)
          initControladores();
-        //reseteo vistas
-        VentanaPrincipal.jTextPane1.setText("");        
-        VentanaPrincipal.jTextPane2.setText("");
-        VentanaPrincipal.jTextPane3.setText("");
-        VentanaPrincipal.jTextPane4.setText("");
-        VentanaPrincipal.jTextPane5.setText("");
-        VentanaPrincipal.jTextPane6.setText("");
-        VentanaPrincipal.jTextPane7.setText("");
-        VentanaPrincipal.jTextPane8.setText("");
-        VentanaPrincipal.jTextPane9.setText("");
-        VentanaPrincipal.jTextPane10.setText("");
-        VentanaPrincipal.jTextPane11.setText("");
-        VentanaPrincipal.jTextPane12.setText("");            
+        
+         
+        jTextPane1.setText("");
+        jTextPane1.repaint();
+        jTextPane1.setVisible(false);
+        
+        jTextPane1.setVisible(true);
+        jTextPane3.setText("");
+        jTextPane4.setText("");
+        jTextPane5.setText("");
+        jTextPane6.setText("");
+        jTextPane7.setText("");
+        jTextPane8.setText("");
+        jTextPane9.setText("");
+        jTextPane10.setText("");
+        jTextPane11.setText("");
+        jTextPane12.setText("");  
         
     }
     void botonesRandom (int id)
@@ -883,31 +874,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             imprimirPorcentajes(unSimulador.damePorcentaje(i),i);
     }//GEN-LAST:event_jButton23ActionPerformed
 
-    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        //http://stackoverflow.com/questions/8852560/how-to-make-popup-window-in-java
-        String unosRangos = JOptionPane.showInputDialog(null,"Dame unos rangos", null);
-        //http://stackoverflow.com/questions/1053467/how-do-i-save-a-string-to-a-text-file-using-java
-        if (!unosRangos.isEmpty())
-        {
-            PrintWriter out = null;
-            try {
-                out = new PrintWriter(tControlador.ficheroBaker);
-                out.println(unosRangos);
-                out.close();
-                tControlador.parseaBaker();
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        };
-
-        initControladores();
-    }//GEN-LAST:event_jButton21ActionPerformed
-
     private void UnBotonJandaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UnBotonJandaActionPerformed
               
            tVentanaJanda unaVentana=new tVentanaJanda();
            unaVentana.setVisible(true);
     }//GEN-LAST:event_UnBotonJandaActionPerformed
+
+    private void jTextPane1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTextPane1PropertyChange
+     
+    }//GEN-LAST:event_jTextPane1PropertyChange
 
     void hacerSimulaciones()
     {
@@ -1036,7 +1011,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

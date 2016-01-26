@@ -24,7 +24,7 @@ public class tSimulador {
     private tCarta[] tablero;
     private int longTablero;
     private final int maxTablero=5;    
-    static int dosMillones=200000;
+    static int dosMillones=200;
     //el constructor lee la baraja ... almacena las cartas
     //deduce el numero de jugadores, tablero, etc
     public tSimulador()

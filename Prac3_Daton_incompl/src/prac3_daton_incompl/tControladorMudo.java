@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -23,12 +24,15 @@ import java.util.logging.Logger;
  */
 
 public class  tControladorMudo {
-   static String ficheroJanda="janda.txt";
+static String ficheroBaker="baker.txt";
+static String ficheroBakerBak="baker.txt.bak";
+static String[] tablaBaker=parseaBaker();
+static String ficheroJanda="janda.txt";
 static String ficheroJandaBak="janda.txt.bak";
 static String[] tablaJanda=parseaJanda();
 static String ficheroMa="ma.txt";
+static String[] tablaMa=parseaMa();
 static String ficheroMaBak="ma.txt.bak";
-static String[] tablaMA=parseaMa();
 double porcentajeManual;
 int unaLong; 
 boolean[][] matrizBool; 
@@ -46,9 +50,112 @@ List<String> claseDiagonalAbierto;
 
 public tControladorMudo()
 {
-    
     inicializaMatrices();
     
+}
+static String[] parseaBaker()
+{
+    //intento leer el fichero de rangos.
+    //si no está, o está dañado, uso el de respaldo
+    FileReader lectorFichero=null;
+        try {
+        lectorFichero=new FileReader(ficheroBaker);
+    } catch (FileNotFoundException ex) {
+        Logger.getLogger(tControlador.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            lectorFichero=new FileReader(ficheroBakerBak);
+        } catch (FileNotFoundException ex1) {
+            Logger.getLogger(tControlador.class.getName()).log(Level.SEVERE, null, ex1);
+            return new String[1];
+        }
+        if (lectorFichero!=null)
+            try {
+                lectorFichero.close();
+        } catch (IOException ex1) {
+            Logger.getLogger(tControlador.class.getName()).log(Level.SEVERE, null, ex1);
+        }
+    }
+    BufferedReader unBufferFichero=new BufferedReader(lectorFichero);
+    
+    String cadenaFichero="";
+    try {
+        cadenaFichero=unBufferFichero.readLine();
+    } catch (IOException ex) {
+        Logger.getLogger(tControlador.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    
+    //String cadenaFichero="88+,AJs+,KQs,AKo;77+,A9s+,KTs+,QTs+,AJo+,KQo;77+,A7s+,K9s+,QTs+,JTs,ATo+,KTo+,QJo;66+,A4s+,K8s+,Q9s+,J9s+,T9s,A9o+,KTo+,QTo+JTo;66+,A2s+,K6s+,Q8s+,J8s+,T8s+,A7o+,K9o+,QTo+,JTo;55+,A2s+,K5s+,Q7s+,J8s+,T8s+,98s,A7o+,A5o,K9o+,Q9o+,J9o+,T9o;55+,A2s+,K3s+,Q6s+,J7s+,T7s+,97s+,87s,A4o,K8o+,Q9o+,J9o+,T9o;44+,A2s+,K2s+,Q4s+,J7s+,T7s+,97s+,87s,A3o,K7o+,Q8o+,J8o+,T9o;44+,A2s+,K2s+,Q4s+,J6s+,T6s+,96s+,86s+,76s+,A2o+,K6o+,Q8o+,J8o+,T8o+,98o;33+, A2s+ K2s+,Q2s+,J4s+,T6s+,96s+,86s+,76s,65s,A2o+,K5o+,Q7o+,J7o+,T7o+,98o;33+,A2s+,K2s+,Q2s+,J3s+,T5s+,95s+,85s+,75s+,65s,A2o+,K4o+,Q6o+,J7o+,T7o+,97o+,87o;22+,A2s+,K2s+,Q2s+,J2s+,T3s+,95s+,85s+,75s+,64s+,54s,A2o+,K2o+,Q5o+,J7o+,97o+,87o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,94s+,84s+,74s+,64s+,54s,A2o+,K2o+,Q4o+,J6o+,T7o+,97o+,86o+,76o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,93s+,83s+,73s+,63s+,53s+,43s,A2o+,K2o+,Q3o+,J4o+,T6o+,96o+,86o+,76o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,83s+,73s+,63s+,52s+,43s,A2o+,K2o+,Q2o+,J4o+,T6o+,95o+,85o+,75o+,65o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,73s+,62s+,52s+,43s,A2o+,K2o+,Q2o+,J3o+,T5o+,95o+,85o+,75o+,65o,54o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T3o+,95o+,85o+,74o+,64o+,54o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T2o+,93o+,84o+,74o+,64o+,53o;22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T2o+,92o+,83o+,73o+,63o+,52o+,43o;";
+    String[] unaTablaBaker=new String[19];
+    unaTablaBaker=cadenaFichero.split(";");    
+    //para invoccaciones externas
+    tablaBaker=unaTablaBaker;
+    return unaTablaBaker;
+    
+}
+
+
+//de 5 en 5
+void porcentajeBaker(int n)
+{
+    if (n>=0 && n<=100)
+    {
+        inicializaMatrices();
+       
+    }
+    else return;
+    StringBuffer unBuffer=new StringBuffer();
+    
+    switch (n)
+    {
+        case 5:  unBuffer.append(tablaBaker[0]);//"88+,AJs+,KQs,AKo");
+        break;
+        case 10: unBuffer.append(tablaBaker[1]);//"77+,A9s+,KTs+,QTs+,AJo+,KQo");
+        break;
+        case 15: unBuffer.append(tablaBaker[2]);//"77+,A7s+,K9s+,QTs+,JTs,ATo+,KTo+,QJo");
+        break;    
+        case 20: unBuffer.append(tablaBaker[3]);//"66+,A4s+,K8s+,Q9s+,J9s+,T9s,A9o+,KTo+,QTo+JTo");
+        break;            
+        case 25: unBuffer.append(tablaBaker[4]);//"66+,A2s+,K6s+,Q8s+,J8s+,T8s+,A7o+,K9o+,QTo+,JTo");
+        break;   
+        case 30: unBuffer.append(tablaBaker[5]);//"55+,A2s+,K5s+,Q7s+,J8s+,T8s+,98s,A7o+,A5o,K9o+,Q9o+,J9o+,T9o");
+        break;
+        case 35: unBuffer.append(tablaBaker[6]);//"55+,A2s+,K3s+,Q6s+,J7s+,T7s+,97s+,87s,A4o,K8o+,Q9o+,J9o+,T9o");
+        break;    
+        case 40: unBuffer.append(tablaBaker[7]);//"44+,A2s+,K2s+,Q4s+,J7s+,T7s+,97s+,87s,A3o,K7o+,Q8o+,J8o+,T9o");
+        break;    
+        case 45: unBuffer.append(tablaBaker[8]);//"44+,A2s+,K2s+,Q4s+,J6s+,T6s+,96s+,86s+,76s+,A2o+,K6o+,Q8o+,J8o+,T8o+,98o");
+        break;    
+        case 50: unBuffer.append(tablaBaker[9]);//"33+, A2s+ K2s+,Q2s+,J4s+,T6s+,96s+,86s+,76s,65s,A2o+,K5o+,Q7o+,J7o+,T7o+,98o");
+        break;    
+        case 55: unBuffer.append(tablaBaker[10]);//"33+,A2s+,K2s+,Q2s+,J3s+,T5s+,95s+,85s+,75s+,65s,A2o+,K4o+,Q6o+,J7o+,T7o+,97o+,87o");
+        break;    
+        case 60: unBuffer.append(tablaBaker[11]);//"22+,A2s+,K2s+,Q2s+,J2s+,T3s+,95s+,85s+,75s+,64s+,54s,A2o+,K2o+,Q5o+,J7o+,97o+,87o");
+        break;    
+        case 65: unBuffer.append(tablaBaker[12]);//"22+,A2s+,K2s+,Q2s+,J2s+,T2s+,94s+,84s+,74s+,64s+,54s,A2o+,K2o+,Q4o+,J6o+,T7o+,97o+,86o+,76o");
+        break;    
+        case 70: unBuffer.append(tablaBaker[13]);//"22+,A2s+,K2s+,Q2s+,J2s+,T2s+,93s+,83s+,73s+,63s+,53s+,43s,A2o+,K2o+,Q3o+,J4o+,T6o+,96o+,86o+,76o");
+        break;    
+        case 75: unBuffer.append(tablaBaker[14]);//"22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,83s+,73s+,63s+,52s+,43s,A2o+,K2o+,Q2o+,J4o+,T6o+,95o+,85o+,75o+,65o");
+        break;
+        case 80: unBuffer.append(tablaBaker[15]);//"22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,73s+,62s+,52s+,43s,A2o+,K2o+,Q2o+,J3o+,T5o+,95o+,85o+,75o+,65o,54o");
+        break; 
+        case 85: unBuffer.append(tablaBaker[16]);//"22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T3o+,95o+,85o+,74o+,64o+,54o");
+        break;
+        case 90: unBuffer.append(tablaBaker[17]);//"22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T2o+,93o+,84o+,74o+,64o+,53o+");
+        break; 
+        case 95: unBuffer.append(tablaBaker[18]);//"22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T2o+,92o+,83o+,73o+,63o+,52o+,43o");
+        break;
+        case 100: {
+            for (int i=0;i<unaLong;i++)
+                for (int j=0;j<unaLong;j++)
+                    matrizBool[i][j]=true;
+            actualizaMatrices();            
+        };
+        break;
+    }
+
+  if (n!=100)
+      this.parseaEntrada(unBuffer.toString());
 }
 
 boolean esDiagonal (int a, int b)
@@ -146,66 +253,7 @@ private void inicializaMatrices()
     
     
 }
-//de 5 en 5
-void porcentajeBaker(int n)
-{
-    if (n>=0 && n<=100)
-        inicializaMatrices();
-    else return;
-    StringBuffer unBuffer=new StringBuffer();
-    
-    switch (n)
-    {
-        case 5: unBuffer.append("88+,AJs+,KQs,AKo");
-        break;
-        case 10: unBuffer.append("77+,A9s+,KTs+,QTs+,AJo+,KQo");
-        break;
-        case 15: unBuffer.append("77+,A7s+,K9s+,QTs+,JTs,ATo+,KTo+,QJo");
-        break;    
-        case 20: unBuffer.append("66+,A4s+,K8s+,Q9s+,J9s+,T9s,A9o+,KTo+,QTo+JTo");
-        break;            
-        case 25: unBuffer.append("66+,A2s+,K6s+,Q8s+,J8s+,T8s+,A7o+,K9o+,QTo+,JTo");
-        break;   
-        case 30: unBuffer.append("55+,A2s+,K5s+,Q7s+,J8s+,T8s+,98s,A7o+,A5o,K9o+,Q9o+,J9o+,T9o");
-        break;
-        case 35: unBuffer.append("55+,A2s+,K3s+,Q6s+,J7s+,T7s+,97s+,87s,A4o,K8o+,Q9o+,J9o+,T9o");
-        break;    
-        case 40: unBuffer.append("44+,A2s+,K2s+,Q4s+,J7s+,T7s+,97s+,87s,A3o,K7o+,Q8o+,J8o+,T9o");
-        break;    
-        case 45: unBuffer.append("44+,A2s+,K2s+,Q4s+,J6s+,T6s+,96s+,86s+,76s+,A2o+,K6o+,Q8o+,J8o+,T8o+,98o");
-        break;    
-        case 50: unBuffer.append("33+, A2s+ K2s+,Q2s+,J4s+,T6s+,96s+,86s+,76s,65s,A2o+,K5o+,Q7o+,J7o+,T7o+,98o");
-        break;    
-        case 55: unBuffer.append("33+,A2s+,K2s+,Q2s+,J3s+,T5s+,95s+,85s+,75s+,65s,A2o+,K4o+,Q6o+,J7o+,T7o+,97o+,87o");
-        break;    
-        case 60: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T3s+,95s+,85s+,75s+,64s+,54s,A2o+,K2o+,Q5o+,J7o+,97o+,87o");
-        break;    
-        case 65: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T2s+,94s+,84s+,74s+,64s+,54s,A2o+,K2o+,Q4o+,J6o+,T7o+,97o+,86o+,76o");
-        break;    
-        case 70: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T2s+,93s+,83s+,73s+,63s+,53s+,43s,A2o+,K2o+,Q3o+,J4o+,T6o+,96o+,86o+,76o");
-        break;    
-        case 75: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,83s+,73s+,63s+,52s+,43s,A2o+,K2o+,Q2o+,J4o+,T6o+,95o+,85o+,75o+,650");
-        break;
-        case 80: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,73s+,62s+,52s+,43s,A2o+,K2o+,Q2o+,J3o+,T5o+,95o+,85o+,75o+,65o,54o");
-        break; 
-        case 85: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T3o+,95o+,85o+,74o+,64o+,54o");
-        break;
-        case 90: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T2o+,93o+,84o+,74o+,64o+,53o+");
-        break; 
-        case 95: unBuffer.append("22+,A2s+,K2s+,Q2s+,J2s+,T2s+,92s+,82s+,72s+,62s+,52s+,42s+,32s,A2o+,K2o+,Q2o+,J2o+,T2o+,92o+,83o+,73o+,63o+,52o+,430");
-        break;
-        case 100: {
-            for (int i=0;i<unaLong;i++)
-                for (int j=0;j<unaLong;j++)
-                    matrizBool[i][j]=true;
-            actualizaMatrices();            
-        };
-        break;
-    }
 
-  if (n!=100)
-      this.parseaEntrada(unBuffer.toString());
-}
 boolean ma (int pos)
 {
    tControladorMudo otroControlador=new tControladorMudo();     
@@ -213,17 +261,17 @@ boolean ma (int pos)
     
     switch (pos)
     {
-        case 0: unBuffer.append("AA,KK,QQ,JJ,AKs,AKo,TT,AQs,AQo,99,AJs,KQs,88");
+        case 0: unBuffer.append(tablaMa[0]);//"AA,KK,QQ,JJ,AKs,AKo,TT,AQs,AQo,99,AJs,KQs,88");
         break;
-        case 1: unBuffer.append("88+,AQs+,AQo+,AJs,KQs,77,AJs,AJo,KQs,KQo,ATs");
+        case 1: unBuffer.append(tablaMa[1]);//"88+,AQs+,AQo+,AJs,KQs,77,AJs,AJo,KQs,KQo,ATs");
         break;
-        case 2: unBuffer.append("77+,AJs+,AJo+,ATs,KQs+,KQo+,66,ATo,A9s,KJs");
+        case 2: unBuffer.append(tablaMa[2]);//"77+,AJs+,AJo+,ATs,KQs+,KQo+,66,ATo,A9s,KJs");
         break;
             //me falta "any two suited broadways"
-        case 3: unBuffer.append("66+,ATs+,ATo+,A9s+,KQs,KQo,KJs,55,A8s,A9o,KJo,");
+        case 3: unBuffer.append(tablaMa[3]);//"66+,ATs+,ATo+,A9s+,KQs,KQo,KJs,55,A8s,A9o,KJo,");
         break;    
             //me falta "any two suited broadways", any two "unsuited broadways"
-        case 4: unBuffer.append("55+,A8s+,A9o+,KJo+,22+,A2s+");
+        case 4: unBuffer.append(tablaMa[4]);//"55+,A8s+,A9o+,KJo+,22+,A2s+");
                 
         
             
@@ -249,17 +297,17 @@ boolean janda(int pos){
     
     switch (pos)
     {
-        case 0: unBuffer.append("33+,AKo-AJo,KQo,AKs-ATs,KQs-KTs,JTs-J9s,T9s,98s,87s,76s,65s");
+        case 0: unBuffer.append(tablaJanda[0]);//"33+,AKo-AJo,KQo,AKs-ATs,KQs-KTs,JTs-J9s,T9s,98s,87s,76s,65s");
         break;
-        case 1: unBuffer.append("22+,AKo-ATo,KQo,AKs-A7s,A5s,KQs-KTs,QJs-QTs,JTs-J9s,T9s-T8s,98s-97s,87s-86s,76s-75s,65s,54s");
+        case 1: unBuffer.append(tablaJanda[1]);//"22+,AKo-ATo,KQo,AKs-A7s,A5s,KQs-KTs,QJs-QTs,JTs-J9s,T9s-T8s,98s-97s,87s-86s,76s-75s,65s,54s");
         break;
-        case 2: unBuffer.append("22+,AKo-ATo,KQo-KJo,QJo,AKs-A2s,KQs-K6s,QJs-Q7s,JTs-J8s,T9s-T8s,98s-97s,87s-86s,76s-75s,65s-64s,54s");
+        case 2: unBuffer.append(tablaJanda[2]);//"22+,AKo-ATo,KQo-KJo,QJo,AKs-A2s,KQs-K6s,QJs-Q7s,JTs-J8s,T9s-T8s,98s-97s,87s-86s,76s-75s,65s-64s,54s");
         break;
-        case 3: unBuffer.append("22+,AKo-A2o,KQo-K7o,QJo-Q9o, JTo-J9o,T9o-T8o,98o,87o,AKs-A2s,KQs-K2s,QJs-Q2s,JTs-J5s,T9s-T6s,98s-96s,"
-                + "87s-85s,76s-74s,65s-64s,54s-53s,43s");
+        case 3: unBuffer.append(tablaJanda[3]);//"22+,AKo-A2o,KQo-K7o,QJo-Q9o, JTo-J9o,T9o-T8o,98o,87o,AKs-A2s,KQs-K2s,QJs-Q2s,JTs-J5s,T9s-T6s,98s-96s,"
+              //  + "87s-85s,76s-74s,65s-64s,54s-53s,43s");
         break;    
-        case 4: unBuffer.append("22+,AKo-A7o,KQo-K9o,QJo-Q9o,JTo-J9o,T9o,98o,AKs-A2s,KQs-K2s,QJs-Q4s,JTs-J7s,T9s-T7s,98s-97s,87s-86s,"
-                + "76s-75s,65s-64s,54s");
+        case 4: unBuffer.append(tablaJanda[4]);//"22+,AKo-A7o,KQo-K9o,QJo-Q9o,JTo-J9o,T9o,98o,AKs-A2s,KQs-K2s,QJs-Q4s,JTs-J7s,T9s-T7s,98s-97s,87s-86s,"
+               // + "76s-75s,65s-64s,54s");
         
             
     }
@@ -678,6 +726,41 @@ static String[] parseaJanda()
     return unaTablaJanda;
     
 }
+static void escribeJanda()
+{
+    StringBuffer unosRangos=new StringBuffer();
+    for (int i=0;i<tablaJanda.length;i++)
+    {
+        unosRangos.append(tablaJanda[i]).append(";");
+    }
+    PrintWriter out;
+       try {
+           out = new PrintWriter(tControlador.ficheroBaker);
+            out.println(unosRangos);
+            out.close();            
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(tControladorMudo.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       
+               
+}
+
+static void escribeMa()
+{
+    StringBuffer unosRangos=new StringBuffer();
+    for (int i=0;i<tablaMa.length;i++)
+    {
+        unosRangos.append(tablaMa[i]).append(";");
+    }
+    PrintWriter out;
+       try {
+           out = new PrintWriter(tControladorMudo.ficheroMa);
+            out.println(unosRangos);
+            out.close();            
+       } catch (FileNotFoundException ex) {
+           Logger.getLogger(tControladorMudo.class.getName()).log(Level.SEVERE, null, ex);
+       }               
+}
 
 static String[] parseaMa()
 {
@@ -710,7 +793,7 @@ static String[] parseaMa()
     String[] unaTablaMa=new String[5];
     unaTablaMa=cadenaFichero.split(";");    
     //para invoccaciones externas
-    tablaMA=unaTablaMa;
+    tablaMa=unaTablaMa;
     return unaTablaMa;
     
 }
