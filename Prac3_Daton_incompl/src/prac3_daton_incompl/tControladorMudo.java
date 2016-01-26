@@ -231,17 +231,17 @@ boolean ma (int pos)
     otroControlador.parseaEntrada(unBuffer.toString());
    //ya tengo las dos matrices...devuelvo true, si  el rengo
    //introducido por el usuario se encuentra dentro de la matriz de janda
-    boolean enc=true;
+   boolean enc=false;
     
-    for (int i=0;i<unaLong ;i++)
-        for (int j=0;j<unaLong ;j++)
+    for (int i=0;(i<unaLong)&&!enc ;i++)
+        for (int j=0;(j<unaLong)&&!enc ;j++)
         {
            
-            enc=!(matrizBool[i][j] && !otroControlador.matrizBool[i][j]);            
-            if(!enc) return enc ;
+            enc=(matrizBool[i][j] && otroControlador.matrizBool[i][j]);            
+            if(enc) return enc ;
         };
     
-    return enc ;     
+    return enc ;    
 }
 boolean janda(int pos){
     tControladorMudo otroControlador=new tControladorMudo();     
@@ -266,14 +266,14 @@ boolean janda(int pos){
     otroControlador.parseaEntrada(unBuffer.toString());
    //ya tengo las dos matrices...devuelvo true, si  el rengo
    //introducido por el usuario se encuentra dentro de la matriz de janda
-    boolean enc=true;
+    boolean enc=false;
     
-    for (int i=0;i<unaLong ;i++)
-        for (int j=0;j<unaLong ;j++)
+    for (int i=0;(i<unaLong)&&!enc ;i++)
+        for (int j=0;(j<unaLong)&&!enc ;j++)
         {
            
-            enc=!(matrizBool[i][j] && !otroControlador.matrizBool[i][j]);            
-            if(!enc) return enc ;
+            enc=(matrizBool[i][j] && otroControlador.matrizBool[i][j]);            
+            if(enc) return enc ;
         };
     
     return enc ;       
